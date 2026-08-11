@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Mafia"
+run/main_scene="uid://cb3j7vw42j4n6"
+config/features=PackedStringArray("4.6", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://dy3a6pgt6cqsi"
+EventBus="*uid://co75ss5k4a1si"
+PlayerManager="*uid://dbmu4myg136n6"
+RoleManager="*uid://br1nsrbq5n5n4"
+PhaseStateMachine="*uid://bv3f76kqdysco"
+SaveManager="*uid://c6bdmotn017sv"
+SceneManager="*uid://cimfsqvnmji2e"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"

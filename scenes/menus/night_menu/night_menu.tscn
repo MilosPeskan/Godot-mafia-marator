@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bu57meve35bc2"]
+
+[ext_resource type="Script" uid="uid://coqvo4tnura0e" path="res://scenes/menus/night_menu/night_menu.gd" id="1_55kn5"]
+
+[node name="NightMenu" type="Control" unique_id=1363550192]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55kn5")
+
+[node name="HeaderLabel" type="Label" parent="." unique_id=992977444]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 10.0
+offset_right = 1262.0
+offset_bottom = 118.0
+
+[node name="InvestigationResultLabel" type="Label" parent="." unique_id=674763393]
+layout_mode = 0
+offset_left = 662.0
+offset_top = 935.0
+offset_right = 1240.0
+offset_bottom = 1039.0
+
+[node name="ActionMenuContainer" type="Control" parent="." unique_id=43780490]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 140.0
+offset_right = 1919.0
+offset_bottom = 872.0
+
+[node name="MafiaGroupPanel" type="Control" parent="." unique_id=180989720]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MafiaMembersLabel" type="Label" parent="MafiaGroupPanel" unique_id=609389690]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GroupTargetList" type="ItemList" parent="MafiaGroupPanel" unique_id=371509558]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProposeButton" type="Button" parent="MafiaGroupPanel" unique_id=1897624205]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="KumOverrideButton" type="Button" parent="MafiaGroupPanel" unique_id=213770292]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ConfirmGroupButton" type="Button" parent="MafiaGroupPanel" unique_id=1521767766]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

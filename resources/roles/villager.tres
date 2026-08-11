@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://cwtmwf8nhaxkt"]
+
+[ext_resource type="Texture2D" uid="uid://2l56psimxgd4" path="res://assets/icons/role/villager.png" id="1_vw4jm"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_w4sfx"]
+
+[resource]
+script = ExtResource("1_w4sfx")
+role_id = 29
+role_name = "Građanin"
+description = "Nema posebnu sposobnost. Učestvuje samo u diskusiji i glasanju."
+icon = ExtResource("1_vw4jm")
+is_unique = false
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

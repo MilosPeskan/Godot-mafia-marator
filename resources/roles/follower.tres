@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://dci333yfane54"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_17ndq"]
+[ext_resource type="Texture2D" uid="uid://ng6l0a2808o1" path="res://assets/icons/role/follower.png" id="1_evtax"]
+
+[resource]
+script = ExtResource("1_17ndq")
+role_id = 11
+role_name = "Pratilac"
+team = 1
+description = "Tokom noći može izabrati jednog igrača i blokirati njegovu noćnu sposobnost."
+icon = ExtResource("1_evtax")
+can_act_at_night = true
+action_label = "prati"
+night_action_type = 4
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://dtbn1ysw06yit"]
+
+[ext_resource type="Texture2D" uid="uid://ddec6nb8rcmg" path="res://assets/icons/role/parasite.png" id="1_e0xel"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_xcu6l"]
+
+[resource]
+script = ExtResource("1_xcu6l")
+role_id = 18
+role_name = "Parazit"
+team = 2
+description = "Tokom noći bira jednog igrača, ako taj igrač umre, preuzima ulogu tog igrača."
+icon = ExtResource("1_e0xel")
+night_priority = 65
+can_act_at_night = true
+action_label = "parazituje"
+night_action_type = 17
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

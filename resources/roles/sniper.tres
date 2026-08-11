@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://ddaacpl658vva"]
+
+[ext_resource type="Texture2D" uid="uid://cy7ff18my8y1f" path="res://assets/icons/role/sniper.png" id="1_skr1y"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_ygult"]
+
+[resource]
+script = ExtResource("1_ygult")
+role_id = 26
+role_name = "Snajperista"
+team = 1
+description = "Tokom dana može pokušati atentat. Ako tačno pogodi ulogu mete, ona umire."
+icon = ExtResource("1_skr1y")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

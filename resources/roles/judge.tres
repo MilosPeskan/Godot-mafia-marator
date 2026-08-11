@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://dcdlcsuyspgtc"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_g6oul"]
+[ext_resource type="Texture2D" uid="uid://jvlnsfdkgdft" path="res://assets/icons/role/judge.png" id="1_ucsrp"]
+
+[resource]
+script = ExtResource("1_g6oul")
+role_id = 14
+role_name = "Sudija"
+description = "Tokom noći može zaštititi jednog igrača od pogubljenja sledećeg dana."
+icon = ExtResource("1_ucsrp")
+can_act_at_night = true
+action_label = "zaštiti"
+night_action_type = 19
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

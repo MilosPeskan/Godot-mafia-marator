@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://k2uqjihac018"]
+
+[ext_resource type="Texture2D" uid="uid://bd4d5nj6a856r" path="res://assets/icons/role/grave_digger.png" id="1_bhgf3"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_sx4k7"]
+
+[resource]
+script = ExtResource("1_sx4k7")
+role_id = 12
+role_name = "Pogrebnik"
+description = "Tokom noći bira jednog mrtvog igrača i saznaje njegovu stranu."
+icon = ExtResource("1_bhgf3")
+can_act_at_night = true
+action_label = "otkopa"
+night_action_type = 11
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://dif6imhmhivvg"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_pn5pq"]
+[ext_resource type="Texture2D" uid="uid://dt7bjpdq8mms" path="res://assets/icons/role/escort.png" id="1_q7rpm"]
+
+[resource]
+script = ExtResource("1_pn5pq")
+role_id = 8
+role_name = "Eskort"
+description = "Tokom noći može blokirati sposobnost jednog igrača."
+icon = ExtResource("1_q7rpm")
+can_act_at_night = true
+action_label = "zavede"
+night_action_type = 4
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

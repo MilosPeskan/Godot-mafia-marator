@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://bnjdcswsh8dmf"]
+
+[ext_resource type="Texture2D" uid="uid://lst8bydbcdc8" path="res://assets/icons/role/detective.png" id="1_bddls"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_ct5ba"]
+
+[resource]
+script = ExtResource("1_ct5ba")
+role_id = 5
+role_name = "Detektiv"
+description = "Tokom noći može izabrati jednog igrača i saznati njegovu tačnu ulogu."
+icon = ExtResource("1_bddls")
+night_priority = 40
+can_act_at_night = true
+action_label = "istraži"
+night_action_type = 3
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

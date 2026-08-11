@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://cru1w4w42lhe2"]
+
+[ext_resource type="Texture2D" uid="uid://de58xqtgx4f8o" path="res://assets/icons/role/pyroman.png" id="1_2l4hj"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_awo6o"]
+
+[resource]
+script = ExtResource("1_awo6o")
+role_id = 21
+role_name = "Piroman"
+team = 2
+description = "Tokom noći može polivati igrača benzinom ili zapaliti sve polivene mete."
+icon = ExtResource("1_2l4hj")
+night_priority = 56
+can_act_at_night = true
+action_label = "polije"
+night_action_type = 6
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

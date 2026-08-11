@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://b672w77kncguu"]
+
+[ext_resource type="Texture2D" uid="uid://6w2r3vl0hpnn" path="res://assets/icons/role/advisor.png" id="1_2bxg8"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_iq5f4"]
+
+[resource]
+script = ExtResource("1_iq5f4")
+role_id = 0
+role_name = "Savetnik"
+team = 1
+description = "Tokom noći može izabrati jednog igrača i saznati njegovu tačnu ulogu."
+icon = ExtResource("1_2bxg8")
+night_priority = 41
+can_act_at_night = true
+action_label = "istraži"
+night_action_type = 3
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

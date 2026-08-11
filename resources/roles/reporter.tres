@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://br1tal858xews"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_118ax"]
+[ext_resource type="Texture2D" uid="uid://652l70k23eb6" path="res://assets/icons/role/reporter.png" id="1_g0gef"]
+
+[resource]
+script = ExtResource("1_118ax")
+role_id = 23
+role_name = "Reporter"
+description = "Tokom noći bira igrača. Ako ta meta umre, otkriva se njen ubica."
+icon = ExtResource("1_g0gef")
+night_priority = 44
+can_act_at_night = true
+action_label = "prisluškuje"
+night_action_type = 18
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

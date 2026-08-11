@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://c184cytdqjdqt"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_17c3q"]
+[ext_resource type="Texture2D" uid="uid://2bbedgrlpco6" path="res://assets/icons/role/executioner.png" id="1_bwa2x"]
+
+[resource]
+script = ExtResource("1_17c3q")
+role_id = 9
+role_name = "Dželat"
+team = 2
+description = "Na početku igre dobija metu. Pobeđuje ako ta meta bude pogubljena glasanjem."
+icon = ExtResource("1_bwa2x")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

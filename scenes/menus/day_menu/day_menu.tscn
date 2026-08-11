@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cqvsmjetnetic"]
+
+[ext_resource type="Script" uid="uid://df5nvsod13yrf" path="res://scenes/menus/day_menu/day_menu.gd" id="1_xi7xh"]
+
+[node name="DayMenu" type="Control" unique_id=1861790887]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xi7xh")
+
+[node name="HeaderLabel" type="Label" parent="." unique_id=1193167960]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+
+[node name="PlayerList" type="ItemList" parent="." unique_id=841880840]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectedPlayerInfo" type="Label" parent="." unique_id=1623043708]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ShowRolesButton" type="Button" parent="." unique_id=1229357130]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="RolesOverviewDialog" type="AcceptDialog" parent="." unique_id=1830871781]
+
+[node name="RolesOverviewList" type="RichTextLabel" parent="RolesOverviewDialog" unique_id=650449685]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+
+[node name="CallLynchButton" type="Button" parent="." unique_id=866190440]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StartNightButton" type="Button" parent="." unique_id=607362876]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

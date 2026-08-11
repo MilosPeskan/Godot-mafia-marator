@@ -1,0 +1,25 @@
+[gd_resource type="Theme" format=3 uid="uid://dbfvgg5xtg3al"]
+
+[ext_resource type="FontFile" uid="uid://x8y8qx1bx8jl" path="res://assets/fonts/ELEGANT TYPEWRITER Bold.ttf" id="1_7rr60"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rr60"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as7xc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv0lv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71d0e"]
+
+[resource]
+Button/colors/font_color = Color(0.02745098, 0.019607844, 0.011764706, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.40620393, 0.27157104, 0.19221109, 1)
+Button/font_sizes/font_size = 27
+Button/fonts/font = ExtResource("1_7rr60")
+Button/styles/disabled = SubResource("StyleBoxEmpty_7rr60")
+Button/styles/hover = SubResource("StyleBoxEmpty_as7xc")
+Button/styles/normal = SubResource("StyleBoxEmpty_yv0lv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_71d0e")

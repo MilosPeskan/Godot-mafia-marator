@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://bl6temwdey8fw"]
+
+[ext_resource type="Texture2D" uid="uid://bihe1yw3r46fi" path="res://assets/icons/role/serial_killer.png" id="1_1mg5q"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_f12hp"]
+
+[resource]
+script = ExtResource("1_f12hp")
+role_id = 24
+role_name = "Serijski ubica"
+team = 2
+description = "Tokom noći samostalno bira jednog igrača za ubistvo. Pobeđuje ako ostane poslednji živ."
+icon = ExtResource("1_1mg5q")
+night_priority = 55
+can_act_at_night = true
+action_label = "ubije"
+night_action_type = 1
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

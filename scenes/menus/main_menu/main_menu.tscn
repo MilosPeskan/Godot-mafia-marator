@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bl00xstsk400r"]
+
+[ext_resource type="Script" uid="uid://bdrjyigyyw3m0" path="res://scenes/menus/main_menu/main_menu.gd" id="1_thu50"]
+[ext_resource type="Texture2D" uid="uid://cemwga1lj7e62" path="res://assets/images/backgrounds/blank_dossier.png" id="2_peecx"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_m7x51"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="3_ub2bi"]
+
+[node name="MainMenu" type="Control" unique_id=2128320924]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thu50")
+
+[node name="Background" type="TextureRect" parent="." unique_id=544924177]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -660.5
+offset_top = -457.5
+offset_right = 660.5
+offset_bottom = 457.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_peecx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=2112199578]
+layout_mode = 0
+offset_left = 90.5
+offset_top = 43.5
+offset_right = 648.5
+offset_bottom = 808.5
+
+[node name="TitleLabel" type="Label" parent="Background/VBoxContainer" unique_id=1812321938]
+layout_mode = 2
+theme = ExtResource("3_ub2bi")
+theme_override_font_sizes/font_size = 70
+text = "Mafija"
+horizontal_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="Background/VBoxContainer" unique_id=1875684469]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Nova igra"
+
+[node name="InfoButton" type="Button" parent="Background/VBoxContainer" unique_id=552656762]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Informacije"
+
+[node name="SettingsButton" type="Button" parent="Background/VBoxContainer" unique_id=24744099]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Podesavanja"

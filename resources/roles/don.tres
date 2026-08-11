@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://sodxk6tu1r6y"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_60m6v"]
+[ext_resource type="Texture2D" uid="uid://hyq6lkpjn1yg" path="res://assets/icons/role/don.png" id="1_qs2m6"]
+
+[resource]
+script = ExtResource("1_60m6v")
+role_id = 7
+role_name = "Kum"
+team = 1
+description = "Vođa mafije koji bira konačnu metu za ubistvo. Pri istraživanju može izgledati kao član Sela."
+icon = ExtResource("1_qs2m6")
+night_priority = 49
+can_act_at_night = true
+action_label = "ubije"
+night_action_type = 1
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

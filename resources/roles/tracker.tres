@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://bv8domq74lg10"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_7wagd"]
+[ext_resource type="Texture2D" uid="uid://buctpt2e17sp3" path="res://assets/icons/role/tracker.png" id="1_43gr8"]
+
+[resource]
+script = ExtResource("1_7wagd")
+role_id = 28
+role_name = "Tragač"
+description = "Tokom noći može izabrati jednog igrača i saznati koga je posetio."
+icon = ExtResource("1_43gr8")
+night_priority = 43
+can_act_at_night = true
+action_label = "prati"
+night_action_type = 9
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

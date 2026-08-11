@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://6gbocql7icrk"]
+
+[ext_resource type="Texture2D" uid="uid://brqc6ne5m13ku" path="res://assets/icons/role/madman.png" id="1_qx45q"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_tkqer"]
+
+[resource]
+script = ExtResource("1_tkqer")
+role_id = 15
+role_name = "Ludak"
+team = 2
+description = "Pobeđuje ako bude izglasan i pogubljen tokom dana."
+icon = ExtResource("1_qx45q")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://ms53biocf6i"]
+
+[ext_resource type="Texture2D" uid="uid://cc3xp08vfn4ll" path="res://assets/icons/role/prosecutor.png" id="1_2tixw"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_h0ex1"]
+
+[resource]
+script = ExtResource("1_h0ex1")
+role_id = 20
+role_name = "Tužilac"
+description = "Može pokrenuti specijalno suđenje gde samo on glasa o pogubljenju mete. Samo jednom može da pogubi."
+icon = ExtResource("1_2tixw")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

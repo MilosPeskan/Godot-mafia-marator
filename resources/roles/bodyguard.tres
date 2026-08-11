@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://vjp7gv3rqou1"]
+
+[ext_resource type="Texture2D" uid="uid://bvgo3x5ff5b2w" path="res://assets/icons/role/bodyguard.png" id="1_f3xuq"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_mptwf"]
+
+[resource]
+script = ExtResource("1_mptwf")
+role_id = 4
+role_name = "Telohranitelj"
+description = "Tokom noći može čuvati jednog igrača. Ako je meta napadnuta, telohranitelj umire umesto nje."
+icon = ExtResource("1_f3xuq")
+night_priority = 31
+can_act_at_night = true
+action_label = "čuva"
+night_action_type = 2
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

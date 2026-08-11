@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://buudhkl0e4l7f"]
+
+[ext_resource type="Texture2D" uid="uid://gxhsqe2yh23l" path="res://assets/icons/role/mayor.png" id="1_n6cq2"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_x1fht"]
+
+[resource]
+script = ExtResource("1_x1fht")
+role_id = 17
+role_name = "Gradonačelnik"
+description = "Jednom tokom igre može učiniti da njegov glas vredi kao tri glasa."
+icon = ExtResource("1_n6cq2")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

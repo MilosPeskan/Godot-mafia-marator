@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cb3j7vw42j4n6"]
+
+[ext_resource type="Script" uid="uid://cu3cxcs1nw33d" path="res://scenes/main/main.gd" id="1_hyk8p"]
+[ext_resource type="Texture2D" uid="uid://dgqbi0ni36eqo" path="res://assets/images/backgrounds/blank_desk.png" id="2_iuonh"]
+[ext_resource type="Texture2D" uid="uid://csk7nbjhh4uup" path="res://assets/images/props/map.png" id="3_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://cx3ccyki5x4i5" path="res://assets/images/props/picture_car.png" id="4_hujxm"]
+[ext_resource type="Texture2D" uid="uid://k21o3d4fo71c" path="res://assets/images/props/picture_siluete.png" id="5_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://brogwbqvrrhob" path="res://assets/images/props/picture_town.png" id="6_b1x3f"]
+[ext_resource type="Texture2D" uid="uid://b2tsabyay7shd" path="res://assets/images/props/pin.png" id="7_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://b26t5cmylexk2" path="res://assets/images/props/pin2.png" id="8_b1x3f"]
+[ext_resource type="Texture2D" uid="uid://cce7j638ydr1" path="res://assets/images/props/newspaper1.png" id="9_b1x3f"]
+
+[node name="Main" type="Node" unique_id=1821957889]
+script = ExtResource("1_hyk8p")
+
+[node name="Control" type="Control" parent="." unique_id=803944534]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="Control" unique_id=1866939128]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Background" unique_id=1458303242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_iuonh")
+stretch_mode = 6
+
+[node name="Map" type="Sprite2D" parent="Control/Background" unique_id=1038210106]
+position = Vector2(294, 903.00006)
+rotation = 0.1732907
+scale = Vector2(0.421875, 0.421875)
+texture = ExtResource("3_ow5a4")
+
+[node name="PictureCar" type="Sprite2D" parent="Control/Background" unique_id=12697744]
+position = Vector2(1119, 166)
+rotation = 0.20485528
+scale = Vector2(0.32213876, 0.32213876)
+texture = ExtResource("4_hujxm")
+
+[node name="PictureTown2" type="Sprite2D" parent="Control/Background" unique_id=1229294499]
+position = Vector2(115, 624)
+rotation = -1.1337548
+scale = Vector2(0.29741904, 0.36074305)
+texture = ExtResource("6_b1x3f")
+
+[node name="PictureSiluete" type="Sprite2D" parent="Control/Background" unique_id=1968367657]
+position = Vector2(91.000244, 659.0001)
+rotation = 0.44272798
+scale = Vector2(0.43945313, 0.43945313)
+texture = ExtResource("5_yyfjg")
+
+[node name="PictureTown" type="Sprite2D" parent="Control/Background" unique_id=1643056323]
+position = Vector2(403.99994, 253)
+rotation = -0.34069198
+scale = Vector2(0.29741904, 0.29741907)
+texture = ExtResource("6_b1x3f")
+
+[node name="Pin3" type="Sprite2D" parent="Control/Background" unique_id=1903729393]
+position = Vector2(53, 411.99997)
+rotation = -0.573667
+scale = Vector2(0.04999998, 0.049999986)
+texture = ExtResource("7_yyfjg")
+
+[node name="Pin2" type="Sprite2D" parent="Control/Background" unique_id=2112250813]
+position = Vector2(96, 460)
+rotation = 0.3968441
+scale = Vector2(0.03580646, 0.035806447)
+texture = ExtResource("8_b1x3f")
+
+[node name="Newspaper1" type="Sprite2D" parent="Control/Background" unique_id=644210182]
+position = Vector2(1326.0002, 1062)
+rotation = -0.18212509
+scale = Vector2(0.49121094, 0.49121094)
+texture = ExtResource("9_b1x3f")
+
+[node name="UiRoot" type="Control" parent="Control" unique_id=9677813]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SceneContainer" type="Control" parent="Control/UiRoot" unique_id=971527928]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUDLayer" type="CanvasLayer" parent="Control" unique_id=218388298]
+visible = false
+
+[node name="GameHUD" type="Control" parent="Control/HUDLayer" unique_id=277218132]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DayCounterLabel" type="Label" parent="Control/HUDLayer/GameHUD" unique_id=642130016]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PhaseIndicatorLabel" type="Label" parent="Control/HUDLayer/GameHUD" unique_id=386139212]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PlayerStatusList" type="ItemList" parent="Control/HUDLayer/GameHUD" unique_id=437545684]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

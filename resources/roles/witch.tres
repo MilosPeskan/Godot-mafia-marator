@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://bop1wytaq2sgv"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_il623"]
+[ext_resource type="Texture2D" uid="uid://b2tqoe1csdjv" path="res://assets/icons/role/witch.png" id="1_o78fb"]
+
+[resource]
+script = ExtResource("1_il623")
+role_id = 31
+role_name = "Veštica"
+team = 2
+description = "Tokom noći može preusmeriti sposobnost jednog igrača na drugu metu."
+icon = ExtResource("1_o78fb")
+night_priority = 20
+can_act_at_night = true
+action_label = "kontroliše"
+night_action_type = 5
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

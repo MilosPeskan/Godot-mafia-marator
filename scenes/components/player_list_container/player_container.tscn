@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b2mqhoeohrg65"]
+
+[ext_resource type="Script" uid="uid://cspdef7inppfp" path="res://scenes/components/player_list_container/player_container.gd" id="1_jvwa6"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="2_uu1in"]
+[ext_resource type="Shader" uid="uid://dflrxia5w8de4" path="res://resources/shaders/censorship_line.gdshader" id="3_f0w7n"]
+[ext_resource type="Theme" uid="uid://dbfvgg5xtg3al" path="res://themes/empty_button.tres" id="3_nmjko"]
+[ext_resource type="Texture2D" uid="uid://dcd5yc2owxa2c" path="res://assets/ui elements/censorship.png" id="3_uu1in"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khhqo"]
+shader = ExtResource("3_f0w7n")
+shader_parameter/reveal = 0.0
+
+[node name="PlayerContainer" type="Control" unique_id=511417164 node_paths=PackedStringArray("player_name_label", "censorship_line", "remove_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1014.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_jvwa6")
+player_name_label = NodePath("PlayerName")
+censorship_line = NodePath("PlayerName/CensorshipLine")
+remove_button = NodePath("Remove")
+
+[node name="PlayerName" type="Label" parent="." unique_id=280707508]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.0
+offset_right = 155.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme = ExtResource("2_uu1in")
+text = "Igrac 1"
+uppercase = true
+
+[node name="CensorshipLine" type="Sprite2D" parent="PlayerName" unique_id=222221256]
+visible = false
+material = SubResource("ShaderMaterial_khhqo")
+position = Vector2(67, 16.999996)
+scale = Vector2(0.32600006, 0.32600006)
+texture = ExtResource("3_uu1in")
+region_enabled = true
+region_rect = Rect2(0, 0, 400, 125)
+
+[node name="Remove" type="Button" parent="." unique_id=524736225]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_nmjko")
+text = "x"
+
+[connection signal="pressed" from="Remove" to="." method="_on_remove_pressed"]

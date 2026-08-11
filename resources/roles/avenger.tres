@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://b5lkxkshwqufc"]
+
+[ext_resource type="Texture2D" uid="uid://fftedxwpgjev" path="res://assets/icons/role/avenger.png" id="1_hxou7"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_p2epj"]
+
+[resource]
+script = ExtResource("1_p2epj")
+role_id = 2
+role_name = "Osvetnik"
+description = "Kada umre, može izabrati jednog igrača koji će takođe biti ubijen."
+icon = ExtResource("1_hxou7")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

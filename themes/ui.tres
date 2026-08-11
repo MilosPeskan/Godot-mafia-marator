@@ -1,0 +1,32 @@
+[gd_resource type="Theme" format=3 uid="uid://cjlc6w5j0l81h"]
+
+[ext_resource type="FontFile" uid="uid://bub26ngtjysik" path="res://assets/fonts/ELEGANT TYPEWRITER Light.ttf" id="1_nr324"]
+[ext_resource type="Texture2D" uid="uid://x8lv6o268b6t" path="res://assets/images/ui/12FreeGrungePatternsDealjumbo-10.jpg" id="2_nr324"]
+[ext_resource type="FontFile" uid="uid://dxmgtp5vmopfe" path="res://assets/fonts/ELEGANT TYPEWRITER Regular.ttf" id="3_rb7da"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rb7da"]
+texture = ExtResource("2_nr324")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rb7da"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa6oi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8yfhb"]
+
+[resource]
+Button/colors/font_color = Color(0.7137255, 0.60784316, 0.46666667, 1)
+Button/font_sizes/font_size = 27
+Button/fonts/font = ExtResource("1_nr324")
+Button/styles/normal = SubResource("StyleBoxTexture_rb7da")
+Label/colors/font_color = Color(0.02745098, 0.019607844, 0.011764706, 1)
+Label/colors/font_outline_color = Color(0.3647059, 0.2901961, 0.20392157, 1)
+Label/constants/outline_size = 1
+Label/font_sizes/font_size = 26
+Label/fonts/font = ExtResource("1_nr324")
+LineEdit/colors/font_color = Color(0.09411765, 0.06666667, 0.039215688, 1)
+LineEdit/colors/font_placeholder_color = Color(0.02745098, 0.019607844, 0.011764706, 0.81960785)
+LineEdit/font_sizes/font_size = 26
+LineEdit/fonts/font = ExtResource("3_rb7da")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_rb7da")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_qa6oi")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_8yfhb")

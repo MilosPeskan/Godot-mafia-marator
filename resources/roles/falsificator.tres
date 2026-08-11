@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://cxd5po1hfvrir"]
+
+[ext_resource type="Texture2D" uid="uid://8f4saax6b1c7" path="res://assets/icons/role/falsificator.png" id="1_gnsmm"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_h1rx5"]
+
+[resource]
+script = ExtResource("1_h1rx5")
+role_id = 10
+role_name = "Falsifikator"
+team = 1
+description = "Tokom noći označi igrača koji pri istraživanju izgleda kao član Mafije."
+icon = ExtResource("1_gnsmm")
+can_act_at_night = true
+action_label = "falsifikuje"
+night_action_type = 14
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://ciwrpsamt865o"]
+
+[ext_resource type="Script" uid="uid://bbobrnyh2rpn1" path="res://scenes/menus/player_menu/player_menu.gd" id="1_bmi8c"]
+[ext_resource type="Texture2D" uid="uid://bj76ur22arcuc" path="res://assets/images/backgrounds/background.png" id="2_s6iss"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_j3ca1"]
+
+[node name="PlayerMenu" type="Control" unique_id=1118936175]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmi8c")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1481986846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_s6iss")
+expand_mode = 3
+
+[node name="PlayerGrid" type="GridContainer" parent="." unique_id=529465767]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 351.99997
+offset_right = 1231.857
+offset_bottom = 823.52844
+rotation = -0.020117389
+theme_override_constants/h_separation = 113
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="AddPlayerButton" type="Button" parent="." unique_id=1545417741]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 895.0
+offset_right = 1059.2666
+offset_bottom = 958.7345
+rotation = -0.018606007
+theme = ExtResource("3_j3ca1")
+text = "+  DODAJ IGRAČA"
+
+[node name="PlayerNameImput" type="LineEdit" parent="." unique_id=670399528]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 906.0
+offset_right = 738.6203
+offset_bottom = 966.5222
+rotation = -0.018095694
+theme = ExtResource("3_j3ca1")
+placeholder_text = "UNESITE IME IGRAČA"
+emoji_menu_enabled = false
+
+[node name="version" type="Label" parent="." unique_id=439995106]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 693.99994
+offset_top = 156.0
+offset_right = 741.99994
+offset_bottom = 200.0
+rotation = -0.020324467
+theme = ExtResource("3_j3ca1")
+theme_override_font_sizes/font_size = 38
+text = "00"
+
+[node name="NextButton" type="Button" parent="." unique_id=54779867]
+layout_mode = 0
+offset_left = 1302.0
+offset_top = 897.0
+offset_right = 1654.0
+offset_bottom = 1020.0
+
+[node name="StatusLabel" type="Label" parent="." unique_id=1001235922]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

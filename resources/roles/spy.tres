@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://cjjtcuyibipbu"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_c5mu5"]
+[ext_resource type="Texture2D" uid="uid://dv8wsgcbqt06u" path="res://assets/icons/role/spy.png" id="1_ksa3s"]
+
+[resource]
+script = ExtResource("1_c5mu5")
+role_id = 27
+role_name = "Špijun"
+description = "Tokom noći vidi sve igrače koje je mafija posetila."
+icon = ExtResource("1_ksa3s")
+night_priority = 42
+can_act_at_night = true
+action_label = "posmatra"
+night_action_type = 8
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

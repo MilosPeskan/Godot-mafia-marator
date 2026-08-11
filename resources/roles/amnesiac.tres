@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://ceti8r5i0gdqi"]
+
+[ext_resource type="Texture2D" uid="uid://d3e10oqxp0a7o" path="res://assets/icons/role/amnesiac.png" id="1_i1kse"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_tpy0d"]
+
+[resource]
+script = ExtResource("1_tpy0d")
+role_id = 1
+role_name = "Amnezičar"
+team = 2
+description = "Tokom noći može preuzeti ulogu jednog mrtvog igrača."
+icon = ExtResource("1_i1kse")
+night_priority = 61
+can_act_at_night = true
+action_label = "imitira"
+night_action_type = 20
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

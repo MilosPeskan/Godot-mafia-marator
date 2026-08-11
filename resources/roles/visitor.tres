@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://clbo3mr58101e"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_hwvxe"]
+[ext_resource type="Texture2D" uid="uid://j51xuxnfru8o" path="res://assets/icons/role/visitor.png" id="1_wmovm"]
+
+[resource]
+script = ExtResource("1_hwvxe")
+role_id = 30
+role_name = "Posetilac"
+team = 2
+description = "Tokom noći označava igrače. Ukoliko postoje tri žive označene mete, počinje odbrojavanje nakon kog automatski pobeđuje."
+icon = ExtResource("1_wmovm")
+night_priority = 45
+can_act_at_night = true
+action_label = "poseti"
+night_action_type = 16
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

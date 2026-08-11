@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://bglu8c0iitaig"]
+
+[ext_resource type="Script" uid="uid://bti4a6a06a8rt" path="res://scenes/components/role_list_item/role_list_item.gd" id="1_mm2ho"]
+[ext_resource type="Texture2D" uid="uid://c8ck3diirrd4r" path="res://assets/images/role borders/border1.png" id="1_y3rtp"]
+[ext_resource type="Texture2D" uid="uid://2l56psimxgd4" path="res://assets/icons/role/villager.png" id="2_1uxqr"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="3_mm2ho"]
+[ext_resource type="Texture2D" uid="uid://b3lb8yiiw8ul2" path="res://assets/ui elements/label_plate_strips.png" id="4_bi6vf"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="5_bh8kc"]
+[ext_resource type="FontFile" uid="uid://rd6fifvi6v0a" path="res://assets/fonts/Faith Collapsing.ttf" id="6_4gi4j"]
+[ext_resource type="FontFile" uid="uid://gce8rvp5duya" path="res://assets/fonts/SpecialElite-Regular.ttf" id="8_4gi4j"]
+[ext_resource type="Texture2D" uid="uid://bv3w5a1kfch0l" path="res://assets/ui elements/max_stamp.png" id="8_fv16p"]
+
+[node name="RoleListItem" type="Control" unique_id=1009416771]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_mm2ho")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=755793456]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RoleBorder" type="TextureRect" parent="MarginContainer" unique_id=772251052]
+layout_mode = 2
+texture = ExtResource("1_y3rtp")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/RoleBorder" unique_id=59555368]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 197.51389
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RoleIcon" type="TextureRect" parent="MarginContainer/RoleBorder/MarginContainer" unique_id=1313048386]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_1uxqr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RoleNamePlate" type="Sprite2D" parent="MarginContainer/RoleBorder" unique_id=255611323]
+position = Vector2(110.5, 176)
+scale = Vector2(0.31583336, 0.2325001)
+texture = ExtResource("4_bi6vf")
+region_enabled = true
+region_rect = Rect2(0, 0, 600, 200)
+
+[node name="RoleName" type="Label" parent="MarginContainer/RoleBorder/RoleNamePlate" unique_id=258285571]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -100.0
+offset_right = -300.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_bh8kc")
+theme_override_fonts/font = ExtResource("6_4gi4j")
+theme_override_font_sizes/font_size = 72
+text = "Proba"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoleDescription" type="Label" parent="MarginContainer/RoleBorder" unique_id=2127183228]
+layout_mode = 0
+offset_left = 206.26793
+offset_top = 28.0
+offset_right = 560.0385
+offset_bottom = 175.55348
+theme = ExtResource("5_bh8kc")
+text = "Test test test"
+autowrap_mode = 2
+
+[node name="RoleTeam" type="Label" parent="MarginContainer/RoleBorder" unique_id=1029971665]
+layout_mode = 0
+offset_left = 24.5
+offset_top = 9.000001
+offset_right = 190.5
+offset_bottom = 39.0
+theme = ExtResource("3_mm2ho")
+text = "Test"
+horizontal_alignment = 2
+
+[node name="MaximumStamp" type="TextureRect" parent="MarginContainer/RoleBorder" unique_id=1263956643]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.082
+anchor_top = 0.13700001
+anchor_right = 0.082
+anchor_bottom = 0.13700001
+offset_left = -39.20533
+offset_top = -39.671257
+offset_right = 38.260674
+offset_bottom = 41.49372
+rotation = 0.23038346
+pivot_offset = Vector2(36.964386, 38.81282)
+mouse_filter = 2
+texture = ExtResource("8_fv16p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Controls" type="Control" parent="MarginContainer/RoleBorder" unique_id=693879487]
+anchors_preset = 0
+offset_left = 550.4176
+offset_top = 12.949484
+offset_right = 629.7855
+offset_bottom = 188.28302
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/RoleBorder/Controls" unique_id=1783000774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Add" type="Button" parent="MarginContainer/RoleBorder/Controls/VBoxContainer" unique_id=274972365]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.118344925, 0.049117915, 0.003329186, 1)
+theme_override_colors/font_pressed_color = Color(0.277523, 7.219613e-08, 0.058952525, 1)
+theme_override_colors/font_hover_color = Color(0.23222259, 0, 0.041798756, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0, 0.043137256, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.06666667)
+theme_override_fonts/font = ExtResource("8_4gi4j")
+theme_override_font_sizes/font_size = 60
+text = "+"
+flat = true
+icon_alignment = 1
+
+[node name="Count" type="Label" parent="MarginContainer/RoleBorder/Controls/VBoxContainer" unique_id=1790847818]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("3_mm2ho")
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remove" type="Button" parent="MarginContainer/RoleBorder/Controls/VBoxContainer" unique_id=2057004204]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.118344925, 0.049117915, 0.003329186, 1)
+theme_override_colors/font_pressed_color = Color(0.277523, 7.219613e-08, 0.058952525, 1)
+theme_override_colors/font_hover_color = Color(0.23222259, 0, 0.041798756, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0, 0.043137256, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.06666667)
+theme_override_fonts/font = ExtResource("8_4gi4j")
+theme_override_font_sizes/font_size = 60
+text = "-"
+flat = true
+icon_alignment = 1

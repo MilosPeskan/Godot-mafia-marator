@@ -1,0 +1,300 @@
+[gd_scene format=3 uid="uid://ciwrpsamt865o"]
+
+[ext_resource type="Script" uid="uid://bbobrnyh2rpn1" path="res://scripts/start_menu.gd" id="1_thu50"]
+[ext_resource type="Texture2D" uid="uid://bj76ur22arcuc" path="res://assets/images/backgrounds/background.png" id="2_m7x51"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_m7x51"]
+[ext_resource type="Theme" uid="uid://dbfvgg5xtg3al" path="res://themes/empty_button.tres" id="4_h61rw"]
+
+[node name="StartMenu" type="Control" unique_id=1118936175]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thu50")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1481986846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m7x51")
+expand_mode = 3
+
+[node name="GridContainerPlayer" type="GridContainer" parent="." unique_id=529465767]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 340.0
+offset_right = 1238.857
+offset_bottom = 811.52844
+rotation = -0.020117389
+theme_override_constants/h_separation = 400
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Igrac1" type="Label" parent="GridContainerPlayer" unique_id=582721093]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrac jedan"
+uppercase = true
+
+[node name="Igrac2" type="Label" parent="GridContainerPlayer" unique_id=222693195]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac3" type="Label" parent="GridContainerPlayer" unique_id=1232276782]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac4" type="Label" parent="GridContainerPlayer" unique_id=1140798312]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac5" type="Label" parent="GridContainerPlayer" unique_id=56869691]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac6" type="Label" parent="GridContainerPlayer" unique_id=1692601842]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac7" type="Label" parent="GridContainerPlayer" unique_id=1593239747]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac8" type="Label" parent="GridContainerPlayer" unique_id=1877032188]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac9" type="Label" parent="GridContainerPlayer" unique_id=639563934]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac10" type="Label" parent="GridContainerPlayer" unique_id=246616613]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac11" type="Label" parent="GridContainerPlayer" unique_id=135331435]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac12" type="Label" parent="GridContainerPlayer" unique_id=933574607]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac13" type="Label" parent="GridContainerPlayer" unique_id=1338078472]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac14" type="Label" parent="GridContainerPlayer" unique_id=1987657770]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac15" type="Label" parent="GridContainerPlayer" unique_id=724007341]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac16" type="Label" parent="GridContainerPlayer" unique_id=1363430054]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac17" type="Label" parent="GridContainerPlayer" unique_id=313736467]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac18" type="Label" parent="GridContainerPlayer" unique_id=2123832424]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac19" type="Label" parent="GridContainerPlayer" unique_id=264095411]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="Igrac20" type="Label" parent="GridContainerPlayer" unique_id=1908259884]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Igrač jedan"
+uppercase = true
+
+[node name="GridContainerRemove" type="GridContainer" parent="." unique_id=1568129154]
+layout_mode = 0
+offset_left = 659.99994
+offset_top = 324.99997
+offset_right = 1245.2781
+offset_bottom = 815.0
+rotation = -0.020117389
+theme_override_constants/h_separation = 525
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Button1" type="Button" parent="GridContainerRemove" unique_id=1515325285]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button2" type="Button" parent="GridContainerRemove" unique_id=1972657268]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button3" type="Button" parent="GridContainerRemove" unique_id=799413550]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button4" type="Button" parent="GridContainerRemove" unique_id=1983420870]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button5" type="Button" parent="GridContainerRemove" unique_id=140635446]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button6" type="Button" parent="GridContainerRemove" unique_id=1793172964]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button7" type="Button" parent="GridContainerRemove" unique_id=1444397161]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button8" type="Button" parent="GridContainerRemove" unique_id=528305075]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button9" type="Button" parent="GridContainerRemove" unique_id=1952467084]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button10" type="Button" parent="GridContainerRemove" unique_id=404012944]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button11" type="Button" parent="GridContainerRemove" unique_id=1110205888]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button12" type="Button" parent="GridContainerRemove" unique_id=156965303]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button13" type="Button" parent="GridContainerRemove" unique_id=1529205962]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button14" type="Button" parent="GridContainerRemove" unique_id=566032373]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button15" type="Button" parent="GridContainerRemove" unique_id=886172045]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button16" type="Button" parent="GridContainerRemove" unique_id=1555180338]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button17" type="Button" parent="GridContainerRemove" unique_id=952066122]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button18" type="Button" parent="GridContainerRemove" unique_id=1690639027]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button19" type="Button" parent="GridContainerRemove" unique_id=1051114906]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button20" type="Button" parent="GridContainerRemove" unique_id=880412654]
+layout_mode = 2
+theme = ExtResource("4_h61rw")
+text = "x"
+
+[node name="Button" type="Button" parent="." unique_id=1545417741]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 895.0
+offset_right = 1059.2666
+offset_bottom = 958.7345
+rotation = -0.018606007
+theme = ExtResource("3_m7x51")
+text = "+  DODAJ IGRAČA"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=670399528]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 906.0
+offset_right = 738.6203
+offset_bottom = 966.5222
+rotation = -0.018095694
+theme = ExtResource("3_m7x51")
+placeholder_text = "UNESITE IME IGRAČA"
+emoji_menu_enabled = false
+
+[node name="version" type="Label" parent="." unique_id=439995106]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 693.99994
+offset_top = 156.0
+offset_right = 741.99994
+offset_bottom = 200.0
+rotation = -0.020324467
+theme = ExtResource("3_m7x51")
+theme_override_font_sizes/font_size = 38
+text = "00"

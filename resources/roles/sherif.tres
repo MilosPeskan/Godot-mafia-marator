@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://bcolt4mpflcdn"]
+
+[ext_resource type="Texture2D" uid="uid://ct6e23415owhc" path="res://assets/icons/role/sherif.png" id="1_0swfc"]
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_vksvi"]
+
+[resource]
+script = ExtResource("1_vksvi")
+role_id = 25
+role_name = "Šerif"
+description = "Jednom tokom igre, tokom dana, može izabrati jednog igrača i odmah ga ubiti."
+icon = ExtResource("1_0swfc")
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

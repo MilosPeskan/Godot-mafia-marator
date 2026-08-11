@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://c6vsphc4xytq6"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_1xcmo"]
+[ext_resource type="Texture2D" uid="uid://cjlghlbxq4npt" path="res://assets/icons/role/poisoner.png" id="1_afy6u"]
+
+[resource]
+script = ExtResource("1_1xcmo")
+role_id = 19
+role_name = "Trovač"
+team = 1
+description = "Tokom noći može izabrati jednog igrača. Istraživačke uloge dobijaju lažne informacije o toj meti."
+icon = ExtResource("1_afy6u")
+night_priority = 35
+can_act_at_night = true
+action_label = "otruje"
+night_action_type = 12
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

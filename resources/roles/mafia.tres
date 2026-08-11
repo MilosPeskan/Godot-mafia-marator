@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Role" format=3 uid="uid://0pd46i6pyw8y"]
+
+[ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_7ylup"]
+[ext_resource type="Texture2D" uid="uid://b61hfro2blvri" path="res://assets/icons/role/mafia.png" id="1_hh52f"]
+
+[resource]
+script = ExtResource("1_7ylup")
+role_id = 16
+role_name = "Mafijaš"
+team = 1
+description = "Tokom noći, zajedno sa mafijom, bira metu za ubistvo."
+icon = ExtResource("1_hh52f")
+night_priority = 50
+is_unique = false
+can_act_at_night = true
+action_label = "ubije"
+night_action_type = 1
+metadata/_custom_type_script = "uid://f0ydkot1fmf2"

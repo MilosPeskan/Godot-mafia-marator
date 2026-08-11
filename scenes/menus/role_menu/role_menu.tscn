@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://cc4aedcxe3p2y"]
+
+[ext_resource type="Script" uid="uid://bqwyxys0go3gk" path="res://scenes/menus/role_menu/role_menu.gd" id="1_ur5k6"]
+[ext_resource type="Texture2D" uid="uid://dv3s8a4r4ee6j" path="res://assets/images/backgrounds/role_selection_file.png" id="2_uwx3j"]
+[ext_resource type="Theme" uid="uid://dbfvgg5xtg3al" path="res://themes/empty_button.tres" id="3_4y0m1"]
+[ext_resource type="PackedScene" uid="uid://bglu8c0iitaig" path="res://scenes/components/role_list_item/role_list_item.tscn" id="4_mu87t"]
+[ext_resource type="Texture2D" uid="uid://b5ff7qxjhy7xy" path="res://assets/images/backgrounds/paper.png" id="4_ubs38"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="5_88k4g"]
+[ext_resource type="Shader" uid="uid://bau1i1p8o0q7n" path="res://resources/shaders/page_turn.gdshader" id="6_wxfap"]
+[ext_resource type="Script" uid="uid://b3wi2eocdm1o7" path="res://scenes/menus/role_menu/page_turn_overlay.gd" id="7_q53sf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y0m1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q53sf"]
+shader = ExtResource("6_wxfap")
+shader_parameter/progress = 0.0
+shader_parameter/direction = 1
+shader_parameter/shadow_color = Color(0, 0, 0, 0.55)
+shader_parameter/highlight_color = Color(1, 1, 1, 0.25)
+shader_parameter/spine_shadow_width = 0.15
+
+[node name="RoleMenu" type="Control" unique_id=310144077]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ur5k6")
+role_container_scene = ExtResource("4_mu87t")
+
+[node name="MarginContainer" type="Control" parent="." unique_id=590232178]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.017453292
+
+[node name="DossierFrame" type="PanelContainer" parent="MarginContainer" unique_id=1715329347]
+layout_mode = 0
+offset_left = 200.00003
+offset_top = 50.000008
+offset_right = 1720.0
+offset_bottom = 1030.0001
+theme_override_styles/panel = SubResource("StyleBoxFlat_4y0m1")
+
+[node name="DossierBackground" type="TextureRect" parent="MarginContainer/DossierFrame" unique_id=921888768]
+layout_mode = 2
+texture = ExtResource("2_uwx3j")
+
+[node name="LeftLeafViewportContainer" type="SubViewportContainer" parent="MarginContainer" unique_id=918186881]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14400001
+anchor_top = 0.1
+anchor_right = 0.48800004
+anchor_bottom = 0.92800003
+offset_left = 7.6615295
+offset_top = 0.9755554
+offset_right = 16.147278
+offset_bottom = 4.053894
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/LeftLeafViewportContainer" unique_id=209612721]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(668, 897)
+render_target_update_mode = 4
+
+[node name="PaperBackground" type="TextureRect" parent="MarginContainer/LeftLeafViewportContainer/SubViewport" unique_id=1507602372]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ubs38")
+
+[node name="LeftLeafGrid" type="GridContainer" parent="MarginContainer/LeftLeafViewportContainer/SubViewport" unique_id=16158340]
+anchors_preset = -1
+anchor_top = 0.004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.606102
+offset_top = 0.6728213
+offset_right = -1.2064209
+offset_bottom = -4.2354736
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 225
+
+[node name="RightLeafViewportContainer" type="SubViewportContainer" parent="MarginContainer" unique_id=411895646]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.513
+anchor_top = 0.104
+anchor_right = 0.86100006
+anchor_bottom = 0.93000007
+offset_left = -18.765503
+offset_top = -0.44057465
+offset_right = -9.636841
+offset_bottom = 4.63385
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/RightLeafViewportContainer" unique_id=442185028]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(677, 897)
+render_target_update_mode = 4
+
+[node name="PaperBackground" type="TextureRect" parent="MarginContainer/RightLeafViewportContainer/SubViewport" unique_id=2853293]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ubs38")
+flip_h = true
+
+[node name="RightLeafGrid" type="GridContainer" parent="MarginContainer/RightLeafViewportContainer/SubViewport" unique_id=1187485111]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.846916
+offset_top = 3.4890099
+offset_right = -3.4152832
+offset_bottom = -4.154724
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 225
+
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="MarginContainer" unique_id=529560845]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.513
+anchor_top = 0.104
+anchor_right = 0.86100006
+anchor_bottom = 0.93000007
+offset_left = 18.407776
+offset_top = 1422.4249
+offset_right = 27.536865
+offset_bottom = 1427.4993
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/PreviewViewportContainer" unique_id=2107458755]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(677, 897)
+render_target_update_mode = 4
+
+[node name="PaperBackground" type="TextureRect" parent="MarginContainer/PreviewViewportContainer/SubViewport" unique_id=1962194345]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ubs38")
+
+[node name="PreviewGrid" type="GridContainer" parent="MarginContainer/PreviewViewportContainer/SubViewport" unique_id=1082038518]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.846916
+offset_top = 3.4890099
+offset_right = -3.4152832
+offset_bottom = -4.154724
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 225
+
+[node name="PageTurnOverlay" type="TextureRect" parent="MarginContainer" unique_id=380491157]
+material = SubResource("ShaderMaterial_q53sf")
+layout_mode = 0
+offset_left = 288.57468
+offset_top = 111.43768
+offset_right = 1643.1104
+offset_bottom = 1007.58344
+script = ExtResource("7_q53sf")
+
+[node name="StartGameButton" type="Button" parent="MarginContainer" unique_id=1575041693]
+layout_mode = 0
+offset_left = 1664.4032
+offset_top = 711.263
+offset_right = 1724.5153
+offset_bottom = 921.2152
+theme = ExtResource("3_4y0m1")
+
+[node name="StatusLabel" type="Label" parent="MarginContainer" unique_id=758661623]
+layout_mode = 0
+offset_left = 1153.6609
+offset_top = 946.27826
+offset_right = 1499.2455
+offset_bottom = 995.8623
+
+[node name="PageControls" type="Control" parent="MarginContainer" unique_id=1006000514]
+anchors_preset = 0
+offset_left = 114.5636
+offset_top = 26.003376
+offset_right = 1630.6626
+offset_bottom = 1023.3003
+mouse_filter = 2
+
+[node name="PrevPageButton" type="Button" parent="MarginContainer/PageControls" unique_id=1774378312]
+layout_mode = 0
+offset_left = 84.99856
+offset_top = 156.30763
+offset_right = 139.84177
+offset_bottom = 386.02588
+theme = ExtResource("3_4y0m1")
+
+[node name="PageLabel" type="Label" parent="MarginContainer/PageControls" unique_id=501803744]
+layout_mode = 0
+offset_left = 164.57349
+offset_top = 25.876144
+offset_right = 435.54984
+offset_bottom = 75.450745
+theme = ExtResource("5_88k4g")
+theme_override_colors/font_color = Color(0.053604595, 0.034623425, 0.019420484, 1)
+theme_override_font_sizes/font_size = 30
+text = "page 3/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextPageButton" type="Button" parent="MarginContainer/PageControls" unique_id=977552305]
+layout_mode = 0
+offset_left = 1546.5128
+offset_top = 156.01414
+offset_right = 1604.0502
+offset_bottom = 379.37842
+theme = ExtResource("3_4y0m1")
