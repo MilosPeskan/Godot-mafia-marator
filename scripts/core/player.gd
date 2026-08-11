@@ -11,6 +11,20 @@ var protected_by: Player = null    # ko ga štiti ove noći (npr. doktor), reset
 var votes_received: int = 0        # glasovi primljeni tokom trenutnog lynch glasanja
 var has_acted_tonight: bool = false
 
+# Statusna polja koja postavlja NightPhase._apply_action_effect() —
+# svako predstavlja efekat jedne noćne akcije primenjene NA ovog igrača kao metu.
+var is_blocked: bool = false                  # ne može da koristi svoju sposobnost ove noći
+var is_doused: bool = false                   # poliven benzinom (Piroman) — spreman za paljenje
+var is_censored: bool = false                 # informacije o njemu su cenzurisane
+var is_deceived: bool = false                 # istraživanja o njemu vraćaju lažan rezultat
+var is_silenced: bool = false                 # ne može da govori sledećeg dana
+var is_framed: bool = false                   # izgleda kao mafija pri istraživanju
+var is_jailed: bool = false                   # zatvoren — ne deluje i ne može biti ubijen
+var is_marked: bool = false                   # označen (Posetilac) — akumulira se
+var is_infested: bool = false                 # ako umre, Parazit preuzima njegovu ulogu
+var followed_by: Array[Player] = []           # igrači koji prate ovog igrača (Reporter)
+var protected_from_execution: bool = false    # zaštićen od pogubljenja sledećeg dana (Sudija)
+
 func _init(p_name: String = "", p_role: Role = null) -> void:
 	player_name = p_name
 	role = p_role
@@ -25,6 +39,21 @@ func reset_nightly_state() -> void:
 	night_target = null
 	protected_by = null
 	has_acted_tonight = false
+
+	is_blocked = false
+	is_doused = false
+	is_censored = false
+	is_deceived = false
+	is_silenced = false
+	is_framed = false
+	is_jailed = false
+	is_marked = false
+	is_infested = false
+	followed_by = []
+	# protected_from_execution nije resetovan ovde — namerno traje do sledećeg
+	# dnevnog linč glasanja (Sudija ga postavlja noću da zaštiti metu SLEDEĆI dan).
+	# Trenutno LynchPhase još ne čita ovo polje; kad se to doda, treba ga resetovati
+	# u LynchPhase nakon što se linč razreši, ne ovde.
 
 func reset_voting_state() -> void:
 	votes_received = 0
