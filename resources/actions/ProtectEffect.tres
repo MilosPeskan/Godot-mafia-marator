@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ProtectEffect" format=3 uid="uid://cwjr6qmn18ptu"]
+
+[ext_resource type="Script" uid="uid://dll54r120fjvo" path="res://resources/actions/protect_effect.gd" id="1_4k2vn"]
+
+[resource]
+script = ExtResource("1_4k2vn")
+metadata/_custom_type_script = "uid://dll54r120fjvo"
