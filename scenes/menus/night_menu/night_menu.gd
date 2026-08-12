@@ -3,7 +3,7 @@ extends Control
 const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/action_menu.tscn")
 
 @onready var header_label: Label = $HeaderLabel
-@onready var result_label: Label = $ResultLabel
+@onready var result_label: Label = $InvestigationResultLabel
 @onready var action_menu_container: Control = $ActionMenuContainer
 @onready var mafia_group_panel: Control = $MafiaGroupPanel
 @onready var mafia_members_label: Label = $MafiaGroupPanel/MafiaMembersLabel
