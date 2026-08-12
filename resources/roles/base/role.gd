@@ -40,6 +40,11 @@ enum NightActionType {
 @export var action_label: String = ""       # tekst na dugmetu akcije u action_menu
 @export var night_action_type: NightActionType = NightActionType.NONE
 
+## Opciono: ako je dodeljen, NightPhase poziva night_action_effect.apply()
+## umesto starog match statement-a u _apply_action_effect(). null (default)
+## znači "još nije migrirano — koristi stari fallback match".
+@export var night_action_effect: ActionEffect = null
+
 static func get_team_name(team: Team) -> String:
 	match team:
 		Team.VILLAGE:
