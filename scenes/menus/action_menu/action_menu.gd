@@ -43,17 +43,42 @@ func setup(p_actor: Player) -> void:
 		target_list.clear()
 		return
 
-	_populate_targets(role.targets_dead_players, actor)
+	# Prvi (glavni) korak biranja mete uvek koristi pravila iz actor.role
+	# (can_target_dead / can_target_self / opposite_team_only).
+	_populate_targets(role.can_target_dead, actor, true)
 
-func _populate_targets(dead_pool: bool, exclude: Player) -> void:
+## Popunjava target_list igračima koje ova akcija sme da cilja.
+##
+## apply_role_filters == true (standardni slučaj, koristi se iz setup()):
+##   Pool i filteri se izvode DIREKTNO iz actor.role — dead_pool argument
+##   se u tom slučaju ignoriše (naveden je samo radi čitljivosti poziva).
+##   - pool = mrtvi ako actor.role.can_target_dead, inače živi
+##   - exclude se izbacuje SAMO ako actor.role.can_target_self == false
+##   - ako actor.role.opposite_team_only, dodatno se izbacuju igrači
+##     istog tima kao actor.role.team
+##
+## apply_role_filters == false (podrazumevano — koristi ga DRUGI korak
+## CONTROL sposobnosti, vidi _advance_control_step): ponaša se kao PRE
+## ove izmene — dead_pool ručno bira pool, exclude se UVEK izbacuje,
+## bez čitanja pravila iz actor.role.
+func _populate_targets(dead_pool: bool, exclude: Player, apply_role_filters: bool = false) -> void:
 	eligible_targets.clear()
 	target_list.clear()
 
-	var pool: Array[Player] = PlayerManager.get_dead_players() if dead_pool else PlayerManager.get_alive_players()
+	var role: Role = actor.role
+	var use_dead_pool: bool = role.can_target_dead if apply_role_filters else dead_pool
+	var pool: Array[Player] = PlayerManager.get_dead_players() if use_dead_pool else PlayerManager.get_alive_players()
 
 	for p in pool:
-		if p == exclude:
-			continue   # pojednostavljenje: niko trenutno ne cilja sebe (videti napomenu u sekciji 21)
+		if apply_role_filters:
+			if not role.can_target_self and p == exclude:
+				continue
+			if role.opposite_team_only and p.role != null and p.role.team == role.team:
+				continue
+		else:
+			if p == exclude:
+				continue
+
 		eligible_targets.append(p)
 		target_list.add_item(p.player_name)
 
@@ -85,7 +110,10 @@ func _advance_control_step(chosen: Player) -> void:
 		control_victim = chosen
 		control_step = 1
 		instruction_label.text = "Ka kome usmeravaš %s?" % control_victim.player_name
-		_populate_targets(false, control_victim)   # ne sme da usmeri metu ka samoj sebi
+		# NOTE: second CONTROL step targets based on the redirected
+		# player's context, not the actor's own role rules — left as an
+		# explicit exception until multi-target actions are generalized
+		_populate_targets(false, control_victim)
 		return
 
 	var forced_target: Player = chosen
