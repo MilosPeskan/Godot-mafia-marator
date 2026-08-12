@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="KillEffect" format=3 uid="uid://cuwhjsavf7iod"]
+
+[ext_resource type="Script" uid="uid://bseh7gil5evqs" path="res://resources/actions/kill_effect.gd" id="1_ej4ax"]
+
+[resource]
+script = ExtResource("1_ej4ax")
+metadata/_custom_type_script = "uid://bseh7gil5evqs"
