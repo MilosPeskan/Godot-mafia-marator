@@ -29,13 +29,16 @@ enum NightActionType {
 	TAKE_ROLE,                # preuzima ulogu mrtvog igrača
 }
 
+@export_group("Basic Information")
 @export var role_id: RoleId = RoleId.CUSTOM
 @export var role_name: String = ""
 @export var team: Team = Team.VILLAGE
 @export_multiline var description: String = ""
 @export var icon: Texture2D
-@export var night_priority: int = -1        # -1 = nema noćnu akciju; manji broj = deluje ranije
 @export var is_unique: bool = true          # sme li postojati samo jednom po partiji
+
+@export_group("Night Action")
+@export var night_priority: int = -1        # -1 = nema noćnu akciju; manji broj = deluje ranije
 @export var can_act_at_night: bool = false
 @export var action_label: String = ""       # tekst na dugmetu akcije u action_menu
 @export var night_action_type: NightActionType = NightActionType.NONE
@@ -44,6 +47,16 @@ enum NightActionType {
 ## umesto starog match statement-a u _apply_action_effect(). null (default)
 ## znači "još nije migrirano — koristi stari fallback match".
 @export var night_action_effect: ActionEffect = null
+# --- Pravila biranja mete (koristi action_menu.gd _populate_targets) ---
+# can_target_dead: true SAMO za role čija sposobnost zahteva biranje MRTVOG igrača
+# (npr. Pogrebnik, Amnezičar). Podrazumevano false — većina rola bira žive igrače.
+@export var can_target_dead: bool = false
+# can_target_self: true SAMO za role kojima je dozvoljeno da izaberu SEBE kao metu.
+# Podrazumevano false — većina rola ne može ciljati sebe.
+@export var can_target_self: bool = false
+# opposite_team_only: true SAMO za role čija sposobnost sme ciljati isključivo
+# igrače sa DRUGAČIJIM timom od aktera (npr. ubistvo Mafije). Podrazumevano false.
+@export var opposite_team_only: bool = false
 
 static func get_team_name(team: Team) -> String:
 	match team:
