@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_32851"]
 [ext_resource type="Texture2D" uid="uid://w3l4y87mahng" path="res://assets/icons/role/jailor.png" id="1_i1kfc"]
+[ext_resource type="Script" uid="uid://dervps6oot04c" path="res://resources/actions/jail_effect.gd" id="2_r4dyn"]
+
+[sub_resource type="Resource" id="Resource_tt7f3"]
+script = ExtResource("2_r4dyn")
+metadata/_custom_type_script = "uid://dervps6oot04c"
 
 [resource]
 script = ExtResource("1_32851")
@@ -9,7 +14,9 @@ role_id = 13
 role_name = "Tamničar"
 description = "Tokom noći može zatvoriti jednog igrača. Taj igrač ne može da koristi sposobnosti i ne može biti ubijen te noći."
 icon = ExtResource("1_i1kfc")
+night_priority = 60
 can_act_at_night = true
 action_label = "zatvori"
 night_action_type = 15
+night_action_effect = SubResource("Resource_tt7f3")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

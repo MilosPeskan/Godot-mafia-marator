@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://8f4saax6b1c7" path="res://assets/icons/role/falsificator.png" id="1_gnsmm"]
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_h1rx5"]
+[ext_resource type="Script" uid="uid://qe1l8tj1hmp5" path="res://resources/actions/frame_effect.gd" id="2_0ltvb"]
+
+[sub_resource type="Resource" id="Resource_bj15w"]
+script = ExtResource("2_0ltvb")
+metadata/_custom_type_script = "uid://qe1l8tj1hmp5"
 
 [resource]
 script = ExtResource("1_h1rx5")
@@ -10,7 +15,11 @@ role_name = "Falsifikator"
 team = 1
 description = "Tokom noći označi igrača koji pri istraživanju izgleda kao član Mafije."
 icon = ExtResource("1_gnsmm")
+night_priority = 80
 can_act_at_night = true
 action_label = "falsifikuje"
 night_action_type = 14
+night_action_effect = SubResource("Resource_bj15w")
+can_target_dead = true
+opposite_team_only = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

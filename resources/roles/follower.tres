@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_17ndq"]
 [ext_resource type="Texture2D" uid="uid://ng6l0a2808o1" path="res://assets/icons/role/follower.png" id="1_evtax"]
-[ext_resource type="Resource" uid="uid://co447h2rkqs4" path="res://resources/actions/BlockEffect.tres" id="2_2iuyj"]
+[ext_resource type="Script" uid="uid://dcutbc18coobv" path="res://resources/actions/block_effect.gd" id="2_2iuyj"]
+
+[sub_resource type="Resource" id="Resource_mjvg2"]
+script = ExtResource("2_2iuyj")
+metadata/_custom_type_script = "uid://dcutbc18coobv"
 
 [resource]
 script = ExtResource("1_17ndq")
@@ -11,8 +15,10 @@ role_name = "Pratilac"
 team = 1
 description = "Tokom noći može izabrati jednog igrača i blokirati njegovu noćnu sposobnost."
 icon = ExtResource("1_evtax")
+night_priority = 50
 can_act_at_night = true
 action_label = "prati"
 night_action_type = 4
-night_action_effect = ExtResource("2_2iuyj")
+night_action_effect = SubResource("Resource_mjvg2")
+opposite_team_only = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

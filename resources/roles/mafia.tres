@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_7ylup"]
 [ext_resource type="Texture2D" uid="uid://b61hfro2blvri" path="res://assets/icons/role/mafia.png" id="1_hh52f"]
+[ext_resource type="Script" uid="uid://bseh7gil5evqs" path="res://resources/actions/kill_effect.gd" id="2_pu2rx"]
+
+[sub_resource type="Resource" id="Resource_fj806"]
+script = ExtResource("2_pu2rx")
+metadata/_custom_type_script = "uid://bseh7gil5evqs"
 
 [resource]
 script = ExtResource("1_7ylup")
@@ -10,9 +15,11 @@ role_name = "Mafijaš"
 team = 1
 description = "Tokom noći, zajedno sa mafijom, bira metu za ubistvo."
 icon = ExtResource("1_hh52f")
-night_priority = 50
+night_priority = 170
 is_unique = false
 can_act_at_night = true
 action_label = "ubije"
 night_action_type = 1
+night_action_effect = SubResource("Resource_fj806")
+opposite_team_only = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

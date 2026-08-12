@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_d7oft"]
 [ext_resource type="Texture2D" uid="uid://3p1xbtj6akua" path="res://assets/icons/role/redactor.png" id="1_veqbd"]
+[ext_resource type="Script" uid="uid://vl2ouiyrl121" path="res://resources/actions/censor_effect.gd" id="2_pbf6n"]
+
+[sub_resource type="Resource" id="Resource_kinic"]
+script = ExtResource("2_pbf6n")
+metadata/_custom_type_script = "uid://vl2ouiyrl121"
 
 [resource]
 script = ExtResource("1_d7oft")
@@ -10,8 +15,9 @@ role_name = "Redaktor"
 team = 1
 description = "Tokom noći bira jednog igrača. Sve informacije o tom igraču postaju cenzurisane."
 icon = ExtResource("1_veqbd")
-night_priority = 37
+night_priority = 90
 can_act_at_night = true
 action_label = "cenzuriše"
 night_action_type = 10
+night_action_effect = SubResource("Resource_kinic")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

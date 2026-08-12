@@ -9,6 +9,7 @@ role_id = 8
 role_name = "Eskort"
 description = "Tokom noći može blokirati sposobnost jednog igrača."
 icon = ExtResource("1_q7rpm")
+night_priority = 40
 can_act_at_night = true
 action_label = "zavede"
 night_action_type = 4

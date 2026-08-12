@@ -9,6 +9,7 @@ role_id = 14
 role_name = "Sudija"
 description = "Tokom noći može zaštititi jednog igrača od pogubljenja sledećeg dana."
 icon = ExtResource("1_ucsrp")
+night_priority = 140
 can_act_at_night = true
 action_label = "zaštiti"
 night_action_type = 19

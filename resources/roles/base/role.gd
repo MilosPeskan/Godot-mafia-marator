@@ -29,16 +29,13 @@ enum NightActionType {
 	TAKE_ROLE,                # preuzima ulogu mrtvog igrača
 }
 
-@export_group("Basic Information")
 @export var role_id: RoleId = RoleId.CUSTOM
 @export var role_name: String = ""
 @export var team: Team = Team.VILLAGE
 @export_multiline var description: String = ""
 @export var icon: Texture2D
-@export var is_unique: bool = true          # sme li postojati samo jednom po partiji
-
-@export_group("Night Action")
 @export var night_priority: int = -1        # -1 = nema noćnu akciju; manji broj = deluje ranije
+@export var is_unique: bool = true          # sme li postojati samo jednom po partiji
 @export var can_act_at_night: bool = false
 @export var action_label: String = ""       # tekst na dugmetu akcije u action_menu
 @export var night_action_type: NightActionType = NightActionType.NONE
