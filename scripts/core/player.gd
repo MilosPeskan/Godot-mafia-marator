@@ -11,6 +11,11 @@ var protected_by: Player = null    # ko ga štiti ove noći (npr. doktor), reset
 var votes_received: int = 0        # glasovi primljeni tokom trenutnog lynch glasanja
 var has_acted_tonight: bool = false
 
+# CONTROL (Veštica) — ako je postavljeno, NightPhase._prompt_current_or_resolve()
+# preskače ručni unos za ovog igrača i njegova akcija se automatski primenjuje
+# na ovog forced_target-a. Postavlja ga NightPhase.submit_control_action().
+var forced_target: Player = null
+
 # Statusna polja koja postavlja NightPhase._apply_action_effect() —
 # svako predstavlja efekat jedne noćne akcije primenjene NA ovog igrača kao metu.
 var is_blocked: bool = false                  # ne može da koristi svoju sposobnost ove noći
@@ -24,6 +29,11 @@ var is_marked: bool = false                   # označen (Posetilac) — akumuli
 var is_infested: bool = false                 # ako umre, Parazit preuzima njegovu ulogu
 var followed_by: Array[Player] = []           # igrači koji prate ovog igrača (Reporter)
 var protected_from_execution: bool = false    # zaštićen od pogubljenja sledećeg dana (Sudija)
+
+# Polja koja koristi ActionMenu/NightMenu za prikaz rezultata (van night_phase.gd,
+# ali čitaju se preko Player-a):
+var last_night_action_target: Player = null
+var night_visitors: Array[Player] = []
 
 func _init(p_name: String = "", p_role: Role = null) -> void:
 	player_name = p_name
@@ -39,6 +49,9 @@ func reset_nightly_state() -> void:
 	night_target = null
 	protected_by = null
 	has_acted_tonight = false
+	forced_target = null
+	last_night_action_target = null
+	night_visitors = []
 
 	is_blocked = false
 	is_doused = false
