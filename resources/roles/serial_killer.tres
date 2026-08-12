@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bihe1yw3r46fi" path="res://assets/icons/role/serial_killer.png" id="1_1mg5q"]
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_f12hp"]
+[ext_resource type="Resource" uid="uid://cuwhjsavf7iod" path="res://resources/actions/KillEffect.tres" id="2_2f4xo"]
 
 [resource]
 script = ExtResource("1_f12hp")
@@ -14,4 +15,5 @@ night_priority = 55
 can_act_at_night = true
 action_label = "ubije"
 night_action_type = 1
+night_action_effect = ExtResource("2_2f4xo")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

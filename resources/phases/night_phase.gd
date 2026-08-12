@@ -158,7 +158,16 @@ func finalize_group_kill() -> void:
 
 ## Centralni dispatcher za sve tipove noćnih akcija. CONTROL nije ovde — ima svoj
 ## submit_control_action() jer ne staje u oblik (source, target, action_type).
+##
+## Prvo proverava da li rola izvršioca ima dodeljen night_action_effect (novi,
+## Resource-bazirani sistem iz Milestone 2). Ako ima, koristi ga i vraća se odmah.
+## Ako nema (null), pada dole na stari match statement — nepromenjen fallback za
+## sve role koje još nisu migrirane.
 func _apply_action_effect(source: Player, target: Player, action_type: String) -> void:
+	if source.role != null and source.role.night_action_effect != null:
+		source.role.night_action_effect.apply(source, target, self)
+		return
+
 	match action_type:
 		"protect":
 			target.protected_by = source

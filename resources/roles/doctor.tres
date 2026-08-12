@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://dr80hs1g3xewx" path="res://assets/icons/role/doctor.png" id="1_g87yw"]
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_kfxvi"]
+[ext_resource type="Script" uid="uid://dll54r120fjvo" path="res://resources/actions/protect_effect.gd" id="2_4y1ka"]
+
+[sub_resource type="Resource" id="Resource_3uo6f"]
+script = ExtResource("2_4y1ka")
+metadata/_custom_type_script = "uid://dll54r120fjvo"
 
 [resource]
 script = ExtResource("1_kfxvi")
@@ -13,4 +18,5 @@ night_priority = 30
 can_act_at_night = true
 action_label = "leči"
 night_action_type = 2
+night_action_effect = SubResource("Resource_3uo6f")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_17ndq"]
 [ext_resource type="Texture2D" uid="uid://ng6l0a2808o1" path="res://assets/icons/role/follower.png" id="1_evtax"]
+[ext_resource type="Resource" uid="uid://co447h2rkqs4" path="res://resources/actions/BlockEffect.tres" id="2_2iuyj"]
 
 [resource]
 script = ExtResource("1_17ndq")
@@ -13,4 +14,5 @@ icon = ExtResource("1_evtax")
 can_act_at_night = true
 action_label = "prati"
 night_action_type = 4
+night_action_effect = ExtResource("2_2iuyj")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"
