@@ -24,6 +24,7 @@ const BORDERS: Array[Texture2D] = [
 ]
 var card_role: Role = null
 var frame_count: int = 0
+var is_debug: bool = false
 
 func _ready() -> void:
 	# Vizuelni "flavor" (nasumična varijanta pečata/nagib) — ne zavisi od card_role,
@@ -42,8 +43,11 @@ func _ready() -> void:
 
 ## VAŽNO: pozivati OVU funkciju tek POSLE add_child(), jer čita @onready reference
 ## (role_icon, role_name_label...) koje ne postoje pre nego što node uđe u scensko stablo.
-func setup(role: Role) -> void:
+## p_is_debug: kad je true, dodavanje/uklanjanje ove role kartice takođe
+## kreira/uklanja odgovarajućeg Player-a (vidi _on_add_pressed/_on_remove_pressed).
+func setup(role: Role, p_is_debug: bool = false) -> void:
 	card_role = role
+	is_debug = p_is_debug
 	role_icon.texture = role.icon
 	role_name_label.text = role.role_name
 	role_description_label.text = role.description
@@ -55,10 +59,33 @@ func _on_add_pressed() -> void:
 	var added: bool = RoleManager.add_role_to_pool(card_role)
 	if not added:
 		return   # unique rola je već u pool-u — RoleManager je tiho odbio, nema šta da se doda
+
+	if is_debug:
+		# Broj se čita POSLE add_role_to_pool(), pa novi igrač dobija NOVI, veći broj.
+		var new_count: int = 0
+		for r in RoleManager.role_pool_for_session:
+			if r == card_role:
+				new_count += 1
+		var player_name: String = "%s%d" % [card_role.role_name, new_count]
+		PlayerManager.add_player_with_role(player_name, card_role)
+
 	_refresh_count()
 	print("added")
 
 func _on_remove_pressed() -> void:
+	if is_debug:
+		# Broj se čita PRE remove_role_from_pool(), da bismo obrisali igrača
+		# sa brojem koji upravo NESTAJE, ne onim posle uklanjanja.
+		var count_before: int = 0
+		for r in RoleManager.role_pool_for_session:
+			if r == card_role:
+				count_before += 1
+		if count_before > 0:
+			var player_name: String = "%s%d" % [card_role.role_name, count_before]
+			var p: Player = PlayerManager.get_player_by_name(player_name)
+			if p != null:
+				PlayerManager.remove_player(p)
+
 	RoleManager.remove_role_from_pool(card_role)
 	_refresh_count()
 
