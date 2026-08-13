@@ -8,6 +8,9 @@ extends Control
 @onready var roles_overview_list: RichTextLabel = $RolesOverviewDialog/RolesOverviewList
 @onready var call_lynch_button: Button = $CallLynchButton
 @onready var start_night_button: Button = $StartNightButton
+@onready var view_details_button: Button = $ViewDetailsButton
+
+var selected_player: Player = null
 
 func _ready() -> void:
 	header_label.text = "Dnevna diskusija"
@@ -15,8 +18,10 @@ func _ready() -> void:
 	show_roles_button.pressed.connect(_on_show_roles_pressed)
 	call_lynch_button.pressed.connect(_on_call_lynch_pressed)
 	start_night_button.pressed.connect(_on_start_night_pressed)
+	view_details_button.pressed.connect(_on_view_details_pressed)
 
 	selected_player_info.text = ""
+	view_details_button.disabled = true
 	_refresh_player_list()
 
 func _refresh_player_list() -> void:
@@ -27,6 +32,9 @@ func _refresh_player_list() -> void:
 
 func _on_player_selected(index: int) -> void:
 	var player: Player = PlayerManager.players[index]
+	selected_player = player
+	view_details_button.disabled = false
+
 	if player.role == null:
 		selected_player_info.text = "%s: rola nepoznata" % player.player_name
 		return
@@ -50,3 +58,8 @@ func _on_call_lynch_pressed() -> void:
 func _on_start_night_pressed() -> void:
 	PhaseStateMachine.transition_to(PhaseStateMachine.Phase.NIGHT)
 	SceneManager.switch_to("night_menu")
+
+func _on_view_details_pressed() -> void:
+	if selected_player == null:
+		return
+	SceneManager.switch_to("info_menu", selected_player)
