@@ -57,3 +57,8 @@ text = "Informacije"
 layout_mode = 2
 theme = ExtResource("3_m7x51")
 text = "Podesavanja"
+
+[node name="DebugButton" type="Button" parent="Background/VBoxContainer" unique_id=346350746]
+layout_mode = 2
+theme = ExtResource("3_m7x51")
+text = "Debug"
