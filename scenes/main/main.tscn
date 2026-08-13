@@ -12,6 +12,7 @@
 
 [node name="Main" type="Node" unique_id=1821957889]
 script = ExtResource("1_hyk8p")
+debug_mode = true
 
 [node name="Control" type="Control" parent="." unique_id=803944534]
 layout_mode = 3
