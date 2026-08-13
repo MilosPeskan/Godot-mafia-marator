@@ -8,6 +8,15 @@ func add_player(player_name: String) -> Player:
 	EventBus.player_added.emit(p)
 	return p
 
+## Koristi se SAMO u debug modu — kreira igrača kome je rola već
+## dodeljena unapred (bez prolaska kroz normalno mešanje/dodelu rola).
+func add_player_with_role(player_name: String, role: Role) -> Player:
+	var p := Player.new(player_name)
+	p.assign_role(role)
+	players.append(p)
+	EventBus.player_added.emit(p)
+	return p
+
 func remove_player(player: Player) -> void:
 	var idx := players.find(player)
 	if idx == -1:
