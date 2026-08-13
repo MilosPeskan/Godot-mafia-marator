@@ -23,6 +23,7 @@ extends Control
 
 var current_page: int = 0
 var is_transitioning: bool = false
+var is_debug_mode: bool = false
 
 func _ready() -> void:
 	start_game_button.pressed.connect(_on_start_game_pressed)
@@ -35,6 +36,11 @@ func _ready() -> void:
 	_populate_leaf(left_grid, 0, false)
 	_populate_leaf(right_grid, 0, true)
 	_update_page_controls(total_pages)
+
+## Poziva ga SceneManager.switch_to("role_menu", true) iz main_menu.gd
+## kad je debug dugme pritisnuto — vidi Milestone 6 mehanizam.
+func setup(data) -> void:
+	is_debug_mode = data
 
 func _total_pages() -> int:
 	var roles_per_spread: int = roles_per_leaf * 2
@@ -115,7 +121,7 @@ func _populate_leaf(grid: GridContainer, page: int, is_right: bool) -> void:
 		var role: Role = RoleManager.available_roles[i]
 		var role_container: RoleContainer = role_container_scene.instantiate() as RoleContainer
 		grid.add_child(role_container)
-		role_container.setup(role)
+		role_container.setup(role, is_debug_mode)
 		
 func _update_page_controls(total_pages: int) -> void:
 	page_label.text = "Strana %d / %d" % [current_page + 1, total_pages]
@@ -137,6 +143,17 @@ func _on_start_game_pressed() -> void:
 	if role_count < player_count:
 		RoleManager.fill_remaining_with_villagers(player_count)
 
-	RoleManager.assign_roles(PlayerManager.players)
-	PhaseStateMachine.transition_to(PhaseStateMachine.Phase.ROLE_REVEAL)
-	SceneManager.switch_to("role_reveal")
+	# DEBUG MODE: igrači su već ručno dobili tačno određenu rolu preko
+	# role_list_item.gd (add_player_with_role) — ne mešamo/ne dodeljujemo
+	# ponovo, samo preskačemo shuffle. assign_special_targets() se i
+	# dalje poziva u OBA slučaja (npr. za Dželata/Executioner metu).
+	if not is_debug_mode:
+		RoleManager.assign_roles(PlayerManager.players)
+	RoleManager.assign_special_targets(PlayerManager.players)
+
+	if is_debug_mode:
+		PhaseStateMachine.transition_to(PhaseStateMachine.Phase.NIGHT)
+		SceneManager.switch_to("night_menu")
+	else:
+		PhaseStateMachine.transition_to(PhaseStateMachine.Phase.ROLE_REVEAL)
+		SceneManager.switch_to("role_reveal")
