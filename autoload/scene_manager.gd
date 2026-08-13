@@ -14,7 +14,11 @@ const MENU_SCENES := {
 	"info_menu": preload("res://scenes/menus/info_menu/info_menu.tscn"),
 }
 
-func switch_to(menu_key: String) -> void:
+## data je opcioni parametar — ako je prosleđen i nova scena ima setup()
+## metodu, ona se poziva sa tim podatkom (npr. Player za info_menu).
+## Podrazumevano je null, pa svi POSTOJEĆI pozivi switch_to("neka_scena")
+## nastavljaju da rade identično kao pre ove izmene.
+func switch_to(menu_key: String, data = null) -> void:
 	if not MENU_SCENES.has(menu_key):
 		push_error("Nepoznat meni: %s" % menu_key)
 		return
@@ -26,3 +30,6 @@ func switch_to(menu_key: String) -> void:
 	var new_menu: Control = MENU_SCENES[menu_key].instantiate()
 	container.add_child(new_menu)
 	current_menu = new_menu
+
+	if data != null and new_menu.has_method("setup"):
+		new_menu.setup(data)
