@@ -11,16 +11,23 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
+## source je NULLABLE — glasovi iz lynch_menu.gd predstavljaju usmena
+## glasanja tokom diskusije, ne akciju konkretnog igrača, pa se šalju
+## sa source = null. Ako source ipak postoji (npr. buduća upotreba),
+## i dalje se proverava da nije mrtav.
 func handle_action(source: Player, target: Player, action_type: String) -> void:
 	if votes_locked:
 		return
-	if action_type != "vote":
-		return
-	if not source.is_alive:
+	if source != null and not source.is_alive:
 		return
 
-	target.votes_received += 1
-	EventBus.vote_cast.emit(source, target)
+	if action_type == "vote":
+		target.votes_received += 1
+		EventBus.vote_cast.emit(source, target)
+	elif action_type == "unvote":
+		if target.votes_received > 0:
+			target.votes_received -= 1
+			EventBus.vote_cast.emit(source, target)
 
 ## Poziva se eksplicitno iz lynch_menu.gd kad moderator zatvori glasanje.
 func finalize_lynch() -> void:
