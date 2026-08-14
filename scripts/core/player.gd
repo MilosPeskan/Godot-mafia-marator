@@ -2,6 +2,7 @@ class_name Player
 extends RefCounted
 
 var player_name: String = ""
+var player_icon: Texture2D
 var role: Role = null              # referenca na deljeni Role resurs (read-only template)
 var is_alive: bool = true
 
