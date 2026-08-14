@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cxv0uiamdpf5k"]
+
+[ext_resource type="Texture2D" uid="uid://dngmf7eo6bpb8" path="res://assets/ui elements/target_player_background.png" id="1_ekdkv"]
+[ext_resource type="Script" uid="uid://dikbmu63nsa0e" path="res://scenes/components/target_player/target_player_card.gd" id="1_j78rg"]
+[ext_resource type="Texture2D" uid="uid://c8xaeds3y50jv" path="res://assets/ui elements/player_selected.png" id="2_j78rg"]
+[ext_resource type="Texture2D" uid="uid://cxsinug0oqjpc" path="res://assets/icons/player/silueta1.png" id="3_q5j2q"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="4_p4ld4"]
+
+[node name="TargetPlayerCard" type="Control" unique_id=848689040]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 347.0
+offset_bottom = 397.0
+script = ExtResource("1_j78rg")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1688182377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ekdkv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Selected" type="TextureRect" parent="." unique_id=23759161]
+visible = false
+layout_mode = 1
+offset_right = 344.0
+offset_bottom = 344.0
+texture = ExtResource("2_j78rg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=54397098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1210033282]
+layout_mode = 2
+theme_override_constants/separation = 41
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1970494173]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1879041461]
+layout_mode = 2
+texture = ExtResource("3_q5j2q")
+stretch_mode = 5
+
+[node name="PlayerNameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1722834192]
+layout_mode = 2
+theme = ExtResource("4_p4ld4")
+theme_override_font_sizes/font_size = 41
+text = "Ime igraca"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectButton" type="Button" parent="." unique_id=797847073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
