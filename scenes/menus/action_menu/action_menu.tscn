@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dfjwxelcymgyi"]
 
 [ext_resource type="Script" uid="uid://df42hdnudeo3e" path="res://scenes/menus/action_menu/action_menu.gd" id="1_dlugs"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="2_3feyd"]
+[ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="3_yj8b4"]
+[ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="4_b4tso"]
+[ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_hxapl"]
+[ext_resource type="PackedScene" uid="uid://cxv0uiamdpf5k" path="res://scenes/components/target_player/target_player_card.tscn" id="6_yj8b4"]
 
 [node name="ActionMenu" type="Control" unique_id=2130356084]
 layout_mode = 3
@@ -13,25 +18,74 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_dlugs")
 
-[node name="InstructionLabel" type="Label" parent="." unique_id=364016375]
-layout_mode = 0
-offset_right = 806.0
-offset_bottom = 114.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=363942397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="TargetList" type="ItemList" parent="." unique_id=1041623606]
-layout_mode = 0
-offset_top = 138.0
-offset_right = 1914.0
-offset_bottom = 780.0
+[node name="InstructionLabel" type="Label" parent="VBoxContainer" unique_id=364016375]
+layout_mode = 2
+text = "iNSTRUKCIJE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="." unique_id=1732996292]
-layout_mode = 0
-offset_left = 807.0
-offset_top = 800.0
-offset_right = 1091.0
-offset_bottom = 886.0
+[node name="Title" type="HBoxContainer" parent="VBoxContainer" unique_id=952018747]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+alignment = 1
 
-[node name="IgniteButton" type="Button" parent="." unique_id=1174865708]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Star1" type="TextureRect" parent="VBoxContainer/Title" unique_id=564346934]
+layout_mode = 2
+texture = ExtResource("3_yj8b4")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="NightNumberLabel" type="Label" parent="VBoxContainer/Title" unique_id=872610140]
+layout_mode = 2
+theme = ExtResource("2_3feyd")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "IZABERITE METU"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Star2" type="TextureRect" parent="VBoxContainer/Title" unique_id=23294507]
+layout_mode = 2
+texture = ExtResource("4_b4tso")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=271227767]
+layout_mode = 2
+size_flags_stretch_ratio = 0.37
+texture = ExtResource("5_hxapl")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TargetList" type="GridContainer" parent="VBoxContainer" unique_id=805156280]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="TargetPlayerCard" parent="VBoxContainer/TargetList" unique_id=848689040 instance=ExtResource("6_yj8b4")]
+layout_mode = 2
+
+[node name="TargetPlayerCard2" parent="VBoxContainer/TargetList" unique_id=1322044673 instance=ExtResource("6_yj8b4")]
+layout_mode = 2
+
+[node name="TargetPlayerCard3" parent="VBoxContainer/TargetList" unique_id=178050730 instance=ExtResource("6_yj8b4")]
+layout_mode = 2
+
+[node name="TargetPlayerCard4" parent="VBoxContainer/TargetList" unique_id=2079154827 instance=ExtResource("6_yj8b4")]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1732996292]
+layout_mode = 2
+
+[node name="IgniteButton" type="Button" parent="VBoxContainer" unique_id=1174865708]
+layout_mode = 2
