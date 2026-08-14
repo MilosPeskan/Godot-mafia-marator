@@ -18,6 +18,7 @@ icon = ExtResource("1_evtax")
 night_priority = 50
 can_act_at_night = true
 action_label = "prati"
+instruction_label = "Bira igrača koji neće moći da izvrši akciju tokom noći."
 night_action_type = 4
 night_action_effect = SubResource("Resource_mjvg2")
 opposite_team_only = true

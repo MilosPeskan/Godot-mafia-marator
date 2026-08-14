@@ -13,6 +13,7 @@ icon = ExtResource("1_qs2m6")
 night_priority = 175
 can_act_at_night = true
 action_label = "ubije"
+instruction_label = "Don bira igrača kojeg će mafija da ubije."
 night_action_type = 1
 opposite_team_only = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

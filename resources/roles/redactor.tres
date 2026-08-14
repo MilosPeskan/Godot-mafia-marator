@@ -18,6 +18,7 @@ icon = ExtResource("1_veqbd")
 night_priority = 90
 can_act_at_night = true
 action_label = "cenzuriše"
+instruction_label = "Bira igrača čije informacije neće biti dostupne tokom istraživanja."
 night_action_type = 10
 night_action_effect = SubResource("Resource_kinic")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

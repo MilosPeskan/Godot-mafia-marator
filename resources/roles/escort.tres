@@ -12,5 +12,6 @@ icon = ExtResource("1_q7rpm")
 night_priority = 40
 can_act_at_night = true
 action_label = "zavede"
+instruction_label = "Bira igrača koji neće moći da izvrši akciju tokom noći."
 night_action_type = 4
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

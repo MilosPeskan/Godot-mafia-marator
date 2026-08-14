@@ -18,6 +18,7 @@ icon = ExtResource("1_gnsmm")
 night_priority = 80
 can_act_at_night = true
 action_label = "falsifikuje"
+instruction_label = "Bira igrača kojem će da podmetne da izgleda kao mafija pri istraživanju. "
 night_action_type = 14
 night_action_effect = SubResource("Resource_bj15w")
 can_target_dead = true

@@ -13,6 +13,7 @@ icon = ExtResource("1_g87yw")
 night_priority = 150
 can_act_at_night = true
 action_label = "leči"
+instruction_label = "Bira igrača kojeg će da zaštiti od ubistva."
 night_action_type = 2
 night_action_effect = ExtResource("2_4y1ka")
 can_target_self = true

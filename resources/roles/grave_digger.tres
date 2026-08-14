@@ -12,6 +12,7 @@ icon = ExtResource("1_bhgf3")
 night_priority = 120
 can_act_at_night = true
 action_label = "otkopa"
+instruction_label = "Bira mrvog igrača čiju ulogu želi da sazna. "
 night_action_type = 11
 can_target_dead = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

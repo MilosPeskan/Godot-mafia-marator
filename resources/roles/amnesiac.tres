@@ -13,5 +13,6 @@ icon = ExtResource("1_i1kse")
 night_priority = 20
 can_act_at_night = true
 action_label = "imitira"
+instruction_label = "Bira igrača čiju ulogu želi da preuzme."
 night_action_type = 20
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -12,5 +12,6 @@ icon = ExtResource("1_ksa3s")
 night_priority = 180
 can_act_at_night = true
 action_label = "posmatra"
+instruction_label = "Dobija informacije koga je sve mafija posećivala tokom noći."
 night_action_type = 8
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

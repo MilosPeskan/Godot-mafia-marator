@@ -12,5 +12,6 @@ icon = ExtResource("1_f3xuq")
 night_priority = 160
 can_act_at_night = true
 action_label = "čuva"
+instruction_label = "Bira igrača kojeg će da zaštiti životom  od ubistva."
 night_action_type = 2
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

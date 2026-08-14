@@ -13,5 +13,6 @@ icon = ExtResource("1_wmovm")
 night_priority = 220
 can_act_at_night = true
 action_label = "poseti"
+instruction_label = "Bira igrača kojeg želi da označi."
 night_action_type = 16
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

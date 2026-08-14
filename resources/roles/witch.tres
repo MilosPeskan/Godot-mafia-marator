@@ -13,5 +13,6 @@ icon = ExtResource("1_o78fb")
 night_priority = 30
 can_act_at_night = true
 action_label = "kontroliše"
+instruction_label = "Bira igrača čiju akciju želi da preusmeri na drugog igrača."
 night_action_type = 5
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

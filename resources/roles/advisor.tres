@@ -13,6 +13,7 @@ icon = ExtResource("1_2bxg8")
 night_priority = 110
 can_act_at_night = true
 action_label = "istraži"
+instruction_label = "Bira igrača čiju ulogu želi da sazna. "
 night_action_type = 3
 opposite_team_only = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

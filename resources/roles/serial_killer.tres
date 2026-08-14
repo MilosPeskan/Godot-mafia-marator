@@ -14,6 +14,7 @@ icon = ExtResource("1_1mg5q")
 night_priority = 190
 can_act_at_night = true
 action_label = "ubije"
+instruction_label = "Bira igrača kojeg želi da ubije."
 night_action_type = 1
 night_action_effect = ExtResource("2_2f4xo")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

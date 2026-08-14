@@ -13,5 +13,6 @@ icon = ExtResource("1_afy6u")
 night_priority = 70
 can_act_at_night = true
 action_label = "otruje"
+instruction_label = "Bira igrača kome želi da podmetne da izgleda kao nasumična ulogapri istraživanju."
 night_action_type = 12
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

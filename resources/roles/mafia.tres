@@ -19,6 +19,7 @@ night_priority = 170
 is_unique = false
 can_act_at_night = true
 action_label = "ubije"
+instruction_label = "Bira igrača kojeg želi da ubije."
 night_action_type = 1
 night_action_effect = SubResource("Resource_fj806")
 opposite_team_only = true

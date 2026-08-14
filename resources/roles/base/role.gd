@@ -38,6 +38,7 @@ enum NightActionType {
 @export var is_unique: bool = true          # sme li postojati samo jednom po partiji
 @export var can_act_at_night: bool = false
 @export var action_label: String = ""       # tekst na dugmetu akcije u action_menu
+@export_multiline var instruction_label: String = ""  # tekst instrukcije za ulogu tokom noci
 @export var night_action_type: NightActionType = NightActionType.NONE
 
 ## Opciono: ako je dodeljen, NightPhase poziva night_action_effect.apply()
