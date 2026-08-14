@@ -1,6 +1,25 @@
 [gd_scene format=3 uid="uid://bu57meve35bc2"]
 
 [ext_resource type="Script" uid="uid://coqvo4tnura0e" path="res://scenes/menus/night_menu/night_menu.gd" id="1_55kn5"]
+[ext_resource type="Texture2D" uid="uid://dbg0e861vk8gk" path="res://assets/images/backgrounds/nightmenu.png" id="2_b00s8"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="2_foh5s"]
+[ext_resource type="Shader" uid="uid://c33vktqccn23c" path="res://resources/shaders/red_line.gdshader" id="3_1vvxx"]
+[ext_resource type="Texture2D" uid="uid://bukky7qwj4htl" path="res://assets/ui elements/paper_note.png" id="4_gxh2j"]
+[ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="4_oqy5t"]
+[ext_resource type="Texture2D" uid="uid://tisfgkitlrwh" path="res://assets/ui elements/paper_note_2.png" id="5_eelmp"]
+[ext_resource type="Texture2D" uid="uid://ojg10dawefvx" path="res://assets/ui elements/role_polaroid.png" id="6_k76ao"]
+[ext_resource type="Texture2D" uid="uid://6w2r3vl0hpnn" path="res://assets/icons/role/advisor.png" id="7_bmckt"]
+[ext_resource type="Texture2D" uid="uid://b3lb8yiiw8ul2" path="res://assets/ui elements/label_plate_strips.png" id="8_2he1h"]
+[ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="11_ksfab"]
+[ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="12_iibih"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2rdq"]
+shader = ExtResource("3_1vvxx")
+shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dr0kv"]
+shader = ExtResource("3_1vvxx")
+shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
 
 [node name="NightMenu" type="Control" unique_id=1363550192]
 layout_mode = 3
@@ -11,12 +30,159 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_55kn5")
 
+[node name="Background" type="TextureRect" parent="." unique_id=780889125]
+layout_mode = 0
+offset_left = 68.0
+offset_top = -20.0
+offset_right = 1815.0
+offset_bottom = 1110.0
+texture = ExtResource("2_b00s8")
+stretch_mode = 5
+
 [node name="HeaderLabel" type="Label" parent="." unique_id=992977444]
 layout_mode = 0
+offset_left = 234.0
+offset_top = 50.0
+offset_right = 574.0
+offset_bottom = 124.0
+theme = ExtResource("2_foh5s")
+text = "Detektiv"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoleOrderBackground" type="TextureRect" parent="." unique_id=1407474058]
+layout_mode = 0
+offset_left = 1382.0
+offset_top = 94.999985
+offset_right = 1869.0
+offset_bottom = 1048.5
+rotation = -0.066587046
+texture = ExtResource("4_gxh2j")
+expand_mode = 5
+
+[node name="InfoCardBackground" type="TextureRect" parent="." unique_id=650214882]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 540.00006
+offset_right = 524.0
+offset_bottom = 1060.0
+rotation = 0.06146352
+texture = ExtResource("5_eelmp")
+expand_mode = 3
+
+[node name="RoleActionLabel" type="Label" parent="InfoCardBackground" unique_id=263198112]
+layout_mode = 0
+offset_left = 58.504883
+offset_top = 71.54132
+offset_right = 398.50488
+offset_bottom = 145.54132
+theme = ExtResource("2_foh5s")
+theme_override_colors/font_color = Color(0.60784316, 0.1764706, 0.16862746, 1)
+text = "Istrazuje"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoleInstructionLabel" type="Label" parent="InfoCardBackground" unique_id=1475299743]
+layout_mode = 0
+offset_left = 59.073193
+offset_top = 129.61613
+offset_right = 399.07318
+offset_bottom = 394.68243
+theme = ExtResource("2_foh5s")
+text = "Instrukcije za sta uloga radi"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RolePolaroidBackground" type="TextureRect" parent="." unique_id=2055690436]
+layout_mode = 0
+offset_left = 26.738312
+offset_top = 148.81076
+offset_right = 532.73834
+offset_bottom = 643.81067
+rotation = -0.10670226
+pivot_offset = Vector2(-7, -31)
+texture = ExtResource("6_k76ao")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RolePolaroidIcon" type="TextureRect" parent="RolePolaroidBackground" unique_id=130844703]
+layout_mode = 0
+offset_left = 107.26933
+offset_top = 68.927216
+offset_right = 395.6819
+offset_bottom = 374.76038
+texture = ExtResource("7_bmckt")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="RoleNameLabel" type="Label" parent="RolePolaroidBackground" unique_id=1604191865]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 370.0
+offset_right = 423.0
+offset_bottom = 444.0
+theme = ExtResource("2_foh5s")
+theme_override_font_sizes/font_size = 37
+text = "Serijski ubica"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelPlateStrips" type="Sprite2D" parent="." unique_id=1526112197]
+position = Vector2(160.5686, 33.032272)
+rotation = 0.23466524
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_2he1h")
+offset = Vector2(687.5, 175)
+region_enabled = true
+region_rect = Rect2(0, 0, 600, 200.47145)
+
+[node name="BudiSeLabel" type="Label" parent="." unique_id=1312121002]
+layout_mode = 0
+offset_left = 254.75159
+offset_top = 49.154694
+offset_right = 604.7516
+offset_bottom = 157.1547
+rotation = 0.23466524
+pivot_offset = Vector2(-87, -14)
+theme = ExtResource("2_foh5s")
+text = "Budi se:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NightReportLabel" type="Label" parent="." unique_id=1942363160]
+layout_mode = 0
 offset_left = 581.0
-offset_top = 10.0
+offset_top = 27.0
 offset_right = 1262.0
-offset_bottom = 118.0
+offset_bottom = 135.0
+theme = ExtResource("2_foh5s")
+theme_override_font_sizes/font_size = 55
+text = "NOĆNI IZVEŠTAJ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NightReportLabel" unique_id=1499088090]
+material = SubResource("ShaderMaterial_m2rdq")
+layout_mode = 0
+offset_left = -62.0
+offset_top = 83.0
+offset_right = 747.0
+offset_bottom = 91.0
+texture = ExtResource("4_oqy5t")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="NightNumberLabel" type="Label" parent="." unique_id=2142450694]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 116.0
+offset_right = 1262.0
+offset_bottom = 154.0
+theme = ExtResource("2_foh5s")
+theme_override_colors/font_color = Color(0.62352943, 0.20784314, 0.19215687, 1)
+text = "Noć #1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InvestigationResultLabel" type="Label" parent="." unique_id=674763393]
 layout_mode = 0
@@ -27,10 +193,10 @@ offset_bottom = 1039.0
 
 [node name="ActionMenuContainer" type="Control" parent="." unique_id=43780490]
 anchors_preset = 0
-offset_left = 3.0
-offset_top = 140.0
-offset_right = 1919.0
-offset_bottom = 872.0
+offset_left = 469.0
+offset_top = 150.0
+offset_right = 1420.0
+offset_bottom = 995.0
 
 [node name="MafiaGroupPanel" type="Control" parent="." unique_id=180989720]
 anchors_preset = 0
@@ -61,3 +227,15 @@ offset_bottom = 8.0
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="Star1" type="Sprite2D" parent="." unique_id=374676189]
+material = SubResource("ShaderMaterial_dr0kv")
+position = Vector2(873.00006, 135)
+scale = Vector2(0.06216216, 0.062162172)
+texture = ExtResource("11_ksfab")
+
+[node name="Star2" type="Sprite2D" parent="." unique_id=715313029]
+material = SubResource("ShaderMaterial_dr0kv")
+position = Vector2(969.00006, 135)
+scale = Vector2(0.06216216, 0.062162172)
+texture = ExtResource("12_iibih")
