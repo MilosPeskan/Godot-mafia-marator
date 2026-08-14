@@ -11,6 +11,11 @@ const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/a
 @onready var propose_button: Button = $MafiaGroupPanel/ProposeButton
 @onready var kum_override_button: Button = $MafiaGroupPanel/KumOverrideButton
 @onready var confirm_group_button: Button = $MafiaGroupPanel/ConfirmGroupButton
+@onready var role_polaroid_icon: TextureRect = $RolePolaroidBackground/RolePolaroidIcon
+@onready var role_name_label: Label = $RolePolaroidBackground/RoleNameLabel
+@onready var role_action_label: Label = $InfoCardBackground/RoleActionLabel
+@onready var role_instruction_label: Label = $InfoCardBackground/RoleInstructionLabel
+@onready var night_number_label: Label = $NightNumberLabel
 
 var current_action_menu: ActionMenu = null
 var group_eligible_targets: Array[Player] = []
@@ -55,6 +60,10 @@ func _show_solo_actor(player: Player) -> void:
 	mafia_group_panel.visible = false
 	result_label.text = ""
 	header_label.text = "Na potezu: %s (%s)" % [player.player_name, player.role.role_name]
+	role_name_label.text = player.role.role_name
+	role_polaroid_icon.texture = player.role.icon
+	role_action_label.text = player.role.action_label
+	role_instruction_label.text = player.role.instruction_label
 
 	if current_action_menu != null:
 		current_action_menu.queue_free()
