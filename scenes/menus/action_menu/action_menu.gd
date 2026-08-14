@@ -1,10 +1,12 @@
 extends Control
 class_name ActionMenu
 
-@onready var instruction_label: Label = $InstructionLabel
-@onready var target_list: ItemList = $TargetList
-@onready var confirm_button: Button = $ConfirmButton
-@onready var ignite_button: Button = $IgniteButton   # samo za Pirmana (DOUSE tip), sakriven inače
+@onready var instruction_label: Label = $VBoxContainer/InstructionLabel
+@onready var target_list: GridContainer = $VBoxContainer/TargetList
+@onready var confirm_button: Button = $VBoxContainer/ConfirmButton
+@onready var ignite_button: Button = $VBoxContainer/IgniteButton   # samo za Pirmana (DOUSE tip), sakriven inače
+const TARGET_PLAYER_CARD = preload("res://scenes/components/target_player/target_player_card.tscn")
+
 
 var actor: Player = null
 var eligible_targets: Array[Player] = []
@@ -40,7 +42,8 @@ func setup(p_actor: Player) -> void:
 
 	if no_target:
 		eligible_targets.clear()
-		target_list.clear()
+		for child in target_list.get_children():
+			child.queue_free()
 		return
 
 	# Prvi (glavni) korak biranja mete uvek koristi pravila iz actor.role
@@ -63,7 +66,9 @@ func setup(p_actor: Player) -> void:
 ## bez čitanja pravila iz actor.role.
 func _populate_targets(dead_pool: bool, exclude: Player, apply_role_filters: bool = false) -> void:
 	eligible_targets.clear()
-	target_list.clear()
+	
+	for child in target_list.get_children():
+		child.queue_free()
 
 	var role: Role = actor.role
 	var use_dead_pool: bool = role.can_target_dead if apply_role_filters else dead_pool
@@ -80,7 +85,12 @@ func _populate_targets(dead_pool: bool, exclude: Player, apply_role_filters: boo
 				continue
 
 		eligible_targets.append(p)
-		target_list.add_item(p.player_name)
+		create_target_player_card(p)
+		
+func create_target_player_card(p: Player):
+	var target: TargetPlayerCard = TARGET_PLAYER_CARD.instantiate() as TargetPlayerCard
+	target_list.add_child(target)
+	target._init(p)
 
 func _on_confirm_pressed() -> void:
 	var role: Role = actor.role
