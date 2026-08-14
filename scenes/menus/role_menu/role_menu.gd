@@ -31,7 +31,10 @@ func _ready() -> void:
 	next_page_button.pressed.connect(_on_next_page_pressed)
 	status_label.text = ""
 	page_turn_overlay.visible = false
+	
+	call_deferred("_populate_initial_pages")
 
+func _populate_initial_pages() -> void:
 	var total_pages: int = _total_pages()
 	_populate_leaf(left_grid, 0, false)
 	_populate_leaf(right_grid, 0, true)
@@ -41,6 +44,7 @@ func _ready() -> void:
 ## kad je debug dugme pritisnuto — vidi Milestone 6 mehanizam.
 func setup(data) -> void:
 	is_debug_mode = data
+	print(is_debug_mode)
 
 func _total_pages() -> int:
 	var roles_per_spread: int = roles_per_leaf * 2
@@ -121,6 +125,7 @@ func _populate_leaf(grid: GridContainer, page: int, is_right: bool) -> void:
 		var role: Role = RoleManager.available_roles[i]
 		var role_container: RoleContainer = role_container_scene.instantiate() as RoleContainer
 		grid.add_child(role_container)
+		print(is_debug_mode)
 		role_container.setup(role, is_debug_mode)
 		
 func _update_page_controls(total_pages: int) -> void:
@@ -149,7 +154,7 @@ func _on_start_game_pressed() -> void:
 	# dalje poziva u OBA slučaja (npr. za Dželata/Executioner metu).
 	if not is_debug_mode:
 		RoleManager.assign_roles(PlayerManager.players)
-	RoleManager.assign_special_targets(PlayerManager.players)
+#	RoleManager.assign_special_targets(PlayerManager.players)
 
 	if is_debug_mode:
 		PhaseStateMachine.transition_to(PhaseStateMachine.Phase.NIGHT)
