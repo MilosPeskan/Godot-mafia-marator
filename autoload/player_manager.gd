@@ -31,6 +31,13 @@ func get_alive_players() -> Array[Player]:
 		if p.is_alive:
 			result.append(p)
 	return result
+	
+func get_dead_players() -> Array[Player]:
+	var result: Array[Player] = []
+	for p in players:
+		if !p.is_alive:
+			result.append(p)
+	return result
 
 func get_player_by_name(player_name: String) -> Player:
 	for p in players:
