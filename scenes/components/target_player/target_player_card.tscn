@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="4_p4ld4"]
 
 [node name="TargetPlayerCard" type="Control" unique_id=848689040]
+custom_minimum_size = Vector2(347, 397)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 347.0
@@ -21,16 +22,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ekdkv")
-expand_mode = 3
+expand_mode = 5
 stretch_mode = 5
 
-[node name="Selected" type="TextureRect" parent="." unique_id=23759161]
-visible = false
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=663985644]
 layout_mode = 1
-offset_right = 344.0
-offset_bottom = 344.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 33
+
+[node name="Selected" type="TextureRect" parent="MarginContainer2" unique_id=23759161]
+layout_mode = 2
 texture = ExtResource("2_j78rg")
-expand_mode = 3
+expand_mode = 5
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=54397098]
@@ -50,9 +57,18 @@ theme_override_constants/separation = 41
 layout_mode = 2
 alignment = 1
 
-[node name="PlayerIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1879041461]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=53222761]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 30
+
+[node name="PlayerIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1879041461]
+layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_q5j2q")
+expand_mode = 5
 stretch_mode = 5
 
 [node name="PlayerNameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1722834192]

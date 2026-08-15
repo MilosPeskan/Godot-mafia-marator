@@ -70,6 +70,8 @@ stretch_mode = 3
 [node name="TargetList" type="GridContainer" parent="VBoxContainer" unique_id=805156280]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 columns = 5
 
 [node name="TargetPlayerCard" parent="VBoxContainer/TargetList" unique_id=848689040 instance=ExtResource("6_yj8b4")]
@@ -82,6 +84,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TargetPlayerCard4" parent="VBoxContainer/TargetList" unique_id=2079154827 instance=ExtResource("6_yj8b4")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TargetList" unique_id=1012259186]
 layout_mode = 2
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1732996292]
