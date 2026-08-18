@@ -8,6 +8,9 @@
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="5_88k4g"]
 [ext_resource type="Shader" uid="uid://bau1i1p8o0q7n" path="res://resources/shaders/page_turn.gdshader" id="6_wxfap"]
 [ext_resource type="Script" uid="uid://b3wi2eocdm1o7" path="res://scenes/menus/role_menu/page_turn_overlay.gd" id="7_q53sf"]
+[ext_resource type="Shader" uid="uid://c33vktqccn23c" path="res://resources/shaders/red_line.gdshader" id="8_jcrip"]
+[ext_resource type="Texture2D" uid="uid://b3lb8yiiw8ul2" path="res://assets/ui elements/label_plate_strips.png" id="8_nl8o0"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="9_jcrip"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y0m1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -19,6 +22,11 @@ shader_parameter/direction = 1
 shader_parameter/shadow_color = Color(0, 0, 0, 0.55)
 shader_parameter/highlight_color = Color(1, 1, 1, 0.25)
 shader_parameter/spine_shadow_width = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kaby"]
+shader = ExtResource("8_jcrip")
+shader_parameter/ink_color = Color(0.2876812, 0.19378576, 0.09661075, 1)
+shader_parameter/opacity = 0.74000003515
 
 [node name="RoleMenu" type="Control" unique_id=310144077]
 layout_mode = 3
@@ -196,6 +204,26 @@ offset_left = 1153.6609
 offset_top = 946.27826
 offset_right = 1499.2455
 offset_bottom = 995.8623
+
+[node name="LabelPlateStrips2" type="Sprite2D" parent="MarginContainer" unique_id=1032357606]
+material = SubResource("ShaderMaterial_0kaby")
+position = Vector2(1802.521, 100.47361)
+rotation = 0.2472912
+scale = Vector2(0.4242439, 0.4242439)
+texture = ExtResource("8_nl8o0")
+region_enabled = true
+region_rect = Rect2(0, 400, 600, 200)
+
+[node name="Label" type="Label" parent="MarginContainer/LabelPlateStrips2" unique_id=248040930]
+offset_left = -210.4939
+offset_top = -76.12323
+offset_right = 184.41162
+offset_bottom = 68.54639
+theme = ExtResource("9_jcrip")
+theme_override_font_sizes/font_size = 81
+text = "1/20"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PageControls" type="Control" parent="MarginContainer" unique_id=1006000514]
 anchors_preset = 0
