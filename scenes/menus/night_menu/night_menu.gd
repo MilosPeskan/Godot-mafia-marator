@@ -17,6 +17,12 @@ const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/a
 @onready var role_instruction_label: Label = $InfoCardBackground/RoleInstructionLabel
 @onready var night_number_label: Label = $NightNumberLabel
 
+# Status panel (Milestone 13) — prikazuje se umesto action_menu-a kad
+# glumac ne može da deluje: nema mete, blokiran je, ili je zatvoren.
+@onready var status_panel: Control = $StatusPanel
+@onready var status_label: Label = $StatusPanel/StatusLabel
+@onready var continue_button: Button = $StatusPanel/ContinueButton
+
 var current_action_menu: ActionMenu = null
 var group_eligible_targets: Array[Player] = []
 var current_group_actors: Array[Player] = []
@@ -25,14 +31,14 @@ func _ready() -> void:
 	EventBus.night_turn_started.connect(_on_night_turn_started)
 	EventBus.night_group_turn_started.connect(_on_night_group_turn_started)
 	EventBus.night_resolved.connect(_on_night_resolved)
-	EventBus.investigation_result.connect(_on_investigation_result)
-	EventBus.track_result.connect(_on_track_result)
-	EventBus.autopsy_result.connect(_on_autopsy_result)
-	EventBus.follow_reveal.connect(_on_follow_reveal)
+	EventBus.night_info_result.connect(_on_night_info_result)
 
 	propose_button.pressed.connect(_on_propose_pressed)
 	kum_override_button.pressed.connect(_on_kum_override_pressed)
 	confirm_group_button.pressed.connect(_on_confirm_group_pressed)
+
+	status_panel.visible = false
+	continue_button.pressed.connect(_on_continue_pressed)
 
 	header_label.text = "Noć pada nad gradom..."
 	result_label.text = ""
@@ -56,8 +62,14 @@ func _ready() -> void:
 func _on_night_turn_started(player: Player) -> void:
 	_show_solo_actor(player)
 
+## Redosled provera: ZATVOREN pre BLOKIRAN (isti redosled kao stari
+## "actor.is_blocked or actor.is_jailed" uslov u night_phase.gd), zatim
+## dostupnost mete (samo ako rola uopšte zahteva metu — OBSERVE/Špijun
+## nema jedinstvenu metu, pa se ta provera preskače za njega), i tek
+## na kraju normalni action_menu.
 func _show_solo_actor(player: Player) -> void:
 	mafia_group_panel.visible = false
+	status_panel.visible = false
 	result_label.text = ""
 	header_label.text = "Na potezu: %s (%s)" % [player.player_name, player.role.role_name]
 	role_name_label.text = player.role.role_name
@@ -65,14 +77,47 @@ func _show_solo_actor(player: Player) -> void:
 	role_action_label.text = player.role.action_label
 	role_instruction_label.text = player.role.instruction_label
 
+	if player.is_jailed:
+		_show_status(player, "ZATVOREN — ne može da deluje noćas.")
+		return
+	if player.is_blocked:
+		_show_status(player, "BLOKIRAN — ne može da deluje noćas.")
+		return
+
+	var needs_target: bool = player.role.night_action_type != Role.NightActionType.OBSERVE
+	if needs_target:
+		var eligible: Array[Player] = TargetResolver.get_eligible_targets(player)
+		if eligible.is_empty():
+			_show_status(player, "Nema dostupnu metu ove noći.")
+			return
+
+	_show_action_menu_for(player)
+
+func _show_status(player: Player, reason: String) -> void:
 	if current_action_menu != null:
 		current_action_menu.queue_free()
 		current_action_menu = null
+	action_menu_container.visible = false
+	status_panel.visible = true
+	status_label.text = "%s (%s): %s" % [player.player_name, player.role.role_name, reason]
 
+func _show_action_menu_for(player: Player) -> void:
+	action_menu_container.visible = true
+	status_panel.visible = false
+	if current_action_menu != null:
+		current_action_menu.queue_free()
+		current_action_menu = null
 	var action_menu: ActionMenu = ACTION_MENU_SCENE.instantiate() as ActionMenu
 	action_menu_container.add_child(action_menu)
 	action_menu.setup(player)
 	current_action_menu = action_menu
+
+func _on_continue_pressed() -> void:
+	status_panel.visible = false
+	var phase: PhaseBase = PhaseStateMachine.get_current_phase()
+	var night_phase: NightPhase = phase as NightPhase
+	if night_phase != null:
+		night_phase.skip_turn()
 
 func _on_night_group_turn_started(actors: Array[Player]) -> void:
 	if current_action_menu != null:
@@ -80,6 +125,7 @@ func _on_night_group_turn_started(actors: Array[Player]) -> void:
 		current_action_menu = null
 
 	result_label.text = ""
+	status_panel.visible = false
 	header_label.text = "Mafija bira zajedničku metu"
 	mafia_group_panel.visible = true
 	current_group_actors = actors
@@ -148,25 +194,13 @@ func _on_confirm_group_pressed() -> void:
 	if night_phase != null:
 		night_phase.finalize_group_kill()
 
-func _on_investigation_result(source: Player, target: Player, is_mafia: bool) -> void:
-	var verdict: String = "PRIPADA mafiji" if is_mafia else "NE pripada mafiji"
-	result_label.text = "%s je istražio/la %s: %s" % [source.player_name, target.player_name, verdict]
-
-func _on_track_result(source: Player, target: Player, tracked_target: Player) -> void:
-	var visited_name: String = tracked_target.player_name if tracked_target != null else "nikog"
-	result_label.text = "%s je pratio/la %s — posetio/la je: %s" % [source.player_name, target.player_name, visited_name]
-
-func _on_autopsy_result(source: Player, target: Player, team: int) -> void:
-	var team_name: String = Role.get_team_name(team) if team != -1 else "Nepoznato"
-	result_label.text = "%s je obdukovao/la %s — pripadao/la je: %s" % [source.player_name, target.player_name, team_name]
-
-func _on_follow_reveal(follower: Player, victim: Player, killer: Player) -> void:
-	var killer_name: String = killer.player_name if killer != null else "mafiju (kolektivno)"
-	result_label.text = "%s je pratio/la %s — ubica: %s" % [follower.player_name, victim.player_name, killer_name]
+func _on_night_info_result(source: Player, target: Player, info_type: String, payload: Dictionary) -> void:
+	result_label.text = NightInfoFormatter.format(source, target, info_type, payload)
 
 func _on_night_resolved(killed: Array[Player], saved: Array[Player]) -> void:
 	if current_action_menu != null:
 		current_action_menu.queue_free()
 		current_action_menu = null
 	mafia_group_panel.visible = false
+	status_panel.visible = false
 	header_label.text = "Noć se završava..."
