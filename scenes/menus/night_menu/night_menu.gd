@@ -23,6 +23,13 @@ const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/a
 @onready var status_label: Label = $StatusPanel/StatusLabel
 @onready var continue_button: Button = $StatusPanel/ContinueButton
 
+# Sažetak kraja noći (Milestone 15) — prikazuje se KAD SE CELA NOĆ
+# razreši, PRE prelaska na dnevnu fazu. Narator mora eksplicitno da
+# potvrdi da bi se scena promenila na day_menu.
+@onready var summary_panel: Control = $SummaryPanel
+@onready var summary_label: Label = $SummaryPanel/SummaryLabel
+@onready var summary_continue_button: Button = $SummaryPanel/ContinueButton
+
 var current_action_menu: ActionMenu = null
 var group_eligible_targets: Array[Player] = []
 var current_group_actors: Array[Player] = []
@@ -39,6 +46,9 @@ func _ready() -> void:
 
 	status_panel.visible = false
 	continue_button.pressed.connect(_on_continue_pressed)
+
+	summary_panel.visible = false
+	summary_continue_button.pressed.connect(_on_summary_continue_pressed)
 
 	header_label.text = "Noć pada nad gradom..."
 	result_label.text = ""
@@ -197,6 +207,8 @@ func _on_confirm_group_pressed() -> void:
 func _on_night_info_result(source: Player, target: Player, info_type: String, payload: Dictionary) -> void:
 	result_label.text = NightInfoFormatter.format(source, target, info_type, payload)
 
+## Sada gradi i prikazuje sažetak kraja noći umesto da samo čisti UI
+## stanje. Scena se NE menja ovde — čeka se _on_summary_continue_pressed().
 func _on_night_resolved(killed: Array[Player], saved: Array[Player]) -> void:
 	if current_action_menu != null:
 		current_action_menu.queue_free()
@@ -204,3 +216,34 @@ func _on_night_resolved(killed: Array[Player], saved: Array[Player]) -> void:
 	mafia_group_panel.visible = false
 	status_panel.visible = false
 	header_label.text = "Noć se završava..."
+
+	summary_label.text = _build_summary_text(killed, saved)
+	summary_panel.visible = true
+
+## Namerno jednostavan tekst — samo imena, bez detalja o uzroku smrti
+## (npr. ko je koga ubio, ko je zaštitio koga). Bogatiji prikaz je
+## moguće buduće poboljšanje, van obima ove milestone-a.
+func _build_summary_text(killed: Array[Player], saved: Array[Player]) -> String:
+	var lines: Array[String] = []
+	if killed.is_empty():
+		lines.append("Niko nije umro ove noći.")
+	else:
+		var killed_names: Array[String] = []
+		for p in killed:
+			killed_names.append(p.player_name)
+		lines.append("Umrli: %s" % ", ".join(killed_names))
+	if not saved.is_empty():
+		var saved_names: Array[String] = []
+		for p in saved:
+			saved_names.append(p.player_name)
+		lines.append("Napadnuti, ali preživeli: %s" % ", ".join(saved_names))
+	return "\n".join(lines)
+
+func _on_summary_continue_pressed() -> void:
+	summary_panel.visible = false
+	var phase: PhaseBase = PhaseStateMachine.get_current_phase()
+	var night_phase: NightPhase = phase as NightPhase
+	print("continue pressed")
+	if night_phase != null:
+		print("call night phase")
+		night_phase.acknowledge_night_summary()
