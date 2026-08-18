@@ -91,9 +91,11 @@ layout_mode = 2
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1732996292]
 layout_mode = 2
+text = "Potvrdi"
 
 [node name="IgniteButton" type="Button" parent="VBoxContainer" unique_id=1174865708]
 layout_mode = 2
+text = "Zapali sve"
 
 [node name="RevealPopup" type="Control" parent="." unique_id=1404278017]
 visible = false
