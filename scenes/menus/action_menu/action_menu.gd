@@ -20,6 +20,10 @@ const NAME_LABEL_MIN_FONT_SIZE: int = 10
 @onready var confirm_button: Button = $VBoxContainer/ConfirmButton
 @onready var ignite_button: Button = $VBoxContainer/IgniteButton   # samo za Pirmana (DOUSE tip), sakriven inače
 
+@onready var reveal_popup: Control = $RevealPopup
+@onready var reveal_text_label: Label = $RevealPopup/RevealText
+@onready var reveal_ok_button: Button = $RevealPopup/RevealOkButton
+
 var actor: Player = null
 var eligible_targets: Array[Player] = []
 var target_cards: Array[TargetPlayerCard] = []
@@ -31,10 +35,18 @@ var is_control_mode: bool = false
 var control_step: int = 0
 var control_victim: Player = null
 
+# Stanje za reveal popup (Milestone 12).
+var reveal_pending: bool = false
+var pending_reveal_message: String = ""
+
 func _ready() -> void:
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	ignite_button.pressed.connect(_on_ignite_pressed)
 	ignite_button.visible = false
+
+	reveal_popup.visible = false
+	reveal_ok_button.pressed.connect(_on_reveal_ok_pressed)
+	EventBus.night_info_result.connect(_on_night_info_result)
 
 func setup(p_actor: Player) -> void:
 	actor = p_actor
@@ -60,7 +72,9 @@ func setup(p_actor: Player) -> void:
 		return
 
 	# Prvi (glavni) korak biranja mete uvek koristi pravila iz actor.role
-	# (can_target_dead / can_target_self / opposite_team_only).
+	# (can_target_dead / can_target_self / opposite_team_only) — sada
+	# preko deljenog TargetResolver-a (Milestone 13), umesto ručno
+	# ponovljene logike ovde.
 	_populate_targets(role.can_target_dead, actor, true)
 
 func _clear_targets() -> void:
@@ -75,12 +89,11 @@ func _clear_targets() -> void:
 ## akcija sme da cilja.
 ##
 ## apply_role_filters == true (standardni slučaj, koristi se iz setup()):
-##   Pool i filteri se izvode DIREKTNO iz actor.role — dead_pool argument
-##   se u tom slučaju ignoriše (naveden je samo radi čitljivosti poziva).
-##   - pool = mrtvi ako actor.role.can_target_dead, inače živi
-##   - exclude se izbacuje SAMO ako actor.role.can_target_self == false
-##   - ako actor.role.opposite_team_only, dodatno se izbacuju igrači
-##     istog tima kao actor.role.team
+##   Pool se dobija preko TargetResolver.get_eligible_targets(actor) —
+##   ISTA logika (can_target_dead / can_target_self / opposite_team_only)
+##   koju night_menu.gd koristi da PROVERI da li uopšte postoji meta,
+##   pre nego što odluči da prikaže action_menu ili status panel.
+##   dead_pool/exclude argumenti se u ovoj grani ignorišu.
 ##
 ## apply_role_filters == false (podrazumevano — koristi ga DRUGI korak
 ## CONTROL sposobnosti, vidi _advance_control_step): dead_pool ručno
@@ -88,20 +101,17 @@ func _clear_targets() -> void:
 func _populate_targets(dead_pool: bool, exclude: Player, apply_role_filters: bool = false) -> void:
 	_clear_targets()
 
-	var role: Role = actor.role
-	var use_dead_pool: bool = role.can_target_dead if apply_role_filters else dead_pool
-	var pool: Array[Player] = PlayerManager.get_dead_players() if use_dead_pool else PlayerManager.get_alive_players()
-
-	for p in pool:
-		if apply_role_filters:
-			if not role.can_target_self and p == exclude:
-				continue
-			if role.opposite_team_only and p.role != null and p.role.team == role.team:
-				continue
-		else:
+	var pool: Array[Player] = []
+	if apply_role_filters:
+		pool = TargetResolver.get_eligible_targets(actor)
+	else:
+		var raw_pool: Array[Player] = PlayerManager.get_dead_players() if dead_pool else PlayerManager.get_alive_players()
+		for p in raw_pool:
 			if p == exclude:
 				continue
+			pool.append(p)
 
+	for p in pool:
 		eligible_targets.append(p)
 		_create_target_card(p)
 
@@ -120,11 +130,6 @@ func _create_target_card(p: Player) -> void:
 ## dostupnog prostora, umesto da kartice "iscure" van grida. Takođe
 ## proporcionalno smanjuje font imena igrača na svakoj kartici, koristeći
 ## ISTI faktor skaliranja kao i sama kartica.
-##
-## Širina se računa na osnovu self.size (ActionMenu-ov sopstveni,
-## FIKSNI pravougaonik — dobija ga od svog roditelja u night_menu.tscn),
-## a NE na osnovu target_list.size, jer bi to bilo kružno: širina grida
-## zavisi od dece, a mi upravo pokušavamo da kontrolišemo veličinu dece.
 func _resize_target_cards() -> void:
 	if target_cards.is_empty():
 		return
@@ -141,8 +146,6 @@ func _resize_target_cards() -> void:
 	var aspect_ratio: float = CARD_DESIGN_SIZE.y / CARD_DESIGN_SIZE.x
 	var card_height: float = card_width * aspect_ratio
 
-	# Isti razmer (card_width / dizajn širina) primenjen na dizajn
-	# veličinu fonta — kartica i tekst se skaliraju zajedno.
 	var scale_factor: float = card_width / CARD_DESIGN_SIZE.x
 	var font_size: int = int(round(NAME_LABEL_DESIGN_FONT_SIZE * scale_factor))
 	font_size = max(font_size, NAME_LABEL_MIN_FONT_SIZE)
@@ -153,9 +156,6 @@ func _resize_target_cards() -> void:
 
 	target_list.queue_sort()
 
-## GridContainer nema ugrađen koncept "selektovane stavke" (za razliku od
-## ItemList-a) — zato ovde ručno pratimo koja je kartica trenutno izabrana
-## i ponašamo se kao radio-dugmad: biranje nove kartice poništava staru.
 func _on_target_card_selected(player: Player, card: TargetPlayerCard) -> void:
 	if selected_card != null and selected_card != card:
 		selected_card.mark_unselected()
@@ -163,11 +163,22 @@ func _on_target_card_selected(player: Player, card: TargetPlayerCard) -> void:
 	selected_card = card
 	selected_target = player
 
+func _on_night_info_result(source: Player, target: Player, info_type: String, payload: Dictionary) -> void:
+	if source != actor:
+		return
+	if actor.role == null or not actor.role.reveals_result_to_player:
+		return
+	pending_reveal_message = NightInfoFormatter.format(source, target, info_type, payload)
+	reveal_pending = true
+
 func _on_confirm_pressed() -> void:
 	var role: Role = actor.role
 
 	if role.night_action_type == Role.NightActionType.OBSERVE:
 		EventBus.action_submitted.emit(actor, null, "observe")
+		if reveal_pending:
+			reveal_pending = false
+			_show_reveal_popup()
 		return
 
 	if selected_target == null:
@@ -185,6 +196,11 @@ func _on_confirm_pressed() -> void:
 
 	EventBus.action_submitted.emit(actor, chosen, action_type)
 
+	if reveal_pending:
+		reveal_pending = false
+		_show_reveal_popup()
+		return
+
 func _advance_control_step(chosen: Player) -> void:
 	if control_step == 0:
 		control_victim = chosen
@@ -201,6 +217,21 @@ func _advance_control_step(chosen: Player) -> void:
 	var night_phase: NightPhase = phase as NightPhase
 	if night_phase != null:
 		night_phase.submit_control_action(actor, control_victim, forced_target)
+
+func _show_reveal_popup() -> void:
+	reveal_text_label.text = pending_reveal_message
+	reveal_popup.visible = true
+	confirm_button.disabled = true
+	if is_instance_valid(ignite_button):
+		ignite_button.disabled = true
+	target_list.visible = false
+
+func _on_reveal_ok_pressed() -> void:
+	reveal_popup.visible = false
+	var phase: PhaseBase = PhaseStateMachine.get_current_phase()
+	var night_phase: NightPhase = phase as NightPhase
+	if night_phase != null:
+		night_phase.acknowledge_reveal()
 
 func _on_ignite_pressed() -> void:
 	EventBus.action_submitted.emit(actor, null, "ignite")
