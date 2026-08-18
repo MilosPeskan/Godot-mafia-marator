@@ -194,9 +194,9 @@ offset_bottom = 1039.0
 
 [node name="ActionMenuContainer" type="Control" parent="." unique_id=43780490]
 anchors_preset = 0
-offset_left = 469.0
+offset_left = 496.0
 offset_top = 150.0
-offset_right = 1420.0
+offset_right = 1406.0
 offset_bottom = 995.0
 
 [node name="MafiaGroupPanel" type="Control" parent="." unique_id=180989720]
