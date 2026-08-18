@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://cqvsmjetnetic"]
 
 [ext_resource type="Script" uid="uid://df5nvsod13yrf" path="res://scenes/menus/day_menu/day_menu.gd" id="1_xi7xh"]
+[ext_resource type="Texture2D" uid="uid://dbg0e861vk8gk" path="res://assets/images/backgrounds/nightmenu.png" id="2_1qmdh"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_6eews"]
+[ext_resource type="Shader" uid="uid://c33vktqccn23c" path="res://resources/shaders/red_line.gdshader" id="4_7gyiu"]
+[ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_n5p35"]
+[ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="6_o4f8e"]
+[ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="7_ia7nj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1obbr"]
+shader = ExtResource("4_7gyiu")
+shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dna4k"]
+shader = ExtResource("4_7gyiu")
+shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
 
 [node name="DayMenu" type="Control" unique_id=1861790887]
 layout_mode = 3
@@ -16,6 +30,73 @@ layout_mode = 0
 offset_top = -1.0
 offset_right = 40.0
 offset_bottom = 22.0
+
+[node name="Background" type="TextureRect" parent="HeaderLabel" unique_id=328732798]
+layout_mode = 0
+offset_left = 68.0
+offset_top = -20.0
+offset_right = 1896.0
+offset_bottom = 1110.0
+texture = ExtResource("2_1qmdh")
+stretch_mode = 5
+
+[node name="NightReportLabel" type="Label" parent="HeaderLabel" unique_id=1631140040]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 27.0
+offset_right = 1262.0
+offset_bottom = 135.0
+theme = ExtResource("3_6eews")
+theme_override_font_sizes/font_size = 55
+text = "DNEVNI IZVEŠTAJ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HeaderLabel/NightReportLabel" unique_id=317278871]
+material = SubResource("ShaderMaterial_1obbr")
+layout_mode = 0
+offset_left = -62.0
+offset_top = 83.0
+offset_right = 747.0
+offset_bottom = 91.0
+texture = ExtResource("5_n5p35")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeaderLabel" unique_id=1288982682]
+layout_mode = 0
+offset_left = 763.0
+offset_top = 115.0
+offset_right = 1079.0
+offset_bottom = 157.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="HeaderLabel/HBoxContainer" unique_id=1609610830]
+material = SubResource("ShaderMaterial_dna4k")
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("6_o4f8e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NightNumberLabel" type="Label" parent="HeaderLabel/HBoxContainer" unique_id=1918635557]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("3_6eews")
+theme_override_colors/font_color = Color(0.62352943, 0.20784314, 0.19215687, 1)
+text = "Dan #1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Star2" type="TextureRect" parent="HeaderLabel/HBoxContainer" unique_id=1657670754]
+material = SubResource("ShaderMaterial_dna4k")
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("7_ia7nj")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="PlayerList" type="ItemList" parent="." unique_id=841880840]
 layout_mode = 0
