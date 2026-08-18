@@ -7,14 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_n5p35"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="6_o4f8e"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="7_ia7nj"]
+[ext_resource type="Texture2D" uid="uid://d2an5fmt22url" path="res://assets/ui elements/notebook_paper.png" id="8_n5p35"]
+[ext_resource type="Texture2D" uid="uid://dkt2nysufaop3" path="res://assets/ui elements/player_count.png" id="9_o4f8e"]
+[ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="10_ia7nj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1obbr"]
 shader = ExtResource("4_7gyiu")
 shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+shader_parameter/opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dna4k"]
 shader = ExtResource("4_7gyiu")
 shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+shader_parameter/opacity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fef32"]
+shader = ExtResource("4_7gyiu")
+shader_parameter/ink_color = Color(0.9439678, 0.77931774, 0.6341521, 1)
+shader_parameter/opacity = 0.2610000123975
 
 [node name="DayMenu" type="Control" unique_id=1861790887]
 layout_mode = 3
@@ -28,8 +38,8 @@ script = ExtResource("1_xi7xh")
 [node name="HeaderLabel" type="Label" parent="." unique_id=1193167960]
 layout_mode = 0
 offset_top = -1.0
-offset_right = 40.0
-offset_bottom = 22.0
+offset_right = 426.0
+offset_bottom = 96.0
 
 [node name="Background" type="TextureRect" parent="HeaderLabel" unique_id=328732798]
 layout_mode = 0
@@ -99,33 +109,92 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="PlayerList" type="ItemList" parent="." unique_id=841880840]
+visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 257.0
+offset_top = 165.0
+offset_right = 1665.0
+offset_bottom = 1002.0
 
 [node name="SelectedPlayerInfo" type="Label" parent="." unique_id=1623043708]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 2.0
+offset_top = 207.0
+offset_right = 522.0
+offset_bottom = 346.0
 
 [node name="ShowRolesButton" type="Button" parent="." unique_id=1229357130]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1354.0
+offset_top = 45.0
+offset_right = 1496.0
+offset_bottom = 150.0
+text = "Show roles"
 
 [node name="RolesOverviewDialog" type="AcceptDialog" parent="." unique_id=1830871781]
+oversampling_override = 1.0
 
 [node name="RolesOverviewList" type="RichTextLabel" parent="RolesOverviewDialog" unique_id=650449685]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 51.0
 bbcode_enabled = true
 
 [node name="CallLynchButton" type="Button" parent="." unique_id=866190440]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 552.0
+offset_top = 857.0
+offset_right = 671.0
+offset_bottom = 998.0
+text = "Lynch"
 
 [node name="StartNightButton" type="Button" parent="." unique_id=607362876]
 layout_mode = 0
+offset_left = 683.0
+offset_top = 855.0
+offset_right = 800.0
+offset_bottom = 994.0
+text = "Noc"
+
+[node name="ViewDetailsButton" type="Button" parent="." unique_id=890823292]
+layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1598066639]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 64.00001
+offset_right = 503.08258
+offset_bottom = 841.5584
+rotation = -0.1479493
+texture = ExtResource("8_n5p35")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PlayerCountArea" type="TextureRect" parent="." unique_id=2122442468]
+material = SubResource("ShaderMaterial_fef32")
+layout_mode = 0
+offset_left = 144.00002
+offset_top = 825.00006
+offset_right = 578.8231
+offset_bottom = 1001.57294
+rotation = -0.1479493
+texture = ExtResource("9_o4f8e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PlayerCountArea" unique_id=121611927]
+layout_mode = 0
+offset_left = 103.35471
+offset_top = 28.86084
+offset_right = 325.22745
+offset_bottom = 158.4765
+rotation = 0.035451002
+theme = ExtResource("10_ia7nj")
+theme_override_font_sizes/font_size = 26
+text = "Alive: 12
+Dead: 8"
+horizontal_alignment = 1
+vertical_alignment = 1
