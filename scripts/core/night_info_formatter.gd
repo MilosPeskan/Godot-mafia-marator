@@ -29,6 +29,8 @@ static func format(source: Player, target: Player, info_type: String, payload: D
 				names.append(p.player_name)
 			var names_text: String = ", ".join(names) if names.size() > 0 else "nikog"
 			return "%s je uočio/la posete mafije: %s" % [source.player_name, names_text]
+		"take_role":
+			return "%s je preuzeo/la novu ulogu: %s" % [source.player_name, payload["new_role_name"]]
 		_:
 			push_error("Nepoznat info_type u NightInfoFormatter: %s" % info_type)
 			return ""
