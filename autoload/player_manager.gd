@@ -23,7 +23,6 @@ func remove_player(player: Player) -> void:
 		return
 	players.remove_at(idx)
 	EventBus.player_removed.emit(player)
-	print(players)
 
 func get_alive_players() -> Array[Player]:
 	var result: Array[Player] = []

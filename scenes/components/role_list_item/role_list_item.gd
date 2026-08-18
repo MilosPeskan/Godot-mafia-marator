@@ -68,9 +68,7 @@ func _on_add_pressed() -> void:
 				new_count += 1
 		var player_name: String = "%s%d" % [card_role.role_name, new_count]
 		PlayerManager.add_player_with_role(player_name, card_role)
-
 	_refresh_count()
-	print("added")
 
 func _on_remove_pressed() -> void:
 	if is_debug:

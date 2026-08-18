@@ -44,7 +44,6 @@ func _populate_initial_pages() -> void:
 ## kad je debug dugme pritisnuto — vidi Milestone 6 mehanizam.
 func setup(data) -> void:
 	is_debug_mode = data
-	print(is_debug_mode)
 
 func _total_pages() -> int:
 	var roles_per_spread: int = roles_per_leaf * 2
@@ -125,7 +124,6 @@ func _populate_leaf(grid: GridContainer, page: int, is_right: bool) -> void:
 		var role: Role = RoleManager.available_roles[i]
 		var role_container: RoleContainer = role_container_scene.instantiate() as RoleContainer
 		grid.add_child(role_container)
-		print(is_debug_mode)
 		role_container.setup(role, is_debug_mode)
 		
 func _update_page_controls(total_pages: int) -> void:
