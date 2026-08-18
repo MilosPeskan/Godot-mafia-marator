@@ -29,6 +29,18 @@ func handle_action(source: Player, target: Player, action_type: String) -> void:
 			target.votes_received -= 1
 			EventBus.vote_cast.emit(source, target)
 
+## Briše protected_from_execution svima OSIM except_player-u (proslediti
+## null da se obrišu SVI). Poziva se JEDNOM po razrešenju linča, da
+## Sudijin štit nikad ne preživi duže od NAREDNOG linča — bilo da je
+## iskorišćen ili ne. except_player je igrač koji će TEK biti razrešen
+## kao `lynched` u OVOM ciklusu (ili null, ako niko nije izglasan), da
+## bi provera "lynched.protected_from_execution" odmah ispod i dalje
+## ispravno videla štit postavljen OVE noći.
+func _clear_stale_execution_shields(except_player: Player) -> void:
+	for p in PlayerManager.players:
+		if p != except_player:
+			p.protected_from_execution = false
+
 ## Poziva se eksplicitno iz lynch_menu.gd kad moderator zatvori glasanje.
 func finalize_lynch() -> void:
 	if votes_locked:
@@ -47,6 +59,8 @@ func finalize_lynch() -> void:
 			tie = false
 		elif p.votes_received == max_votes and max_votes > 0:
 			tie = true
+
+	_clear_stale_execution_shields(lynched)
 
 	if lynched != null and not tie:
 		# --- Sudija zaštita (Milestone 9) — MORA biti proveren PRE bilo
