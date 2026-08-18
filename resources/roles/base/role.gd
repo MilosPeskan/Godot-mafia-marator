@@ -41,6 +41,12 @@ enum NightActionType {
 @export_multiline var instruction_label: String = ""  # tekst instrukcije za ulogu tokom noci
 @export var night_action_type: NightActionType = NightActionType.NONE
 
+## true SAMO za role čiji noćni rezultat mora biti prikazan glumcu (akteru)
+## PRE nego što narator može da nastavi na sledećeg igrača (npr. istraživačke
+## role) — pauzira napredovanje poteza u NightPhase-u dok se ne pozove
+## NightPhase.acknowledge_reveal().
+@export var reveals_result_to_player: bool = false
+
 ## Opciono: ako je dodeljen, NightPhase poziva night_action_effect.apply()
 ## umesto starog match statement-a u _apply_action_effect(). null (default)
 ## znači "još nije migrirano — koristi stari fallback match".
