@@ -64,6 +64,13 @@ func _build_turn_order() -> void:
 	if not kill_group_inserted and not mafia_kill_actors.is_empty():
 		turn_order.append(NightTurn.new(mafia_kill_actors, true))
 
+## VAŽNA IZMENA (Milestone 13, deo B): blokirani/zatvoreni glumci se VIŠE
+## NE preskaču tiho ovde — sada uredno emituju night_turn_started, isto kao
+## svi ostali, da bi night_menu.gd mogao da im prikaže status panel
+## ("BLOKIRAN"/"ZATVOREN") umesto da ih narator nikad ne vidi. Provera
+## forced_target ostaje PRE emit-a, jer forsirani glumac ne treba da vidi
+## NIKAKAV UI (ni action_menu, ni status panel) — njegova akcija se
+## primenjuje automatski bez obzira na blocked/jailed status.
 func _prompt_current_or_resolve() -> void:
 	var turn: NightTurn = get_current_turn()
 	if turn == null:
@@ -76,22 +83,17 @@ func _prompt_current_or_resolve() -> void:
 
 	var actor: Player = turn.actors[0]
 
-	if actor.is_blocked or actor.is_jailed:
-		current_turn_index += 1
-		_prompt_current_or_resolve()
-		return
-
 	# CONTROL (Veštica) je već preusmerila ovog igrača — preskoči ručni unos, primeni odmah.
 	if actor.forced_target != null:
 		var forced: Player = actor.forced_target
 		actor.forced_target = null
 		var action_type: String = Role.night_action_string(actor.role.night_action_type)
-		handle_action(actor, forced, action_type)
+		handle_action(actor, forced, action_type, true)
 		return
 
 	EventBus.night_turn_started.emit(actor)
 
-func handle_action(source: Player, target: Player, action_type: String) -> void:
+func handle_action(source: Player, target: Player, action_type: String, skip_reveal_pause: bool = false) -> void:
 	var turn: NightTurn = get_current_turn()
 	if turn == null:
 		return
@@ -111,6 +113,33 @@ func handle_action(source: Player, target: Player, action_type: String) -> void:
 	if target != null:
 		target.night_visitors.append(source)
 
+	var must_pause_for_reveal: bool = source.role != null and source.role.reveals_result_to_player and not skip_reveal_pause
+	if must_pause_for_reveal:
+		return   # čeka se acknowledge_reveal() poziv iz action_menu.gd (narator odbacio popup)
+
+	current_turn_index += 1
+	_prompt_current_or_resolve()
+
+## Poziva ga action_menu.gd nakon što narator odbaci reveal popup za
+## rolu sa reveals_result_to_player == true. Nastavlja napredovanje
+## poteza koje je handle_action() namerno preskočio za tu akciju.
+func acknowledge_reveal() -> void:
+	current_turn_index += 1
+	_prompt_current_or_resolve()
+
+## Preskače trenutni potez BEZ primene ikakve akcije — koristi se za DVA
+## slučaja koja night_menu.gd tretira kao "ovaj glumac ne može da deluje":
+## (1) nema dostupnih meta, (2) glumac je blokiran ili zatvoren. Oba
+## slučaja predstavljaju "potez se završava bez efekta", pa dele ISTU
+## metodu umesto dve odvojene.
+func skip_turn() -> void:
+	var turn: NightTurn = get_current_turn()
+	if turn == null or turn.is_group_kill:
+		return
+	var actor: Player = turn.actors[0]
+	if not actor.is_alive:
+		return
+	actor.has_acted_tonight = true
 	current_turn_index += 1
 	_prompt_current_or_resolve()
 
@@ -152,6 +181,8 @@ func finalize_group_kill() -> void:
 		for actor in turn.actors:
 			actor.night_target = final_target
 			actor.has_acted_tonight = true
+			actor.last_night_action_target = final_target
+			final_target.night_visitors.append(actor)
 
 	current_turn_index += 1
 	_prompt_current_or_resolve()
@@ -175,7 +206,7 @@ func _apply_action_effect(source: Player, target: Player, action_type: String) -
 			var appears_mafia: bool = target.role != null and (target.role.team == Role.Team.MAFIA or target.is_framed)
 			if target.is_deceived:
 				appears_mafia = not appears_mafia
-			EventBus.investigation_result.emit(source, target, appears_mafia)
+			EventBus.night_info_result.emit(source, target, "investigate", {"is_mafia": appears_mafia})
 		"block":
 			target.is_blocked = true
 		"douse":
@@ -183,14 +214,20 @@ func _apply_action_effect(source: Player, target: Player, action_type: String) -
 		"ignite":
 			_resolve_ignite()
 		"observe":
-			pass   # pasivno — night_menu.gd čita target.night_visitors direktno, ništa se ne upisuje ovde
+			var visited: Array[Player] = []
+			for p in PlayerManager.players:
+				for visitor in p.night_visitors:
+					if visitor.role != null and visitor.role.team == Role.Team.MAFIA:
+						visited.append(p)
+						break
+			EventBus.night_info_result.emit(source, null, "observe", {"visited_by_mafia": visited})
 		"track":
-			EventBus.track_result.emit(source, target, target.last_night_action_target)
+			EventBus.night_info_result.emit(source, target, "track", {"visited_target": target.last_night_action_target})
 		"censor":
 			target.is_censored = true
 		"autopsy":
 			var team_result: int = target.role.team if target.role != null else -1
-			EventBus.autopsy_result.emit(source, target, team_result)
+			EventBus.night_info_result.emit(source, target, "autopsy", {"team": team_result})
 		"deceive":
 			target.is_deceived = true
 		"silence":
@@ -228,13 +265,20 @@ func _resolve_single_kill(target: Player, killed: Array[Player], saved: Array[Pl
 	if target.protected_by != null:
 		saved.append(target)
 		return
+	if target.guarded_by != null:
+		var guardian: Player = target.guarded_by
+		guardian.kill()
+		killed.append(guardian)
+		EventBus.player_died.emit(guardian)
+		saved.append(target)
+		return
 
 	target.kill()
 	killed.append(target)
 	EventBus.player_died.emit(target)
 
 	for follower in target.followed_by:
-		EventBus.follow_reveal.emit(follower, target, killer)
+		EventBus.night_info_result.emit(follower, target, "follow", {"victim": target, "killer": killer})
 
 func _resolve_night() -> void:
 	var killed: Array[Player] = []
