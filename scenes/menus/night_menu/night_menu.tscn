@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3lb8yiiw8ul2" path="res://assets/ui elements/label_plate_strips.png" id="8_2he1h"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="11_ksfab"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="12_iibih"]
+[ext_resource type="Texture2D" uid="uid://ogk3tmqmjcw8" path="res://assets/images/backgrounds/role_reveal_paper.png" id="13_gxh2j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2rdq"]
 shader = ExtResource("3_1vvxx")
@@ -270,3 +271,40 @@ anchor_bottom = 0.9
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Nastavi"
+
+[node name="SummaryPanel" type="Control" parent="." unique_id=965468299]
+visible = false
+anchors_preset = 0
+offset_left = 210.0
+offset_top = 142.0
+offset_right = 1613.0
+offset_bottom = 1011.0
+
+[node name="TextureRect" type="TextureRect" parent="SummaryPanel" unique_id=2124929381]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_gxh2j")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SummaryLabel" type="Label" parent="SummaryPanel" unique_id=1805313836]
+layout_mode = 0
+anchor_left = 0.08766928
+anchor_top = 0.054085154
+anchor_right = 0.9187455
+anchor_bottom = 0.8204833
+metadata/_edit_use_anchors_ = true
+
+[node name="ContinueButton" type="Button" parent="SummaryPanel" unique_id=1714403763]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.82853854
+anchor_right = 0.6
+anchor_bottom = 0.9125432
+text = "Nastavi na dan"
+metadata/_edit_use_anchors_ = true
