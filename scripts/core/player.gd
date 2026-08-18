@@ -14,6 +14,10 @@ var protected_by: Player = null    # ko ga štiti ove noći (npr. doktor), reset
 # Odvojeno polje od protected_by, jer su pravila drugačija (redirekcija
 # umesto potpunog otkazivanja napada) — vidi NightPhase._resolve_single_kill().
 var guarded_by: Player = null
+# Parazit koji je označio ovog igrača ove noći, ako postoji — ako ovaj
+# igrač UMRE tokom noćnog razrešenja ubistava, PARAZIT nasleđuje njegovu
+# ulogu u tom trenutku. Vidi NightPhase._resolve_single_kill().
+var infested_by: Player = null
 var votes_received: int = 0        # glasovi primljeni tokom trenutnog lynch glasanja
 var has_acted_tonight: bool = false
 
@@ -55,6 +59,7 @@ func reset_nightly_state() -> void:
 	night_target = null
 	protected_by = null
 	guarded_by = null
+	infested_by = null
 	has_acted_tonight = false
 	forced_target = null
 	last_night_action_target = null
