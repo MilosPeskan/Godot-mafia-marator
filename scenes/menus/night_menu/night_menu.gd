@@ -244,6 +244,8 @@ func _on_summary_continue_pressed() -> void:
 	var phase: PhaseBase = PhaseStateMachine.get_current_phase()
 	var night_phase: NightPhase = phase as NightPhase
 	print("continue pressed")
+	print(phase)
+	print(night_phase)
 	if night_phase != null:
 		print("call night phase")
 		night_phase.acknowledge_night_summary()
