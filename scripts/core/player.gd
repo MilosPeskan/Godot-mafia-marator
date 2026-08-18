@@ -66,7 +66,6 @@ func reset_nightly_state() -> void:
 	night_visitors = []
 
 	is_blocked = false
-	is_doused = false
 	is_censored = false
 	is_deceived = false
 	is_silenced = false
