@@ -14,4 +14,5 @@ can_act_at_night = true
 action_label = "prati"
 instruction_label = "Bira igrača da sazna koga je posetio tokom noći."
 night_action_type = 9
+reveals_result_to_player = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

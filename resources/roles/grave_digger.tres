@@ -14,5 +14,6 @@ can_act_at_night = true
 action_label = "otkopa"
 instruction_label = "Bira mrvog igrača čiju ulogu želi da sazna. "
 night_action_type = 11
+reveals_result_to_player = true
 can_target_dead = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"

@@ -14,4 +14,5 @@ can_act_at_night = true
 action_label = "istraži"
 instruction_label = "Bira igrača čiju ulogu želi da sazna. "
 night_action_type = 3
+reveals_result_to_player = true
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"
