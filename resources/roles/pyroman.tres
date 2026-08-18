@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://de58xqtgx4f8o" path="res://assets/icons/role/pyroman.png" id="1_2l4hj"]
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_awo6o"]
+[ext_resource type="Script" uid="uid://chg6bmyl5fm21" path="res://resources/actions/douse_effect.gd" id="2_u3ya8"]
+
+[sub_resource type="Resource" id="Resource_4npy0"]
+script = ExtResource("2_u3ya8")
+metadata/_custom_type_script = "uid://chg6bmyl5fm21"
 
 [resource]
 script = ExtResource("1_awo6o")
@@ -15,4 +20,5 @@ can_act_at_night = true
 action_label = "polije"
 instruction_label = "Bira igrača kojeg želi da polije benzinom ili da zapali sve trenutno polivene."
 night_action_type = 6
+night_action_effect = SubResource("Resource_4npy0")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"
