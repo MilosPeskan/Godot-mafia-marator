@@ -9,6 +9,11 @@ var is_alive: bool = true
 # Polja relevantna za noćne akcije / glasanje:
 var night_target: Player = null    # koga je ovaj igrač izabrao kao metu prošle noći
 var protected_by: Player = null    # ko ga štiti ove noći (npr. doktor), resetuje se svako veče
+# Telohranitelj koji čuva ovog igrača ove noći, ako postoji — ako je ovaj
+# igrač napadnut, TELOHRANITELJ umire umesto njega, a ovaj igrač preživljava.
+# Odvojeno polje od protected_by, jer su pravila drugačija (redirekcija
+# umesto potpunog otkazivanja napada) — vidi NightPhase._resolve_single_kill().
+var guarded_by: Player = null
 var votes_received: int = 0        # glasovi primljeni tokom trenutnog lynch glasanja
 var has_acted_tonight: bool = false
 
@@ -49,6 +54,7 @@ func kill() -> void:
 func reset_nightly_state() -> void:
 	night_target = null
 	protected_by = null
+	guarded_by = null
 	has_acted_tonight = false
 	forced_target = null
 	last_night_action_target = null
