@@ -37,6 +37,9 @@ enum NightActionType {
 @export var night_priority: int = -1        # -1 = nema noćnu akciju; manji broj = deluje ranije
 @export var is_unique: bool = true          # sme li postojati samo jednom po partiji
 @export var can_act_at_night: bool = false
+# true SAMO za Kuma — kad je true, predlog ove role za mafijašku metu
+# PREVAZILAZI predlog obične Mafije tokom razrešenja grupnog ubistva.
+@export var overrides_mafia_kill_vote: bool = false
 @export var action_label: String = ""       # tekst na dugmetu akcije u action_menu
 @export_multiline var instruction_label: String = ""  # tekst instrukcije za ulogu tokom noci
 @export var night_action_type: NightActionType = NightActionType.NONE
