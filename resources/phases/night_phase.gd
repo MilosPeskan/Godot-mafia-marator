@@ -64,13 +64,6 @@ func _build_turn_order() -> void:
 	if not kill_group_inserted and not mafia_kill_actors.is_empty():
 		turn_order.append(NightTurn.new(mafia_kill_actors, true))
 
-## VAŽNA IZMENA (Milestone 13, deo B): blokirani/zatvoreni glumci se VIŠE
-## NE preskaču tiho ovde — sada uredno emituju night_turn_started, isto kao
-## svi ostali, da bi night_menu.gd mogao da im prikaže status panel
-## ("BLOKIRAN"/"ZATVOREN") umesto da ih narator nikad ne vidi. Provera
-## forced_target ostaje PRE emit-a, jer forsirani glumac ne treba da vidi
-## NIKAKAV UI (ni action_menu, ni status panel) — njegova akcija se
-## primenjuje automatski bez obzira na blocked/jailed status.
 func _prompt_current_or_resolve() -> void:
 	var turn: NightTurn = get_current_turn()
 	if turn == null:
@@ -142,6 +135,14 @@ func skip_turn() -> void:
 	actor.has_acted_tonight = true
 	current_turn_index += 1
 	_prompt_current_or_resolve()
+
+## Poziva ga night_menu.gd nakon što narator odbaci sažetak kraja noći
+## (Milestone 15). Izvršava fazni prelaz i promenu scene koje je
+## _resolve_night() namerno odložio.
+func acknowledge_night_summary() -> void:
+	print("switch to day")
+	state_machine.transition_to(PhaseStateMachine.Phase.DAY_DISCUSSION)
+	SceneManager.switch_to("day_menu")
 
 ## CONTROL (Veštica) — poseban ulaz jer zahteva DVA izbora (koga kontroliše + nova meta),
 ## ne uklapa se u standardni handle_action(source, target, action_type) oblik. Pozvano
@@ -273,12 +274,19 @@ func _resolve_single_kill(target: Player, killed: Array[Player], saved: Array[Pl
 		saved.append(target)
 		return
 
+	var inherited_role: Role = target.role
+	var parasite: Player = target.infested_by
+
 	target.kill()
 	killed.append(target)
 	EventBus.player_died.emit(target)
 
 	for follower in target.followed_by:
 		EventBus.night_info_result.emit(follower, target, "follow", {"victim": target, "killer": killer})
+
+	if parasite != null and parasite.is_alive:
+		parasite.assign_role(inherited_role)
+		EventBus.night_info_result.emit(parasite, target, "take_role", {"new_role_name": inherited_role.role_name if inherited_role != null else "Nepoznato"})
 
 func _resolve_night() -> void:
 	var killed: Array[Player] = []
@@ -303,5 +311,7 @@ func _resolve_night() -> void:
 		state_machine.transition_to(PhaseStateMachine.Phase.GAME_OVER)
 		return
 
-	state_machine.transition_to(PhaseStateMachine.Phase.DAY_DISCUSSION)
-	SceneManager.switch_to("day_menu")
+	# Namerno NE prelazi u DAY_DISCUSSION i NE menja scenu ovde —
+	# night_menu.gd prvo prikazuje sažetak (SummaryPanel) i poziva
+	# acknowledge_night_summary() tek kad narator pritisne Nastavi.
+	# Vidi Milestone 15.
