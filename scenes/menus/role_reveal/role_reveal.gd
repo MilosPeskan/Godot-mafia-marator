@@ -6,6 +6,7 @@ extends Control
 @onready var role_name_label: Label = $RoleCard/RoleNameLabel
 @onready var role_team_label: Label = $RoleCard/RoleTeamLabel
 @onready var description_label: Label = $RoleCard/DescriptionLabel
+@onready var execution_target_label: Label = $RoleCard/ExecutionTargetLabel
 @onready var hold_button: Control = $HoldToRevealButton
 @onready var next_button: Button = $NextPlayerButton
 @onready var role_visibility_controls: Control = $RoleVisibilityControls
@@ -64,6 +65,7 @@ func _set_development_progress(value: float) -> void:
 
 func _show_current_player() -> void:
 	role_card.visible = false
+	execution_target_label.visible = false
 	role_visibility_controls.visible = true
 	next_button.disabled = true
 
@@ -91,7 +93,13 @@ func _on_hold_started() -> void:
 	role_name_label.text = role.role_name
 	role_team_label.text = Role.get_team_name(role.team)
 	description_label.text = role.description
-	
+
+	if role.role_id == Role.RoleId.EXECUTIONER and player.execution_target != null:
+		execution_target_label.text = "Tvoja meta je: %s" % player.execution_target.player_name
+		execution_target_label.visible = true
+	else:
+		execution_target_label.visible = false
+
 	if mat == null:
 		return
 
