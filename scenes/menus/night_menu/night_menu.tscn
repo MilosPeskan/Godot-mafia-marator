@@ -239,3 +239,34 @@ material = SubResource("ShaderMaterial_dr0kv")
 position = Vector2(969.00006, 135)
 scale = Vector2(0.06216216, 0.062162172)
 texture = ExtResource("12_iibih")
+
+[node name="StatusPanel" type="Control" parent="." unique_id=1897260575]
+visible = false
+layout_mode = 1
+anchor_left = 0.25989583
+anchor_top = 0.14444445
+anchor_right = 0.7317708
+anchor_bottom = 0.76574075
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="Label" parent="StatusPanel" unique_id=1763278618]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="StatusPanel" unique_id=1006715508]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.85
+anchor_right = 0.65
+anchor_bottom = 0.9
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Nastavi"
