@@ -94,3 +94,39 @@ layout_mode = 2
 
 [node name="IgniteButton" type="Button" parent="VBoxContainer" unique_id=1174865708]
 layout_mode = 2
+
+[node name="RevealPopup" type="Control" parent="." unique_id=1404278017]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RevealText" type="Label" parent="RevealPopup" unique_id=476958067]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.03
+anchor_right = 0.98
+anchor_bottom = 0.8972222
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="RevealOkButton" type="Button" parent="RevealPopup" unique_id=206412034]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.9
+anchor_right = 0.65
+anchor_bottom = 0.95
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
