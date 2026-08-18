@@ -130,7 +130,6 @@ scale = Vector2(0.7285156, 0.7285156)
 texture = ExtResource("3_b3y3w")
 
 [node name="RoleCard" type="Control" parent="." unique_id=1140203439]
-visible = false
 anchors_preset = 0
 offset_left = 696.0
 offset_top = 175.0
@@ -170,6 +169,15 @@ text = "Nema posebnu sposobnost. Učestvuje samo u diskusiji i glasanju."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="ExecutionTargetLabel" type="Label" parent="RoleCard" unique_id=1006770346]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16186252
+anchor_top = -0.20181406
+anchor_right = 0.7960089
+anchor_bottom = -0.011337869
+metadata/_edit_use_anchors_ = true
 
 [node name="RoleVisibilityControls" type="Control" parent="." unique_id=564948506]
 anchors_preset = 0
