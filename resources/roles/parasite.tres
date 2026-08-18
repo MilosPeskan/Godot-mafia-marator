@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://ddec6nb8rcmg" path="res://assets/icons/role/parasite.png" id="1_e0xel"]
 [ext_resource type="Script" uid="uid://f0ydkot1fmf2" path="res://resources/roles/base/role.gd" id="1_xcu6l"]
+[ext_resource type="Script" uid="uid://c5dolhhujlb2s" path="res://resources/actions/infest_effect.gd" id="2_bm5sb"]
+
+[sub_resource type="Resource" id="Resource_ibxjg"]
+script = ExtResource("2_bm5sb")
+metadata/_custom_type_script = "uid://c5dolhhujlb2s"
 
 [resource]
 script = ExtResource("1_xcu6l")
@@ -15,4 +20,5 @@ can_act_at_night = true
 action_label = "parazituje"
 instruction_label = "Bira igrača čiju ulogu želi da preuzme ako taj igrač umre tokom noći."
 night_action_type = 17
+night_action_effect = SubResource("Resource_ibxjg")
 metadata/_custom_type_script = "uid://f0ydkot1fmf2"
