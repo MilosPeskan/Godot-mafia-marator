@@ -13,3 +13,4 @@ func apply(source: Player, target: Player, night_phase: NightPhase, secondary_ta
 			p.is_doused = false
 			p.kill()
 			EventBus.player_died.emit(p)
+			night_phase.record_immediate_death(p)
