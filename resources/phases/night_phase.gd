@@ -8,6 +8,12 @@ var current_turn_index: int = 0
 var pending_mafia_target: Player = null
 var pending_kum_target: Player = null
 
+# Igrači koje je neki efekat ubio ODMAH, tokom sopstvenog poteza, van
+# normalnog _resolve_night()/_resolve_single_kill() toka (trenutno
+# samo IgniteEffect). Beleže se ovde da bi se svejedno pojavili u
+# sažetku kraja noći — vidi record_immediate_death() i _resolve_night().
+var immediate_deaths: Array[Player] = []
+
 func enter() -> void:
 	for p in PlayerManager.get_alive_players():
 		p.reset_nightly_state()
@@ -15,6 +21,7 @@ func enter() -> void:
 	current_turn_index = 0
 	pending_mafia_target = null
 	pending_kum_target = null
+	immediate_deaths = []
 	_prompt_current_or_resolve()
 
 func exit() -> void:
@@ -142,6 +149,16 @@ func skip_turn() -> void:
 func acknowledge_night_summary() -> void:
 	state_machine.transition_to(PhaseStateMachine.Phase.DAY_DISCUSSION)
 	SceneManager.switch_to("day_menu")
+
+## Poziva ga efekat (trenutno samo IgniteEffect) koji ubija igrače
+## ODMAH tokom sopstvenog poteza, van normalnog
+## _resolve_night()/_resolve_single_kill() toka — da bi ta smrt ipak
+## bila ispravno prikazana u sažetku kraja noći. Proverava da igrač
+## već nije zabeležen, da ne bi bio duplo naveden u slučaju da je i na
+## neki drugi način ušao u killed[] listu.
+func record_immediate_death(player: Player) -> void:
+	if not immediate_deaths.has(player):
+		immediate_deaths.append(player)
 
 ## CONTROL (Veštica) — poseban ulaz jer zahteva DVA izbora (koga kontroliše + nova meta),
 ## ne uklapa se u standardni handle_action(source, target, action_type) oblik. Pozvano
@@ -313,6 +330,15 @@ func _resolve_night() -> void:
 	for p in PlayerManager.get_alive_players():
 		if p.role != null and p.role.team == Role.Team.NEUTRAL and p.role.night_action_type == Role.NightActionType.KILL and p.night_target != null:
 			_resolve_single_kill(p.night_target, killed, saved, p)
+
+	# Spaja odmah-ubijene igrače (trenutno samo od IgniteEffect-a) u
+	# killed[] pre nego što se emituje sažetak — inače bi zapaljene
+	# smrti bile nevidljive u night_menu.gd's SummaryPanel-u, iako su
+	# se stvarno dogodile. Provera "not killed.has(p)" sprečava
+	# duplo navođenje ako je igrač nekim slučajem već u killed[].
+	for p in immediate_deaths:
+		if not killed.has(p):
+			killed.append(p)
 
 	EventBus.night_resolved.emit(killed, saved)
 
