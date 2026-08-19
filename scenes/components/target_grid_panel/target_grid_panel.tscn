@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://f12ggajto0fn"]
+
+[ext_resource type="Script" uid="uid://s6vnjj2isqxl" path="res://scenes/components/target_grid_panel/target_grid_panel.gd" id="1_rbthb"]
+
+[node name="TargetGridPanel" type="Control" unique_id=340132403]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbthb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1644913056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=380575139]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 5
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1313745966]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
