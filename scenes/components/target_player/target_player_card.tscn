@@ -3,10 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dngmf7eo6bpb8" path="res://assets/ui elements/target_player_background.png" id="1_ekdkv"]
 [ext_resource type="Script" uid="uid://dikbmu63nsa0e" path="res://scenes/components/target_player/target_player_card.gd" id="1_j78rg"]
 [ext_resource type="Texture2D" uid="uid://c8xaeds3y50jv" path="res://assets/ui elements/player_selected.png" id="2_j78rg"]
-[ext_resource type="Texture2D" uid="uid://cxsinug0oqjpc" path="res://assets/icons/player/silueta1.png" id="3_q5j2q"]
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="4_p4ld4"]
+[ext_resource type="Texture2D" uid="uid://dqr0dh61jaxua" path="res://assets/icons/player/igrac11.png" id="4_q5j2q"]
+[ext_resource type="Texture2D" uid="uid://dhoo21rwxxfs5" path="res://assets/ui elements/buttons/silver_button.png" id="6_p4ld4"]
 
 [node name="TargetPlayerCard" type="Control" unique_id=848689040]
+clip_contents = true
 custom_minimum_size = Vector2(347, 397)
 layout_mode = 3
 anchors_preset = 0
@@ -34,6 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Selected" type="TextureRect" parent="MarginContainer2" unique_id=23759161]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_j78rg")
 expand_mode = 5
@@ -53,31 +56,19 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1970494173]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.47
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=53222761]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 0
-theme_override_constants/margin_bottom = 0
 
 [node name="PlayerIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1879041461]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("3_q5j2q")
+texture = ExtResource("4_q5j2q")
 expand_mode = 5
-stretch_mode = 5
-
-[node name="PlayerNameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1722834192]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("4_p4ld4")
-theme_override_font_sizes/font_size = 41
-text = "Ime igraca"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+stretch_mode = 4
 
 [node name="SelectButton" type="Button" parent="." unique_id=797847073]
 layout_mode = 1
@@ -87,3 +78,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="Background2" type="TextureRect" parent="." unique_id=1803679836]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.07204611
+anchor_top = 0.7448243
+anchor_right = 1.0749279
+anchor_bottom = 1.0133619
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_p4ld4")
+expand_mode = 5
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerNameLabel" type="Label" parent="Background2" unique_id=382362997]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("4_p4ld4")
+theme_override_font_sizes/font_size = 41
+text = "Ime igraca"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
