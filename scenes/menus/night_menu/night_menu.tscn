@@ -13,14 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="11_ksfab"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="12_iibih"]
 [ext_resource type="Texture2D" uid="uid://ogk3tmqmjcw8" path="res://assets/images/backgrounds/role_reveal_paper.png" id="13_gxh2j"]
+[ext_resource type="Texture2D" uid="uid://do4sotf5wpf5m" path="res://assets/ui elements/stamps/poverljivo2.png" id="14_eelmp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2rdq"]
 shader = ExtResource("3_1vvxx")
 shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+shader_parameter/opacity = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dr0kv"]
 shader = ExtResource("3_1vvxx")
 shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
+shader_parameter/opacity = 1.0
 
 [node name="NightMenu" type="Control" unique_id=1363550192]
 layout_mode = 3
@@ -308,3 +311,9 @@ anchor_right = 0.6
 anchor_bottom = 0.9125432
 text = "Nastavi na dan"
 metadata/_edit_use_anchors_ = true
+
+[node name="Poverljivo2" type="Sprite2D" parent="." unique_id=271347091]
+position = Vector2(1278, 93.00002)
+rotation = 0.13601437
+scale = Vector2(0.5743243, 0.5743243)
+texture = ExtResource("14_eelmp")
