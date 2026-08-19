@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cjnwualp4n68g" path="res://assets/ui elements/role_polaroid_overlay.png" id="4_wbj8l"]
 [ext_resource type="FontFile" uid="uid://bfcxrxw7hrgo0" path="res://assets/fonts/IMFellEnglish-Regular.ttf" id="5_8xk3n"]
 [ext_resource type="Texture2D" uid="uid://dcd5yc2owxa2c" path="res://assets/ui elements/censorship.png" id="5_wbj8l"]
-[ext_resource type="Texture2D" uid="uid://dhpupcqi8wiio" path="res://assets/ui elements/button_texture.png" id="5_yowks"]
+[ext_resource type="Texture2D" uid="uid://dhpupcqi8wiio" path="res://assets/ui elements/buttons/button_texture.png" id="5_yowks"]
 [ext_resource type="Texture2D" uid="uid://cl77wwgx42dyc" path="res://assets/ui elements/next_player_label.png" id="6_fgcs6"]
 [ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="6_x0rr7"]
 [ext_resource type="FontFile" uid="uid://b0ergpf1ux4vm" path="res://assets/fonts/ELEGANT TYPEWRITER Italic.ttf" id="7_u8j5x"]
