@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://bbobrnyh2rpn1" path="res://scenes/menus/player_menu/player_menu.gd" id="1_bmi8c"]
 [ext_resource type="Texture2D" uid="uid://bj76ur22arcuc" path="res://assets/images/backgrounds/background.png" id="2_s6iss"]
 [ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_j3ca1"]
+[ext_resource type="Shader" uid="uid://c33vktqccn23c" path="res://resources/shaders/red_line.gdshader" id="4_j3ca1"]
+[ext_resource type="Texture2D" uid="uid://cngufdtnac8q6" path="res://assets/ui elements/buttons/folder_button.png" id="5_okfm6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w11am"]
+shader = ExtResource("4_j3ca1")
+shader_parameter/ink_color = Color(0.13725491, 0.09019608, 0.047058824, 1)
+shader_parameter/opacity = 0.3250000154375
 
 [node name="PlayerMenu" type="Control" unique_id=1118936175]
 layout_mode = 3
@@ -71,10 +78,23 @@ text = "00"
 layout_mode = 0
 offset_left = 1302.0
 offset_top = 897.0
-offset_right = 1654.0
-offset_bottom = 1020.0
+offset_right = 1924.0
+offset_bottom = 1087.0
+flat = true
 
 [node name="StatusLabel" type="Label" parent="." unique_id=1001235922]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="NextButtonBackground" type="TextureRect" parent="." unique_id=1408885508]
+material = SubResource("ShaderMaterial_w11am")
+layout_mode = 0
+offset_left = 1210.0
+offset_top = 896.0
+offset_right = 1945.0
+offset_bottom = 1135.0
+mouse_filter = 2
+texture = ExtResource("5_okfm6")
+expand_mode = 3
+stretch_mode = 5
