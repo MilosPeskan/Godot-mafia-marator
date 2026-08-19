@@ -6,7 +6,7 @@ class_name TargetPlayerCard
 ## od ItemList-a, nema ugrađen koncept "selektovane stavke").
 signal target_selected(player: Player, card: TargetPlayerCard)
 
-@onready var player_name_label: Label = $MarginContainer/VBoxContainer/PlayerNameLabel
+@onready var player_name_label: Label = $Background2/PlayerNameLabel
 @onready var player_icon: TextureRect = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PlayerIcon
 @onready var select_button: Button = $SelectButton
 @onready var selected: TextureRect = $MarginContainer2/Selected
