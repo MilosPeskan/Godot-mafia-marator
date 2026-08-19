@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_n5p35"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="6_o4f8e"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="7_ia7nj"]
+[ext_resource type="Texture2D" uid="uid://dhoo21rwxxfs5" path="res://assets/ui elements/buttons/silver_button.png" id="8_ia7nj"]
 [ext_resource type="Texture2D" uid="uid://d2an5fmt22url" path="res://assets/ui elements/notebook_paper.png" id="8_n5p35"]
 [ext_resource type="Texture2D" uid="uid://dkt2nysufaop3" path="res://assets/ui elements/player_count.png" id="9_o4f8e"]
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="10_ia7nj"]
+[ext_resource type="Texture2D" uid="uid://qvidc5mu5uiq" path="res://assets/ui elements/player_info_background.png" id="12_1obbr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1obbr"]
 shader = ExtResource("4_7gyiu")
@@ -108,9 +110,8 @@ texture = ExtResource("7_ia7nj")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PlayerList" type="ItemList" parent="." unique_id=841880840]
-visible = false
-layout_mode = 0
+[node name="PlayerList" type="Control" parent="." unique_id=880565650]
+anchors_preset = 0
 offset_left = 257.0
 offset_top = 165.0
 offset_right = 1665.0
@@ -133,12 +134,13 @@ text = "Show roles"
 
 [node name="RolesOverviewDialog" type="AcceptDialog" parent="." unique_id=1830871781]
 oversampling_override = 1.0
+size = Vector2i(800, 800)
 
 [node name="RolesOverviewList" type="RichTextLabel" parent="RolesOverviewDialog" unique_id=650449685]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 92.0
-offset_bottom = 51.0
+offset_right = 792.0
+offset_bottom = 751.0
 bbcode_enabled = true
 
 [node name="CallLynchButton" type="Button" parent="." unique_id=866190440]
@@ -149,20 +151,22 @@ offset_right = 671.0
 offset_bottom = 998.0
 text = "Lynch"
 
-[node name="StartNightButton" type="Button" parent="." unique_id=607362876]
+[node name="StartNightButton" type="TextureButton" parent="." unique_id=1803284249]
 layout_mode = 0
-offset_left = 683.0
-offset_top = 855.0
-offset_right = 800.0
-offset_bottom = 994.0
-text = "Noc"
+offset_left = 764.0
+offset_top = 887.0
+offset_right = 1147.0
+offset_bottom = 1026.0
+texture_normal = ExtResource("8_ia7nj")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="ViewDetailsButton" type="Button" parent="." unique_id=890823292]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1598066639]
+[node name="NightDetails" type="TextureRect" parent="." unique_id=1598066639]
 layout_mode = 0
 offset_left = -17.0
 offset_top = 64.00001
@@ -185,7 +189,7 @@ texture = ExtResource("9_o4f8e")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="PlayerCountArea" unique_id=121611927]
+[node name="PlayerCountLabel" type="Label" parent="PlayerCountArea" unique_id=121611927]
 layout_mode = 0
 offset_left = 103.35471
 offset_top = 28.86084
@@ -198,3 +202,59 @@ text = "Alive: 12
 Dead: 8"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlayerInfo" type="TextureRect" parent="." unique_id=1688754123]
+layout_mode = 0
+offset_left = 1319.0
+offset_top = 14.0
+offset_right = 1929.0
+offset_bottom = 963.0
+texture = ExtResource("12_1obbr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PlayerNameLabel" type="Label" parent="PlayerInfo" unique_id=418872742]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 43.0
+offset_right = 549.0
+offset_bottom = 100.0
+text = "Ime igraca"
+
+[node name="StatussesLabel" type="Label" parent="PlayerInfo" unique_id=370888791]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 79.0
+offset_right = 557.0
+offset_bottom = 342.0
+text = "Lista status bedzeva"
+
+[node name="RoleLabel" type="Label" parent="PlayerInfo" unique_id=1079306481]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AbilitiesLabel" type="Label" parent="PlayerInfo" unique_id=925726364]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label5" type="Label" parent="PlayerInfo" unique_id=864369771]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label6" type="Label" parent="PlayerInfo" unique_id=430080926]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 305.0
+offset_right = 162.0
+offset_bottom = 328.0
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerInfo" unique_id=1102575771]
+layout_mode = 0
+offset_left = 78.00002
+offset_top = 65.0
+offset_right = 307.1288
+offset_bottom = 292.81625
+rotation = -0.071158044
