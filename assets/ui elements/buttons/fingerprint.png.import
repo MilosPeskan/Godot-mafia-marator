@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwkpew7bwrp08"
-path="res://.godot/imported/fingerprint_red.png-f52904759e0bfb1ecd700b4fc7781006.ctex"
+uid="uid://dui08e7g3mg5g"
+path="res://.godot/imported/fingerprint.png-c0d457c311ed45c53f2fcd770fdfaf94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui elements/fingerprint_red.png"
-dest_files=["res://.godot/imported/fingerprint_red.png-f52904759e0bfb1ecd700b4fc7781006.ctex"]
+source_file="res://assets/ui elements/buttons/fingerprint.png"
+dest_files=["res://.godot/imported/fingerprint.png-c0d457c311ed45c53f2fcd770fdfaf94.ctex"]
 
 [params]
 
