@@ -5,29 +5,77 @@ uniform float development_progress : hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D noise_tex : filter_linear_mipmap, repeat_enable;
 
 // Chemical Customization
-uniform vec3 unexposed_color : source_color = vec3(0.18, 0.15, 0.12); // Muddy chemical tint
+uniform vec3 unexposed_color : source_color = vec3(0.18, 0.15, 0.12);
+uniform bool use_unexposed_color = true;
 uniform float chemical_edge_width : hint_range(0.01, 0.1) = 0.04;
 
+
 void fragment() {
-    // 1. Sample original UI texture (the solid polaroid film backing) and noise
+    // 1. Sample original UI texture and noise
     vec4 base_color = texture(TEXTURE, UV);
-    float noise = texture(noise_tex, UV + vec2(TIME * 0.02)).r; // Slight noise drift
+
+    float noise = texture(
+        noise_tex,
+        UV + vec2(TIME * 0.02)
+    ).r;
+
 
     // 2. Generate organic, uneven reveal mask based on development progress
-    // Value maps from 0.0 (fully covered in chemical) to 1.0 (chemically dissolved/clear)
-    float mask = smoothstep(noise - 0.1, noise + 0.1, development_progress * 1.2 - 0.1);
+    // 0.0 = fully covered
+    // 1.0 = fully revealed
+    float mask = smoothstep(
+        noise - 0.1,
+        noise + 0.1,
+        development_progress * 1.2 - 0.1
+    );
 
-    // 3. Simulate the active chemical reaction line (dark burning edge)
-    float edge_factor = smoothstep(0.0, chemical_edge_width, mask) * (1.0 - smoothstep(chemical_edge_width, chemical_edge_width * 2.0, mask));
-    edge_factor *= (1.0 - development_progress); // Fade edge effect out when fully transparent
-    
-    // 4. Calculate Final Alpha: dissolve the base texture using the mask
-    // When mask is 1.0, alpha becomes 0.0 (fully transparent)
+
+    // 3. Simulate the active chemical reaction line
+    float edge_factor = smoothstep(
+        0.0,
+        chemical_edge_width,
+        mask
+    ) * (
+        1.0 - smoothstep(
+            chemical_edge_width,
+            chemical_edge_width * 2.0,
+            mask
+        )
+    );
+
+    edge_factor *= (1.0 - development_progress);
+
+
+    // 4. Calculate Final Alpha
+    // This is the actual Polaroid development/dissolve effect.
     float final_alpha = base_color.a * (1.0 - mask);
 
-    // 5. Mix states: Unexposed Chemical -> Dark Chemical Bleed
-    // The underlying color darkens right before disappearing
-    vec3 final_rgb = mix(unexposed_color, vec3(0.0), edge_factor * 0.8);
 
-    COLOR = vec4(final_rgb, final_alpha);
+    // 5. Choose what the unexposed area looks like
+    //
+    // TRUE:
+    //     Use the artificial chemical color.
+    //
+    // FALSE:
+    //     Keep the original TextureRect texture.
+    //
+    vec3 base_unexposed_color = use_unexposed_color
+        ? unexposed_color
+        : base_color.rgb;
+
+
+    // 6. Mix states:
+    // Unexposed state -> dark chemical reaction edge
+    vec3 final_rgb = mix(
+        base_unexposed_color,
+        vec3(0.0),
+        edge_factor * 0.8
+    );
+
+
+    // 7. Final output
+    COLOR = vec4(
+        final_rgb,
+        final_alpha
+    );
 }
