@@ -22,8 +22,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mt7ro"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pabw4"]
-noise_type = 2
-frequency = 0.1149
+noise_type = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8xk3n"]
 noise = SubResource("FastNoiseLite_pabw4")
@@ -33,6 +32,7 @@ shader = ExtResource("9_pabw4")
 shader_parameter/development_progress = 0.0
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_8xk3n")
 shader_parameter/unexposed_color = Color(0.18, 0.15, 0.12, 1)
+shader_parameter/use_unexposed_color = false
 shader_parameter/chemical_edge_width = 0.04
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8xk3n"]
@@ -202,10 +202,10 @@ region_rect = Rect2(0, 625, 400, 125)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2924678]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 654.0
-offset_right = 1707.0
-offset_bottom = 1087.0
+offset_left = 608.0
+offset_top = 772.0
+offset_right = 1287.7378
+offset_bottom = 970.0
 texture = ExtResource("5_yowks")
 expand_mode = 3
 stretch_mode = 5
