@@ -10,10 +10,30 @@
 [ext_resource type="Texture2D" uid="uid://ojg10dawefvx" path="res://assets/ui elements/role_polaroid.png" id="6_k76ao"]
 [ext_resource type="Texture2D" uid="uid://6w2r3vl0hpnn" path="res://assets/icons/role/advisor.png" id="7_bmckt"]
 [ext_resource type="Texture2D" uid="uid://b3lb8yiiw8ul2" path="res://assets/ui elements/label_plate_strips.png" id="8_2he1h"]
+[ext_resource type="Texture2D" uid="uid://g8gshrpbquri" path="res://assets/ui elements/night_polaroid_overlay.png" id="8_k76ao"]
+[ext_resource type="Shader" uid="uid://bgpgauhlffm8c" path="res://resources/shaders/polaroid.gdshader" id="9_2he1h"]
+[ext_resource type="Texture2D" uid="uid://cpojwn3o0bpya" path="res://assets/ui elements/night_polaroid_overlay_full.png" id="10_ksfab"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="11_ksfab"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="12_iibih"]
 [ext_resource type="Texture2D" uid="uid://ogk3tmqmjcw8" path="res://assets/images/backgrounds/role_reveal_paper.png" id="13_gxh2j"]
 [ext_resource type="Texture2D" uid="uid://do4sotf5wpf5m" path="res://assets/ui elements/stamps/poverljivo2.png" id="14_eelmp"]
+[ext_resource type="Texture2D" uid="uid://di0ff6ykoj7w5" path="res://assets/ui elements/buttons/leather_button2.png" id="16_iibih"]
+[ext_resource type="FontFile" uid="uid://dj8mq8gb7ag7x" path="res://assets/fonts/CourierPrime-Regular.ttf" id="17_dr0kv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iibih"]
+noise_type = 3
+frequency = 0.0078
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dr0kv"]
+noise = SubResource("FastNoiseLite_iibih")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lma1g"]
+shader = ExtResource("9_2he1h")
+shader_parameter/development_progress = 0.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_dr0kv")
+shader_parameter/unexposed_color = Color(0.18, 0.15, 0.12, 1)
+shader_parameter/use_unexposed_color = false
+shader_parameter/chemical_edge_width = 0.04
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2rdq"]
 shader = ExtResource("3_1vvxx")
@@ -33,6 +53,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_55kn5")
+development_duration = 2.0
+development_delay = 0.0
 
 [node name="Background" type="TextureRect" parent="." unique_id=780889125]
 layout_mode = 0
@@ -111,10 +133,10 @@ stretch_mode = 5
 
 [node name="RolePolaroidIcon" type="TextureRect" parent="RolePolaroidBackground" unique_id=130844703]
 layout_mode = 0
-offset_left = 107.26933
-offset_top = 68.927216
-offset_right = 395.6819
-offset_bottom = 374.76038
+offset_left = 117.10596
+offset_top = 70.98653
+offset_right = 398.84097
+offset_bottom = 361.40216
 texture = ExtResource("7_bmckt")
 expand_mode = 5
 stretch_mode = 4
@@ -130,6 +152,25 @@ theme_override_font_sizes/font_size = 37
 text = "Serijski ubica"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PolaroidOverlay" type="TextureRect" parent="RolePolaroidBackground" unique_id=102688809]
+layout_mode = 0
+offset_left = 105.14142
+offset_top = 72.55133
+offset_right = 400.6741
+offset_bottom = 358.63037
+texture = ExtResource("8_k76ao")
+expand_mode = 1
+
+[node name="PolaroidOverlayFull" type="TextureRect" parent="RolePolaroidBackground" unique_id=121500074]
+material = SubResource("ShaderMaterial_lma1g")
+layout_mode = 0
+offset_left = 105.14142
+offset_top = 72.55133
+offset_right = 400.6741
+offset_bottom = 358.63037
+texture = ExtResource("10_ksfab")
+expand_mode = 1
 
 [node name="LabelPlateStrips" type="Sprite2D" parent="." unique_id=1526112197]
 position = Vector2(160.5686, 33.032272)
@@ -155,9 +196,9 @@ vertical_alignment = 1
 
 [node name="NightReportLabel" type="Label" parent="." unique_id=1942363160]
 layout_mode = 0
-offset_left = 581.0
+offset_left = 612.0
 offset_top = 27.0
-offset_right = 1262.0
+offset_right = 1293.0
 offset_bottom = 135.0
 theme = ExtResource("2_foh5s")
 theme_override_font_sizes/font_size = 55
@@ -178,22 +219,15 @@ stretch_mode = 3
 
 [node name="NightNumberLabel" type="Label" parent="." unique_id=2142450694]
 layout_mode = 0
-offset_left = 581.0
+offset_left = 612.0
 offset_top = 116.0
-offset_right = 1262.0
+offset_right = 1293.0
 offset_bottom = 154.0
 theme = ExtResource("2_foh5s")
 theme_override_colors/font_color = Color(0.62352943, 0.20784314, 0.19215687, 1)
 text = "Noć #1"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="InvestigationResultLabel" type="Label" parent="." unique_id=674763393]
-layout_mode = 0
-offset_left = 662.0
-offset_top = 935.0
-offset_right = 1240.0
-offset_bottom = 1039.0
 
 [node name="ActionMenuContainer" type="Control" parent="." unique_id=43780490]
 anchors_preset = 0
@@ -234,18 +268,17 @@ offset_bottom = 8.0
 
 [node name="Star1" type="Sprite2D" parent="." unique_id=374676189]
 material = SubResource("ShaderMaterial_dr0kv")
-position = Vector2(873.00006, 135)
+position = Vector2(904.00006, 135)
 scale = Vector2(0.06216216, 0.062162172)
 texture = ExtResource("11_ksfab")
 
 [node name="Star2" type="Sprite2D" parent="." unique_id=715313029]
 material = SubResource("ShaderMaterial_dr0kv")
-position = Vector2(969.00006, 135)
+position = Vector2(1000.00006, 135)
 scale = Vector2(0.06216216, 0.062162172)
 texture = ExtResource("12_iibih")
 
 [node name="StatusPanel" type="Control" parent="." unique_id=1897260575]
-visible = false
 layout_mode = 1
 anchor_left = 0.25989583
 anchor_top = 0.14444445
@@ -260,9 +293,20 @@ anchor_right = 1.0
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_foh5s")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="StatusPanel" unique_id=1733162157]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 535.0
+offset_right = 598.0
+offset_bottom = 628.0
+texture = ExtResource("16_iibih")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ContinueButton" type="Button" parent="StatusPanel" unique_id=1006715508]
 layout_mode = 1
@@ -271,9 +315,14 @@ anchor_left = 0.35
 anchor_top = 0.85
 anchor_right = 0.65
 anchor_bottom = 0.9
+offset_top = -29.350037
 offset_right = 8.0
-offset_bottom = 8.0
+offset_bottom = 18.100037
+theme_override_colors/font_color = Color(0.887984, 0.6325596, 0.43353826, 1)
+theme_override_fonts/font = ExtResource("17_dr0kv")
+theme_override_font_sizes/font_size = 33
 text = "Nastavi"
+flat = true
 
 [node name="SummaryPanel" type="Control" parent="." unique_id=965468299]
 visible = false
@@ -313,7 +362,7 @@ text = "Nastavi na dan"
 metadata/_edit_use_anchors_ = true
 
 [node name="Poverljivo2" type="Sprite2D" parent="." unique_id=271347091]
-position = Vector2(1278, 93.00002)
+position = Vector2(1309, 93.00002)
 rotation = 0.13601437
 scale = Vector2(0.5743243, 0.5743243)
 texture = ExtResource("14_eelmp")
