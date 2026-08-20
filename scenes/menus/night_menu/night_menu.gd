@@ -3,7 +3,6 @@ extends Control
 const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/action_menu.tscn")
 
 @onready var header_label: Label = $HeaderLabel
-@onready var result_label: Label = $InvestigationResultLabel
 @onready var action_menu_container: Control = $ActionMenuContainer
 @onready var mafia_group_panel: Control = $MafiaGroupPanel
 @onready var mafia_members_label: Label = $MafiaGroupPanel/MafiaMembersLabel
@@ -17,18 +16,79 @@ const ACTION_MENU_SCENE: PackedScene = preload("res://scenes/menus/action_menu/a
 @onready var role_instruction_label: Label = $InfoCardBackground/RoleInstructionLabel
 @onready var night_number_label: Label = $NightNumberLabel
 
-# Status panel (Milestone 13) — prikazuje se umesto action_menu-a kad
+# Status panel — prikazuje se umesto action_menu-a kad
 # glumac ne može da deluje: nema mete, blokiran je, ili je zatvoren.
 @onready var status_panel: Control = $StatusPanel
 @onready var status_label: Label = $StatusPanel/StatusLabel
 @onready var continue_button: Button = $StatusPanel/ContinueButton
 
-# Sažetak kraja noći (Milestone 15) — prikazuje se KAD SE CELA NOĆ
+# Sažetak kraja noći — prikazuje se KAD SE CELA NOĆ
 # razreši, PRE prelaska na dnevnu fazu. Narator mora eksplicitno da
 # potvrdi da bi se scena promenila na day_menu.
 @onready var summary_panel: Control = $SummaryPanel
 @onready var summary_label: Label = $SummaryPanel/SummaryLabel
 @onready var summary_continue_button: Button = $SummaryPanel/ContinueButton
+
+@onready var polaroid_overlay_full: TextureRect = $RolePolaroidBackground/PolaroidOverlayFull
+
+@export var development_duration: float = 4.0   # gornja granica trajanja PUNE animacije (0.0 -> 1.0)
+@export var development_delay: float = 0.5      # pauza pre početka, SAMO pri startu od 0.0
+
+const REVEAL_THRESHOLD: float = 0.1   # development_progress posle kog role_card postaje vidljiv
+
+var current_index: int = 0
+var progress_tween: Tween = null
+
+var mat: ShaderMaterial
+
+func _get_shader_material(node) -> ShaderMaterial:
+	var shadermaterial: ShaderMaterial = node.material as ShaderMaterial
+	
+	if shadermaterial == null:
+		push_error("Missing ShaderMaterial on this node!")
+	
+	return shadermaterial
+
+
+func _current_development_progress() -> float:
+	if mat == null:
+		return 0.0
+	
+	return float(mat.get_shader_parameter("development_progress"))
+
+
+func _set_development_progress(value: float) -> void:
+	if mat == null:
+		return
+	
+	mat.set_shader_parameter("development_progress", value)
+
+
+func _reset_and_develop_polaroid() -> void:
+	if mat == null:
+		return
+	
+	# Prekini prethodnu animaciju
+	if progress_tween != null and progress_tween.is_valid():
+		progress_tween.kill()
+	
+	# Uvek počinjemo od nule za novog igrača
+	mat.set_shader_parameter("development_progress", 0.0)
+	
+	# Pokreni razvoj 0.0 -> 1.0
+	progress_tween = create_tween()
+	progress_tween.set_ease(Tween.EASE_OUT)
+	progress_tween.set_trans(Tween.TRANS_QUAD)
+	
+	if development_delay > 0.0:
+		progress_tween.tween_interval(development_delay)
+	
+	progress_tween.tween_method(
+		_set_development_progress,
+		0.0,
+		1.0,
+		development_duration
+	)
 
 var current_action_menu: ActionMenu = null
 var group_eligible_targets: Array[Player] = []
@@ -38,7 +98,10 @@ func _ready() -> void:
 	EventBus.night_turn_started.connect(_on_night_turn_started)
 	EventBus.night_group_turn_started.connect(_on_night_group_turn_started)
 	EventBus.night_resolved.connect(_on_night_resolved)
-	EventBus.night_info_result.connect(_on_night_info_result)
+	
+	mat = _get_shader_material(polaroid_overlay_full)
+	if mat != null:
+		mat.set_shader_parameter("development_progress", 0.0)
 
 	propose_button.pressed.connect(_on_propose_pressed)
 	kum_override_button.pressed.connect(_on_kum_override_pressed)
@@ -51,7 +114,6 @@ func _ready() -> void:
 	summary_continue_button.pressed.connect(_on_summary_continue_pressed)
 
 	header_label.text = "Noć pada nad gradom..."
-	result_label.text = ""
 	mafia_group_panel.visible = false
 
 	var phase: PhaseBase = PhaseStateMachine.get_current_phase()
@@ -80,8 +142,18 @@ func _on_night_turn_started(player: Player) -> void:
 func _show_solo_actor(player: Player) -> void:
 	mafia_group_panel.visible = false
 	status_panel.visible = false
-	result_label.text = ""
-	header_label.text = "Na potezu: %s (%s)" % [player.player_name, player.role.role_name]
+	
+	# Prikaži Polaroid overlay
+	polaroid_overlay_full.visible = true
+	
+	# Svaki novi igrač počinje razvoj od 0.0
+	_reset_and_develop_polaroid()
+	
+	header_label.text = "Na potezu: %s (%s)" % [
+		player.player_name,
+		player.role.role_name
+	]
+	
 	role_name_label.text = player.role.role_name
 	role_polaroid_icon.texture = player.role.icon
 	role_action_label.text = player.role.action_label
@@ -90,13 +162,16 @@ func _show_solo_actor(player: Player) -> void:
 	if player.is_jailed:
 		_show_status(player, "ZATVOREN — ne može da deluje noćas.")
 		return
+
 	if player.is_blocked:
 		_show_status(player, "BLOKIRAN — ne može da deluje noćas.")
 		return
 
 	var needs_target: bool = player.role.night_action_type != Role.NightActionType.OBSERVE
+
 	if needs_target:
 		var eligible: Array[Player] = TargetResolver.get_eligible_targets(player)
+
 		if eligible.is_empty():
 			_show_status(player, "Nema dostupnu metu ove noći.")
 			return
@@ -134,7 +209,6 @@ func _on_night_group_turn_started(actors: Array[Player]) -> void:
 		current_action_menu.queue_free()
 		current_action_menu = null
 
-	result_label.text = ""
 	status_panel.visible = false
 	header_label.text = "Mafija bira zajedničku metu"
 	mafia_group_panel.visible = true
@@ -203,9 +277,6 @@ func _on_confirm_group_pressed() -> void:
 	var night_phase: NightPhase = phase as NightPhase
 	if night_phase != null:
 		night_phase.finalize_group_kill()
-
-func _on_night_info_result(source: Player, target: Player, info_type: String, payload: Dictionary) -> void:
-	result_label.text = NightInfoFormatter.format(source, target, info_type, payload)
 
 ## Sada gradi i prikazuje sažetak kraja noći umesto da samo čisti UI
 ## stanje. Scena se NE menja ovde — čeka se _on_summary_continue_pressed().
