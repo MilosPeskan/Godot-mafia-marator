@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://df42hdnudeo3e" path="res://scenes/menus/action_menu/action_menu.gd" id="1_dlugs"]
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="2_3feyd"]
+[ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="2_3ovwb"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="3_yj8b4"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="4_b4tso"]
 [ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_hxapl"]
 [ext_resource type="PackedScene" uid="uid://cxv0uiamdpf5k" path="res://scenes/components/target_player/target_player_card.tscn" id="6_yj8b4"]
+[ext_resource type="Texture2D" uid="uid://dhpupcqi8wiio" path="res://assets/ui elements/buttons/button_texture.png" id="7_4p8hl"]
+[ext_resource type="FontFile" uid="uid://dj8mq8gb7ag7x" path="res://assets/fonts/CourierPrime-Regular.ttf" id="7_17oeg"]
+[ext_resource type="FontFile" uid="uid://bub26ngtjysik" path="res://assets/fonts/ELEGANT TYPEWRITER Light.ttf" id="7_hxapl"]
+[ext_resource type="Texture2D" uid="uid://di0ff6ykoj7w5" path="res://assets/ui elements/buttons/leather_button2.png" id="8_4p8hl"]
+[ext_resource type="Texture2D" uid="uid://dnf330mii3f1a" path="res://assets/ui elements/buttons/leather_button3.png" id="10_4gmqa"]
 
 [node name="ActionMenu" type="Control" unique_id=2130356084]
 layout_mode = 3
@@ -29,6 +35,7 @@ alignment = 1
 
 [node name="InstructionLabel" type="Label" parent="VBoxContainer" unique_id=364016375]
 layout_mode = 2
+theme = ExtResource("2_3ovwb")
 text = "iNSTRUKCIJE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -89,13 +96,69 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/TargetList" unique_id=1012259186]
 layout_mode = 2
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1732996292]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1370918687]
 layout_mode = 2
-text = "Potvrdi"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
 
-[node name="IgniteButton" type="Button" parent="VBoxContainer" unique_id=1174865708]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=467102675]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer/Control" unique_id=1732996292]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.9813666, 0.83407617, 0.7109041, 1)
+theme_override_fonts/font = ExtResource("7_17oeg")
+theme_override_font_sizes/font_size = 25
+text = "Potvrdi"
+flat = true
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/Control/ConfirmButton" unique_id=1045512291]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_4p8hl")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="IgniteControl" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1709818689]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IgniteButton" type="Button" parent="VBoxContainer/HBoxContainer/IgniteControl" unique_id=1174865708]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+offset_left = -71.19995
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0.9813666, 0.83407617, 0.7109041, 1)
+theme_override_fonts/font = ExtResource("7_17oeg")
+theme_override_font_sizes/font_size = 25
 text = "Zapali sve"
+flat = true
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/IgniteControl/IgniteButton" unique_id=1198700319]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_4gmqa")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="RevealPopup" type="Control" parent="." unique_id=1404278017]
 visible = false
@@ -115,6 +178,8 @@ anchor_right = 0.98
 anchor_bottom = 0.8972222
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_3feyd")
+theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -132,3 +197,20 @@ offset_top = -8.0
 offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.9762121, 0.7667717, 0.51019025, 1)
+theme_override_fonts/font = ExtResource("7_hxapl")
+theme_override_font_sizes/font_size = 30
+text = "Potvrdi"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="RevealPopup/RevealOkButton" unique_id=1122472151]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_4p8hl")
+expand_mode = 5
+stretch_mode = 5
