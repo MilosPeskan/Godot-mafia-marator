@@ -1,9 +1,9 @@
 extends Control
 
-@onready var new_game_button: Button = $Background/VBoxContainer/NewGameButton
-@onready var settings_button: Button = $Background/VBoxContainer/SettingsButton
-@onready var info_button: Button = $Background/VBoxContainer/InfoButton
-@onready var debug_button: Button = $Background/VBoxContainer/DebugButton
+@onready var new_game_button: Button = $Background/NewGame/NewGameButton
+@onready var settings_button: Button = $Background/Settings/SettingsButton
+@onready var info_button: Button = $Background/Info/InfoButton
+@onready var debug_button: Button = $Background/DebugButton
 
 func _ready() -> void:
 	new_game_button.pressed.connect(_on_new_game_pressed)
