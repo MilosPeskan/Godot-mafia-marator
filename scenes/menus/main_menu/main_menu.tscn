@@ -4,6 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://cemwga1lj7e62" path="res://assets/images/backgrounds/blank_dossier.png" id="2_peecx"]
 [ext_resource type="Theme" uid="uid://cjlc6w5j0l81h" path="res://themes/ui.tres" id="3_m7x51"]
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="3_ub2bi"]
+[ext_resource type="Texture2D" uid="uid://c8xaeds3y50jv" path="res://assets/ui elements/player_selected.png" id="5_627ab"]
+[ext_resource type="Texture2D" uid="uid://tt0wxbd0kkq8" path="res://assets/ui elements/start/start_game.png" id="6_7j6ce"]
+[ext_resource type="Texture2D" uid="uid://dnf330mii3f1a" path="res://assets/ui elements/buttons/leather_button3.png" id="7_qwqm5"]
+[ext_resource type="Texture2D" uid="uid://cddwnhdsd5v7n" path="res://assets/ui elements/start/information.png" id="8_q0yg5"]
+[ext_resource type="Texture2D" uid="uid://vj4s5tiugn14" path="res://assets/ui elements/buttons/green_button.png" id="9_88r3n"]
+[ext_resource type="Texture2D" uid="uid://inwmfsoubi87" path="res://assets/ui elements/start/settings.png" id="10_qwqm5"]
+[ext_resource type="Texture2D" uid="uid://di0ff6ykoj7w5" path="res://assets/ui elements/buttons/leather_button2.png" id="11_q0yg5"]
 
 [node name="MainMenu" type="Control" unique_id=2128320924]
 layout_mode = 3
@@ -29,36 +36,260 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_peecx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=2112199578]
+[node name="TitleLabel" type="Label" parent="Background" unique_id=1812321938]
 layout_mode = 0
 offset_left = 90.5
 offset_top = 43.5
 offset_right = 648.5
-offset_bottom = 808.5
-
-[node name="TitleLabel" type="Label" parent="Background/VBoxContainer" unique_id=1812321938]
-layout_mode = 2
+offset_bottom = 122.5
 theme = ExtResource("3_ub2bi")
 theme_override_font_sizes/font_size = 70
 text = "Mafija"
 horizontal_alignment = 1
 
-[node name="NewGameButton" type="Button" parent="Background/VBoxContainer" unique_id=1875684469]
-layout_mode = 2
+[node name="NewGame" type="Control" parent="Background" unique_id=1611706264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.5
+offset_top = 126.5
+offset_right = -671.5
+offset_bottom = -614.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewGameButton" type="Button" parent="Background/NewGame" unique_id=1875684469]
+layout_mode = 0
+offset_right = 558.0
+offset_bottom = 246.0
 theme = ExtResource("3_m7x51")
 text = "Nova igra"
+flat = true
 
-[node name="InfoButton" type="Button" parent="Background/VBoxContainer" unique_id=552656762]
-layout_mode = 2
+[node name="TextureRect4" type="TextureRect" parent="Background/NewGame/NewGameButton" unique_id=1091689443]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 118.00001
+offset_top = 86.0
+offset_right = -82.0
+offset_bottom = 93.61255
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.43983346
+mouse_filter = 2
+texture = ExtResource("5_627ab")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Background/NewGame/NewGameButton" unique_id=570856403]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = 5.0
+offset_right = -237.0
+offset_bottom = 49.927307
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.13694234
+mouse_filter = 2
+texture = ExtResource("6_7j6ce")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Background/NewGame/NewGameButton" unique_id=1042923141]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 201.0
+offset_top = 113.0
+offset_right = 1.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_qwqm5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Background/NewGame/NewGameButton/TextureRect3" unique_id=1661013795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_m7x51")
+theme_override_colors/font_color = Color(0.80697453, 0.74405706, 0.66535246, 1)
+theme_override_font_sizes/font_size = 31
+text = "Nova igra"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Control" parent="Background" unique_id=1838951085]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 701.5
+offset_top = 274.5
+offset_right = -51.5
+offset_bottom = -440.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InfoButton" type="Button" parent="Background/Info" unique_id=552656762]
+layout_mode = 0
+offset_top = -18.0
+offset_right = 493.0
+offset_bottom = 295.0
 theme = ExtResource("3_m7x51")
 text = "Informacije"
+flat = true
 
-[node name="SettingsButton" type="Button" parent="Background/VBoxContainer" unique_id=24744099]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="Background/Info/InfoButton" unique_id=392232716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Background/Info" unique_id=2146086003]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -39.0
+offset_right = -62.365967
+offset_bottom = 97.664
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.02347742
+mouse_filter = 2
+texture = ExtResource("8_q0yg5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Background/Info" unique_id=1130200081]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 197.0
+offset_right = -189.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_88r3n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Background/Info/TextureRect3" unique_id=1733424955]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_m7x51")
+theme_override_colors/font_color = Color(0.80697453, 0.74405706, 0.66535246, 1)
+theme_override_font_sizes/font_size = 31
+text = "Informacije"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="Background" unique_id=1459015059]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.5
+offset_top = 533.5
+offset_right = -672.5
+offset_bottom = -160.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsButton" type="Button" parent="Background/Settings" unique_id=24744099]
+layout_mode = 0
+offset_top = -13.0
+offset_right = 558.0
+offset_bottom = 317.0
 theme = ExtResource("3_m7x51")
 text = "Podesavanja"
+flat = true
 
-[node name="DebugButton" type="Button" parent="Background/VBoxContainer" unique_id=346350746]
-layout_mode = 2
+[node name="TextureRect3" type="TextureRect" parent="Background/Settings/SettingsButton" unique_id=1700633235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Background/Settings" unique_id=847947320]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -79.0
+offset_right = -1.6331177
+offset_bottom = 119.41382
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.02347742
+mouse_filter = 2
+texture = ExtResource("10_qwqm5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Background/Settings" unique_id=934235494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = 218.0
+offset_right = -110.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_q0yg5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Background/Settings/TextureRect3" unique_id=1220379872]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_m7x51")
+theme_override_colors/font_color = Color(0.80697453, 0.74405706, 0.66535246, 1)
+theme_override_font_sizes/font_size = 31
+text = "Podešavanja"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugButton" type="Button" parent="Background" unique_id=346350746]
+layout_mode = 0
+offset_left = 678.5
+offset_top = 814.5
+offset_right = 1236.5
+offset_bottom = 845.5
 theme = ExtResource("3_m7x51")
 text = "Debug"
