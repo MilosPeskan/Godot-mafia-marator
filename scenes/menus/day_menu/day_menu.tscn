@@ -7,11 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://chu3drfnpde2n" path="res://assets/images/line/line1.png" id="5_n5p35"]
 [ext_resource type="Texture2D" uid="uid://b8e476y5o03yv" path="res://assets/ui elements/stars/star1.png" id="6_o4f8e"]
 [ext_resource type="Texture2D" uid="uid://bdq62ten3sf1c" path="res://assets/ui elements/stars/star4.png" id="7_ia7nj"]
+[ext_resource type="Texture2D" uid="uid://dnf330mii3f1a" path="res://assets/ui elements/buttons/leather_button3.png" id="8_gtf35"]
 [ext_resource type="Texture2D" uid="uid://dhoo21rwxxfs5" path="res://assets/ui elements/buttons/silver_button.png" id="8_ia7nj"]
 [ext_resource type="Texture2D" uid="uid://d2an5fmt22url" path="res://assets/ui elements/notebook_paper.png" id="8_n5p35"]
+[ext_resource type="FontFile" uid="uid://gce8rvp5duya" path="res://assets/fonts/SpecialElite-Regular.ttf" id="9_48eq1"]
 [ext_resource type="Texture2D" uid="uid://dkt2nysufaop3" path="res://assets/ui elements/player_count.png" id="9_o4f8e"]
 [ext_resource type="Theme" uid="uid://yjs6ff7n0a8h" path="res://themes/main_theme.tres" id="10_ia7nj"]
 [ext_resource type="Texture2D" uid="uid://qvidc5mu5uiq" path="res://assets/ui elements/player_info_background.png" id="12_1obbr"]
+[ext_resource type="FontFile" uid="uid://b0ergpf1ux4vm" path="res://assets/fonts/ELEGANT TYPEWRITER Italic.ttf" id="15_g7ino"]
+[ext_resource type="Texture2D" uid="uid://2scrt2ls4034" path="res://assets/icons/player/igrac12.png" id="16_yf811"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1obbr"]
 shader = ExtResource("4_7gyiu")
@@ -22,6 +26,21 @@ shader_parameter/opacity = 1.0
 shader = ExtResource("4_7gyiu")
 shader_parameter/ink_color = Color(0.55, 0.05, 0.08, 1)
 shader_parameter/opacity = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_mpd0a"]
+font = ExtResource("9_48eq1")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0.696247, 0.3843221, 0.2888119, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x0tql"]
+font = ExtResource("9_48eq1")
+font_size = 40
+font_color = Color(0.22745098, 0.17254902, 0.09411765, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0.56078434, 0.49803922, 0.43529412, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fef32"]
 shader = ExtResource("4_7gyiu")
@@ -143,23 +162,59 @@ offset_right = 792.0
 offset_bottom = 751.0
 bbcode_enabled = true
 
-[node name="CallLynchButton" type="Button" parent="." unique_id=866190440]
+[node name="CallLynchButton" type="TextureButton" parent="." unique_id=1904814482]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 857.0
-offset_right = 671.0
-offset_bottom = 998.0
-text = "Lynch"
+offset_left = 530.0
+offset_top = 883.0
+offset_right = 919.0
+offset_bottom = 1024.0
+texture_normal = ExtResource("8_gtf35")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="CallLynchButton" unique_id=408184871]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_48eq1")
+theme_override_font_sizes/font_size = 40
+text = "Linčuj"
+label_settings = SubResource("LabelSettings_mpd0a")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartNightButton" type="TextureButton" parent="." unique_id=1803284249]
 layout_mode = 0
-offset_left = 764.0
-offset_top = 887.0
-offset_right = 1147.0
-offset_bottom = 1026.0
+offset_left = 946.0
+offset_top = 886.0
+offset_right = 1329.0
+offset_bottom = 1025.0
 texture_normal = ExtResource("8_ia7nj")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Label" type="Label" parent="StartNightButton" unique_id=1670112304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.22910476, 0.17288214, 0.09365422, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_48eq1")
+theme_override_font_sizes/font_size = 40
+text = "Započni noć"
+label_settings = SubResource("LabelSettings_x0tql")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ViewDetailsButton" type="Button" parent="." unique_id=890823292]
 layout_mode = 0
@@ -191,15 +246,17 @@ stretch_mode = 5
 
 [node name="PlayerCountLabel" type="Label" parent="PlayerCountArea" unique_id=121611927]
 layout_mode = 0
-offset_left = 103.35471
-offset_top = 28.86084
-offset_right = 325.22745
-offset_bottom = 158.4765
+offset_left = 81.61969
+offset_top = 28.089989
+offset_right = 359.42526
+offset_bottom = 157.70566
 rotation = 0.035451002
 theme = ExtResource("10_ia7nj")
 theme_override_font_sizes/font_size = 26
-text = "Alive: 12
-Dead: 8"
+text = "Mafija:12
+Selo:8
+Serijski ubica:1
+Piroman:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -215,11 +272,15 @@ stretch_mode = 5
 
 [node name="PlayerNameLabel" type="Label" parent="PlayerInfo" unique_id=418872742]
 layout_mode = 0
-offset_left = 350.0
+offset_left = 334.0
 offset_top = 43.0
-offset_right = 549.0
+offset_right = 561.0
 offset_bottom = 100.0
+theme = ExtResource("10_ia7nj")
+theme_override_colors/font_color = Color(0.57254905, 0.105882354, 0.11764706, 1)
+theme_override_font_sizes/font_size = 32
 text = "Ime igraca"
+horizontal_alignment = 1
 
 [node name="StatussesLabel" type="Label" parent="PlayerInfo" unique_id=370888791]
 layout_mode = 0
@@ -227,22 +288,28 @@ offset_left = 345.0
 offset_top = 79.0
 offset_right = 557.0
 offset_bottom = 342.0
+theme = ExtResource("10_ia7nj")
 text = "Lista status bedzeva"
-
-[node name="RoleLabel" type="Label" parent="PlayerInfo" unique_id=1079306481]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="AbilitiesLabel" type="Label" parent="PlayerInfo" unique_id=925726364]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme = ExtResource("10_ia7nj")
 
-[node name="Label5" type="Label" parent="PlayerInfo" unique_id=864369771]
+[node name="RoleLabel" type="Label" parent="PlayerInfo" unique_id=864369771]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 94.0
+offset_top = 304.00003
+offset_right = 324.46497
+offset_bottom = 337.41147
+rotation = -0.07138213
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_g7ino")
+theme_override_font_sizes/font_size = 25
+text = "Serijski ubica"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label6" type="Label" parent="PlayerInfo" unique_id=430080926]
 layout_mode = 0
@@ -253,8 +320,11 @@ offset_bottom = 328.0
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerInfo" unique_id=1102575771]
 layout_mode = 0
-offset_left = 78.00002
-offset_top = 65.0
-offset_right = 307.1288
-offset_bottom = 292.81625
+offset_left = 78.00003
+offset_top = 76.00001
+offset_right = 307.47684
+offset_bottom = 294.341
 rotation = -0.071158044
+texture = ExtResource("16_yf811")
+expand_mode = 1
+stretch_mode = 6
