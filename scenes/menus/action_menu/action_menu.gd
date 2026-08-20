@@ -17,8 +17,11 @@ const NAME_LABEL_MIN_FONT_SIZE: int = 10
 
 @onready var instruction_label: Label = $VBoxContainer/InstructionLabel
 @onready var target_list: GridContainer = $VBoxContainer/TargetList
-@onready var confirm_button: Button = $VBoxContainer/ConfirmButton
-@onready var ignite_button: Button = $VBoxContainer/IgniteButton   # samo za Pirmana (DOUSE tip), sakriven inače
+@onready var confirm_button: Button = $VBoxContainer/HBoxContainer/Control/ConfirmButton
+@onready var ignite_control: Control = $VBoxContainer/HBoxContainer/IgniteControl   # samo za Pirmana (DOUSE tip), sakriven inače
+@onready var ignite_button: Button = $VBoxContainer/HBoxContainer/IgniteControl/IgniteButton   # samo za Pirmana (DOUSE tip), sakriven inače
+@onready var target_selection_container: VBoxContainer = $VBoxContainer
+
 
 @onready var reveal_popup: Control = $RevealPopup
 @onready var reveal_text_label: Label = $RevealPopup/RevealText
@@ -42,7 +45,7 @@ var pending_reveal_message: String = ""
 func _ready() -> void:
 	confirm_button.pressed.connect(_on_confirm_pressed)
 	ignite_button.pressed.connect(_on_ignite_pressed)
-	ignite_button.visible = false
+	ignite_control.visible = false
 
 	reveal_popup.visible = false
 	reveal_ok_button.pressed.connect(_on_reveal_ok_pressed)
@@ -58,7 +61,8 @@ func setup(p_actor: Player) -> void:
 
 	var no_target: bool = role.night_action_type == Role.NightActionType.OBSERVE
 
-	ignite_button.visible = role.night_action_type == Role.NightActionType.DOUSE
+	ignite_control.visible = role.night_action_type == Role.NightActionType.DOUSE
+	target_selection_container.visible = true
 	target_list.visible = not no_target
 	confirm_button.text = "Potvrdi" if no_target else role.action_label
 
@@ -224,7 +228,7 @@ func _show_reveal_popup() -> void:
 	confirm_button.disabled = true
 	if is_instance_valid(ignite_button):
 		ignite_button.disabled = true
-	target_list.visible = false
+	target_selection_container.visible = false
 
 func _on_reveal_ok_pressed() -> void:
 	reveal_popup.visible = false
